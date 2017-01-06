@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/codemirror.css">
     <!-- Theme CSS -->
     <link href="css/new-age.min.css" rel="stylesheet">
 
@@ -38,7 +38,9 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="PK_test.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/codemirror.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/mode/sql/sql.js"></script>
+  <script src="js/worker.sql.js"></script>
     
     
 
@@ -82,22 +84,28 @@
     
     <div class="container">
        
+
     
     <div class="chart">
-    <h1>Example description - Dave is worried about burglary on the ormeau road </h1>
-    <p>Example - Select a key and move it into the correct box above the column name.</p>
-	<div id="cardPile"> </div><br>
-	<div id="cardSlots"> </div>
+
     <table id="sqlTable">
-       <tr><img src="img/PK_table-01.png" alt="table" width="700"</img></tr>
+                <main>
+    <h4>Enter your SQL here:</h4>
+    <textarea id="userInput"></textarea>
+
+    <div>
+      <button class="btn btn-default">
+        <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+        Execute
+      </button>
+    </div>
+
+    <h4>Results:</h4>
+    <pre id="errorResult" style="display: none"></pre>
+    <div id="queryResult"></div>
+  </main>
        <table><br><br>
-    <div id="correctMessage" >
-		<h2>Well done, that's correct!</h2>
-	</div>
-    
-    <!--<div id="successMessage" >
-		<h2>You did it!</h2>
-		<button onclick="init()">Play Again</button>-->
+
 	</div>
 
     </div>
@@ -115,8 +123,79 @@
 <script>
 
 function myFunction() { window.open("PK_test.html");
-window.close("multiple_choice.html");} </script>
-<script src="PK_test.js"></script>
+window.close("SQL_practice.html");} </script>
+
+ <script>
+    var
+      worker = new Worker('js/worker.sql.js'),
+      editor = CodeMirror.fromTextArea($('#userInput')[0], {
+        mode: 'text/x-mysql',
+        viewportMargin: Infinity,
+        indentWithTabs: true,
+        smartIndent: true,
+        lineNumbers: true,
+        matchBrackets : true,
+        autofocus: true,
+        extraKeys: {
+          'Ctrl-Enter': runSqlFromEditor
+        }
+      });
+    $('button').on('click', runSqlFromEditor);
+    function runSqlFromEditor() {
+      runSql(editor.getValue() + ';');
+    }
+    function runSql(sql) {
+      worker.postMessage({action: 'exec', sql: sql });
+    }
+    worker.onmessage = function(event) {
+      $('#errorResult').hide();
+      $('#queryResult').show().empty();
+      if (event.data.results && event.data.results.length > 0) {
+        $(event.data.results).each(function(idx, result) {
+          $('#queryResult').append(createTable(result.columns, result.values));
+        });
+      }
+      else {
+        $('#queryResult').text('Query returned no results');
+      }
+    }
+    worker.onerror = function(e) {
+      $('#queryResult').hide();
+      $('#errorResult').show().text(e.message);
+    }
+    function createTable(headings, rows) {
+      var table  = $('<table class="table table-striped">');
+      var header = $('<thead>');
+      table.append(header);
+      $(headings).each(function(idx, col) { header.append($('<th>').text(col)); });
+      var tbody = $('<tbody>');
+      table.append(tbody);
+      $(rows).each(function(idx, cols) {
+        var row = $('<tr>');
+        tbody.append(row);
+        $(cols).each(function(idx, col) { row.append($('<td>').text(col)); });
+      });
+      return table;
+    };
+    function getQueryParam(name) {
+      var el = $.grep(window.location.search.substring(1).split('&'), function(el) { return el.indexOf(name + '=') == 0 });
+      return el.length? el[0].split('=')[1] : undefined;
+    }
+    worker.postMessage({action: 'open'});
+    var
+      seed = getQueryParam('seed'),
+      greeting = getQueryParam('greeting');
+    if (seed) {
+      $.get(seed, runSql);
+    }
+    if (greeting) {
+      $.get(greeting, $.proxy(editor.setValue, editor));
+    }
+  </script>
+
+
+
+
 
     <!-- jQuery 
     <script src="vendor/jquery/jquery.min.js"></script>-->
