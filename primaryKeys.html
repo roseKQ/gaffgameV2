@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!--this is all my code that needs reorganised-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script>
+function _(id){
+   return document.getElementById(id);	
+}
+var droppedIn = false;
+function drag_start(event) {
+    _('app_status').innerHTML = "You are dragging object"+event.target.getAttribute('id');
+    event.dataTransfer.dropEffect = "move";
+    event.dataTransfer.setData("text", event.target.getAttribute('id') );
+}
+function drag_enter(event) {
+    _('app_status').innerHTML = "You are dragging object "+event.target.getAttribute('id');
+}
+function drag_leave(event) {
+    _('app_status').innerHTML = "You are dragging object "+event.target.getAttribute('id');
+}
+function drag_drop(event) {
+    event.preventDefault(); /* Prevent undesirable default behavior while dropping */
+    var elem_id = event.dataTransfer.getData("text");
+    event.target.appendChild( _(elem_id) );
+    _('app_status').innerHTML = "Dropped "+elem_id+" into the "+event.target.getAttribute('id');
+    _(elem_id).removeAttribute("draggable");
+    _(elem_id).style.cursor = "default";
+    droppedIn = true;
+}
+function drag_end(event) {
+    if(droppedIn == false){
+        _('app_status').innerHTML = "You are dragging object "+event.target.getAttribute('id')+" go.";
+    }
+	droppedIn = false;
+}
+function readDropZone(){
+    for(var i=0; i < _("drop_zone").children.length; i++){
+        alert(_("drop_zone").children[i].id+" is in the drop zone");
+    }
+    // Run Ajax request to pass any data to your server */
+}
+
+</script>
+<!--this is all my code that needs reorganised-->
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>gaff game </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+    <!-- Theme CSS -->
+    <link href="css/new-age.min.css" rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+
+<div id="pop_background"></div>
+<div id="pop_box">
+    <span id="close">&times;</span>
+    <p id="paragraph" style="color:black"></p>
+</div>
+
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Gaff Game</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#download">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#features">Features</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Play</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    
+
+                <div class="col-sm-5">
+                            <div class="device-container">
+                                <div ></div>
+                                <div class="screen">
+                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                                    <img src="img/icon-01.png" class="img-responsive" alt="">
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <section id="primaryKey" class="contact bg-primary">
+        <div class="container">
+                          
+                            <div class="chart" id = "chart2">
+<div id="wrapper" class="container-fluid">
+
+
+    <p>Your task is to put the primary key or foreign key into the correct columns</p>
+        <h2 id="app_status" style="opacity: 0;"></h2>
+        
+<div id="drop_zone" class="dropzone" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" 
+    ondragover="return false" ondragleave="drag_leave(event)">
+        <img id="column_id" class="database_columns" src="img/id_column.png" width="90px" height="150px">
+</div>
+<div id="drop_zone1" class="dropzone1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)"
+    ondragover="return false" ondragleave="drag_leave(event)">
+        <img id="column_month" class="database_columns" src="img/month_column.png" width="90px" height="150px">
+</div>
+<div id="drop_zone2" class="dropzone2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)"
+    ondragover="return false" ondragleave="drag_leave(event)">
+        <img id="column_longitude" class="database_columns" src="img/longitude_column.png" width="90px" height="150px">
+</div>
+<div id="drop_zone3" class="dropzone3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)"
+    ondragover="return false" ondragleave="drag_leave(event)">
+        <img id="column_latitude" class="database_columns" src="img/latitude_column.png" width="90px" height="150px">
+</div>
+<div id="drop_zone4" class="dropzone4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)"
+    ondragover="return false" ondragleave="drag_leave(event)">
+        <img id="column_crime_type" class="database_columns" src="img/crime_type_column.png" width="90px" height="150px">
+</div></div>
+            
+<div class="key_container">
+                        <div id="object1" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">
+                            <img id="crimepk" src="img/primarykey.png" alt="Primary Key icon" width="30" height="40">
+                        </div>
+                        <div id="object2" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">
+                            <img id="crimiefk" src="img/foreignkey.png" alt="Primary Key icon" width="30" height="40">
+                        </div>
+                        <div id="object3" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">
+                            <img id="schoolpk" src="img/primarykey.png" alt="Primary Key icon" width="30" height="40">
+                        </div>
+                        <div id="object4" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">
+                            <img id="schoolfk" src="img/foreignkey.png" alt="Primary Key icon" width="30" height="40">
+                        </div>
+                        <div id="object3" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">
+                            <img id="parkpk" src="img/primarykey.png" alt="Primary Key icon" width="30" height="40">
+                        </div>
+</div>
+                        <button class="btn btn-outline btn-xl" style="color:red">Next Question</button>
+                        <a href="" id="nextPage" class="btn btn-outline btn-xl" onclick="myFunction()">Next</a>
+                        
+
+         </div>                    
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2016 Gaff Game. All Rights Reserved.</p>
+            <ul class="list-inline">
+                <li>
+                    <a href="#">Privacy</a>
+                </li>
+                <li>
+                    <a href="#">Terms</a>
+                </li>
+                <li>
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+<script>
+    $(document).ready(function(){
+
+        $('#crimepk').click(function(){
+
+            $('#pop_background').fadeIn();
+            document.getElementById("paragraph").innerHTML = "Hint crimepk displayed!";
+            $('#pop_box').fadeIn();
+            return false;       
+        });
+
+        $('#crimiefk').click(function(){
+
+            $('#pop_background').fadeIn();
+            document.getElementById("paragraph").innerHTML = "Hint crimefk displayed!";
+            $('#pop_box').fadeIn();
+            return false;       
+        });
+
+        $('#schoolpk').click(function(){
+
+            $('#pop_background').fadeIn();
+            document.getElementById("paragraph").innerHTML = "Hint schoolpk displayed!";
+            $('#pop_box').fadeIn();
+            return false;       
+        });
+
+        $('#schoolfk').click(function(){
+
+            $('#pop_background').fadeIn();
+            document.getElementById("paragraph").innerHTML = "Hint schoolfk displayed!";
+            $('#pop_box').fadeIn();
+            return false;       
+        });
+
+        $('#parkpk').click(function(){
+
+            $('#pop_background').fadeIn();
+            document.getElementById("paragraph").innerHTML = "Hint parkpk displayed!";
+            $('#pop_box').fadeIn();
+            return false;       
+        });
+
+        $('#close').click(function(){
+
+            $('#pop_background').fadeOut();
+            $('#pop_box').fadeOut();
+            return false;       
+        });
+
+        $('#pop_background').click(function(){
+
+            $('#pop_background').fadeOut();
+            $('#pop_box').fadeOut();
+            return false;       
+        });
+    });
+
+var buttonActive = false;
+var count = 0;
+
+$( "button" ).click(function() {
+
+    if(count == 0){
+    $( "div.dropzone" ).replaceWith( 
+    "<div id=\"drop_zone\" class=\"A1\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\"ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/month_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.dropzone1" ).replaceWith( 
+    "<div id=\"drop_zone1\" class=\"A2\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/month_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.dropzone2" ).replaceWith( 
+    "<div id=\"drop_zone2\" class=\"A3\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/month_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.dropzone3" ).replaceWith( 
+    "<div id=\"drop_zone3\" class=\"A4\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/month_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.dropzone4" ).replaceWith( 
+    "<div id=\"drop_zone4\" class=\"A5\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/month_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    count = 1;
+    }else if(count == 1){
+    $( "div.A1" ).replaceWith( 
+    "<div id=\"drop_zone\" class=\"B1\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\"ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.A2" ).replaceWith( 
+    "<div id=\"drop_zone1\" class=\"B2\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.A3" ).replaceWith( 
+    "<div id=\"drop_zone2\" class=\"B3\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.A4" ).replaceWith( 
+    "<div id=\"drop_zone3\" class=\"B4\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.A5" ).replaceWith( 
+    "<div id=\"drop_zone4\" class=\"B5\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    count = 2;
+    }else if(count == 2){
+    $( "div.B1" ).replaceWith( 
+    "<div id=\"drop_zone\" class=\"C1\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\"ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/crime_type_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.B2" ).replaceWith( 
+    "<div id=\"drop_zone1\" class=\"C2\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/crime_type_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.B3" ).replaceWith( 
+    "<div id=\"drop_zone2\" class=\"C3\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/crime_type_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.B4" ).replaceWith( 
+    "<div id=\"drop_zone3\" class=\"C4\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/crime_type_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.B5" ).replaceWith( 
+    "<div id=\"drop_zone4\" class=\"C5\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/crime_type_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    count = 3;
+    }else if(count == 3){
+    $( "div.C1" ).replaceWith( 
+    "<div id=\"drop_zone\" class=\"D1\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\"ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/longitude_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.C2" ).replaceWith( 
+    "<div id=\"drop_zone1\" class=\"D2\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/longitude_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.C3" ).replaceWith( 
+    "<div id=\"drop_zone2\" class=\"D3\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/longitude_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.C4" ).replaceWith( 
+    "<div id=\"drop_zone3\" class=\"D4\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/longitude_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.C5" ).replaceWith( 
+    "<div id=\"drop_zone4\" class=\"D5\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/longitude_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    count = 4;
+    }else if(count == 4){
+    $( "div.D1" ).replaceWith( 
+    "<div id=\"drop_zone\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\"ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.D2" ).replaceWith( 
+    "<div id=\"drop_zone1\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.D3" ).replaceWith( 
+    "<div id=\"drop_zone2\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.D4" ).replaceWith( 
+    "<div id=\"drop_zone3\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    $( "div.D5" ).replaceWith( 
+    "<div id=\"drop_zone4\" ondragenter=\"drag_enter(event)\" ondrop=\"drag_drop(event)\"ondragover=\"return false\" ondragleave=\"drag_leave(event)\"><img id=\"column_month\" class=\"database_columns\" src=\"img/id_column.png\" width=\"90px\" height=\"150px\"></div>" );
+    buttonActive = true;
+    }
+      });
+
+    function myFunction() { 
+
+        if(buttonActive){
+        window.open("queriesSQL.html");
+        window.close("primaryKeys.html");
+        }else{
+            document.getElementById("nextPage").disabled = true;
+        }
+    }
+</script>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/new-age.min.js"></script>
+
+</body>
+
+</html>
