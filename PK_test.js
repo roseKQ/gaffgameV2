@@ -8,6 +8,8 @@ var summmary = 0;
 var update = 0;
 var pos = 0;
 var totalAnswer = 0;
+var attempts = 0;
+
 $(init);
 
   var questions = [
@@ -119,7 +121,8 @@ if(pos>=questions.length) {
 if(correctCards==3)
 {
   totalAnswer++;
-  console.log("Total Answer "+totalAnswer);
+  console.log("Total right answer "+totalAnswer);
+  console.log("Attempts "+attempts);
 }
 }
 
