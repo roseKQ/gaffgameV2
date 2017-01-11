@@ -38,7 +38,7 @@ function init() {
 
 if(pos>=questions.length) { 
   
-  overallMedal();
+  document.getElementById('scoreOverall').innerHTML = overallMedal();
   //here I will be placing all the data drill down stuff and overall score eventually in the form of a method??
   //pos=0; 
 
