@@ -1,3 +1,22 @@
+
+var dataBefore = JSON.parse(localStorage.getItem('data'));
+
+
+console.log("Create variable "+dataBefore.create+" Insert variable "+dataBefore.insert+ " retrieve variable "+dataBefore.retrieve);
+
+var data = {
+  "create": dataBefore.create,
+  "insert": dataBefore.insert,
+  "retrieve": dataBefore.retrieve,
+  "summary": dataBefore.summary,
+  "join": dataBefore.join,
+  "update": dataBefore.update,
+  "delete": dataBefore.delete,
+  "total": dataBefore.total
+};
+
+console.log(data);
+
 var width = 800,
 height = 500;
 
@@ -11,37 +30,35 @@ var svg2 = d3.select("#chart2").append("svg")
 
 var chart2 = svg2.append("g").attr("width", width).attr("height", height);
 
-d3.json("scores.json", function(error, data) {
-  x.domain([0, d3.sum(data, function(d) { 
-    return +d.score*10; })])
+//d3.json("scores.json", function(error, data) {
+  x.domain([0, data.total*10 ])
 
-var sum = d3.sum(data, function (d) { return d.score; });
+//var sum = d3.sum(data, function (d) { return d.total; });
 
-console.log(sum);
+//console.log(sum);
 
   var image = chart2.selectAll("g")
-      .data(data)
-    .enter().append("g");
+  .data(data)
+  .enter().append("g");
 
-    image.append("image")
-    .attr("xlink:href",   function (d)
-  {
+image.append("image")
+  .attr("xlink:href", function (d) {
 
-            if(sum <= 5){
-        return 'img/bronze_big.png';
-      }
-      else if(sum <= 10){
-            return 'img/silver_big.png';
-      }
-        else if(sum <= 15){
-          return 'img/gold_big.png';
-        }
-              else {
-                return 'img/platinum_big.png';
-              };
-    })
-    .attr("x", 0)
-    .attr("y", 50)
+    if (d.total <= 3) {
+      return 'img/bronze_big.png';
+    }
+    else if (d.total <= 4) {
+      return 'img/silver_big.png';
+    }
+    else if (d.total <= 7) {
+      return 'img/gold_big.png';
+    }
+    else {
+      return 'img/platinum_big.png';
+    };
+  })
+  .attr("x", 0)
+  .attr("y", 50)
     .attr("width", 300)
     .attr("height", 300)
     .attr("transform", function(d, i) { return "translate(200," + i * height*10 + ")"; });
@@ -53,20 +70,24 @@ console.log(sum);
       .attr("x", 565)
       .attr("y", 400)
       .text(function (d) { 
-       if(sum <= 4){
-        return "It's a Bronze..you scored " +sum ;
+       if(d.total <= 3){
+        return "It's a Bronze..you scored " +d.total ;
       }
-      else if(sum <= 8){
-            return "Silver medal! You scored " +sum;
+      else if(d.total <= 4){
+            return "Silver medal! You scored " +d.total;
       }
-        else if(sum <= 12){
-          return "You got a gold! You scored " +sum;
+        else if(d.total <= 7){
+          return "You got a gold! You scored " +d.total;
         }
               else{
-                return "Perfect Platinum! You scored " +sum;
+                return "Perfect Platinum! You scored " +d.total;
               }; });
 
-});
+;
+
+
+
+
 
 
 

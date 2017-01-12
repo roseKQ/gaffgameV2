@@ -86,12 +86,12 @@
     <div class="chart">
         <img id="image";></img>
         <h1 id="premise"></h1>
-        <div id="scoreOverall"></div>
+        <img id="scoreOverall"></img>
     
-    <p>Move the command to the right box to complete the query</p>
+    <p id="questionDescription"></p>
 	<div id="cardSlots"> </div>
     <div id="cardPile"> </div><br>
-	
+	<div class="drillDown" id = "drillDown"></div>
     <table id="sqlTable">
        <tr></tr>
        <table><br><br> 
@@ -113,8 +113,8 @@
 
 <a href="" id="emnbutton" class="btn btn-outline btn-xl" onclick="myFunction()">Home</a>
 <a href="" id="emnbutton" class="btn btn-outline btn-xl" onclick="myPractice()">Practice</a>
-<div id="test">test</div>
-<div id="showData">Show Data Placeholder</div>
+<div id="test" class="btn btn-outline btn-xl" ></div>
+<div id="showData" class="btn btn-outline btn-xl">Show Data</div>
 <img id="book"src="img/PK_table-01.png" alt="table" width="700" style="display:none"</img>
 
 
@@ -127,7 +127,8 @@
 
 <script>
 
-function myFunction() { window.open("index.html");
+function myFunction() { 
+    window.open("index.html");
 window.close("PK_test.html");} 
 
 function myPractice() { window.open("SQL_practice.html");

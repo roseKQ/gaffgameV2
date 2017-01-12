@@ -1,9 +1,0 @@
-[ 
-{ "name":"CREATE", "score":0 , "Total": 3  },  
-{ "name":"INSERT", "score":0 , "Total": 3  }, 
-{ "name":"RETRIEVE", "score":0 , "Total": 3  }, 
-{ "name":"SUMMARY", "score":0 , "Total": 3  },
-{ "name":"JOIN", "score":0 , "Total": 3  },
-{ "name":"UPDATE", "score":0 , "Total": 3  },
-{ "name":"DELETE", "score":0 , "Total": 3  }
-]

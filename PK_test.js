@@ -13,19 +13,12 @@ var pos = 0;
 var totalAnswer = 0;
 var attempts = 0;
 
-var data = [create, insert, retrieve, summary, join, update, DeleteQuestion]; 
+//var data = [create, insert, retrieve, summary, join, update, DeleteQuestion]; 
 
 $(init);
 
   var questions = [
     ["img/bronze_small_medal.png", "Susie wants to create the crime table", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE", "INT", "IDENTITY"], "CREATE"],
-    ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
-    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
-    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
-    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "JOIN"],
-    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "UPDATE"],
-     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "DELETE"],
-         ["img/bronze_small_medal.png", "Susie wants to create the crime table", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE", "INT", "IDENTITY"], "CREATE"],
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
@@ -38,16 +31,20 @@ function init() {
 
 if(pos>=questions.length) { 
   
-  document.getElementById('scoreOverall').innerHTML = overallMedal();
+ // document.getElementById('scoreOverall').innerHTML = overallMedal();
   //here I will be placing all the data drill down stuff and overall score eventually in the form of a method??
   //pos=0; 
-
+addScores();
+scoreOverall();
+//window.open("scoreboard.html");
+//window.close("PK_test.html");
 }
 
 else{
     console.log(questions[pos]);
     document.getElementById('premise').innerHTML = questions[pos][1];
     document.getElementById('image').src = questions[pos][0];
+    document.getElementById('questionDescription').innerHTML = "Move the command to the right box to complete the query";
 
     // Hide the success message and correct message
     $('#successMessage').hide();
@@ -90,7 +87,7 @@ else{
       });
     }
     test = document.getElementById("test").addEventListener("click", checkAnswer, false);
-       
+       document.getElementById('test').innerHTML = "Next";
     //test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
     handleCardDrop();
     //checkAnswer();
@@ -190,83 +187,151 @@ init();
 }
 
 
-function overallMedal(){
+function addScores(){ 
 
-var width = 800,
-height = 500;
-
-var x = d3.scale.linear()
-    .range([0, width]);
-
-
-var svg2 = d3.select("#chart2").append("svg")
-.attr("width", width)
-.attr("height", height);
-
-var chart2 = svg2.append("g").attr("width", width).attr("height", height);
-
-//d3.json("scores.json", function(error, data) {
-  x.domain([0, d3.sum(data, function(d) { 
-    return +d.score*10; })])
-
-var sum = d3.sum(data, function (d) { return d; });
-
-
-
-console.log(sum);
-
-  var image = chart2.selectAll("g")
-      .data(data)
-    .enter().append("g");
-
-    image.append("image")
-    .attr("xlink:href",   function (d)
-  {
-
-            if(sum <= 4){
-        return 'img/bronze_big.png';
-      }
-      else if(sum <= 8){
-            return 'img/silver_big.png';
-      }
-        else if(sum <= 12){
-          return 'img/gold_big.png';
-        }
-              else {
-                return 'img/platinum_big.png';
-              };
-    })
-    .attr("x", 0)
-    .attr("y", 50)
-    .attr("width", 300)
-    .attr("height", 300)
-    .attr("transform", function(d, i) { return "translate(200," + i * height*10 + ")"; });
-
-    image.append("text")
-      .style("fill", "#31708f")
-      .style("font-size", "34px")
-      .style("font-family", "Catamaran")
-      .attr("x", 565)
-      .attr("y", 400)
-      .text(function (d) { 
-       if(sum <= 4){
-        return "It's a Bronze..you scored " +sum ;
-      }
-      else if(sum <= 8){
-            return "Silver medal! You scored " +sum;
-      }
-        else if(sum <= 12){
-          return "You got a gold! You scored " +sum;
-        }
-              else{
-                return "Perfect Platinum! You scored " +sum;
-              }; });
-
-;
-
+var dataThis = { "create": create, "insert": insert, "retrieve": retrieve, "summary": summary, "join": join, "update": update, "delete": DeleteQuestion, "total": totalAnswer};
+//localStorage.setItem('data', JSON.stringify(data));
+console.log(dataThis);
 
 }
 
+function scoreOverall(totalAnswer) {
+
+  var total = this.totalAnswer;
+
+  console.log("Is the method working? " + total);
+  document.getElementById('premise').innerHTML = "You got " + total + " out of " + pos + " this time. Check out the drill down to see how you performed in each area";
+  document.getElementById('questionDescription').innerHTML = "";
+  $('#cardPile').html('');
+  $('#cardSlots').html('');
+  document.getElementById('test').innerHTML = "refresh";
+  document.getElementById("test").addEventListener("click", restart, false);
+
+  if (total <= (pos-5)) {
+
+    document.getElementById('image').src = "img/bronze_big.png";
+
+  }
+  else if (total <= (pos-2)) {
+
+    document.getElementById('image').src = "img/silver_big.png";
+  }
+  else if (total <= (pos-1)) {
+    document.getElementById('image').src = "img/gold_big.png";
+  }
+  else if (total == pos) {
+
+    document.getElementById('image').src = "img/platinum_big.png";
+
+  }
+  else document.getElementById('image').src = "";
+  drillDown();
+}
+
+function restart(){
+
+  window.open("PK_test.html");
+window.close("PK_test.html");} 
+
+function drillDown() {
+
+  var data = [
+    { name: "create", score: create },
+    { name: "insert", score: insert },
+    { name: "retrieve", score: retrieve },
+    { name: "summary", score: summary },
+    { name: "join", score: join },
+    { name: "update", score: update },
+    { name: "delete", score: DeleteQuestion }
+  ];
+
+  var width = 600,
+    height = 300,
+    barHeight = 70;
+
+  var x = d3.scale.linear()
+    .range([0, width]);
+
+
+  var svg = d3.select("#drillDown").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  var chart = svg.append("g").attr("width", width);
+
+  x.domain([0, d3.max(data, function (d) {
+    return +d.score + 200;
+  })])
+
+  chart.attr("height", barHeight * data.length * 10);
+
+  var bar = chart.selectAll("g")
+    .data(data)
+    .enter().append("g")
+    .attr("transform", function (d, i) { return "translate(250," + i * barHeight + ")"; });
+
+  bar.append("rect")
+    .attr("width", function (d) { return x(d.score) * 150; })
+    .attr("height", barHeight - 1)
+    .attr("rx", 20)
+    .attr("ry", 20)
+    .style({
+      'fill': function (d) {
+
+        if (d.score <= 2) {
+          return '#CD7F32';
+        }
+        else if (d.score == 3) {
+          return '#c0c0c0';
+        }
+        else if (d.score == 4) {
+          return '#FFD700';
+        }
+        else {
+          return '#E5E4E2';
+        };
+      },
+      'stroke': '#ffffff',
+      'stroke-width': '10'
+    });
+
+  bar.append("text")
+    .style({ 'fill': '#ffffff', 'font-size': 35 })
+    .attr("x", function (d) { return x(d.score) * 10; })
+    .attr("y", barHeight / 2)
+    .attr("dy", ".35em")
+    .text(function (d) { return d.score; });
+
+  bar.append("text")
+    .style({ "fill": "#31708f", "font-size": 15 })
+    .attr("x", -10)
+    .attr("y", barHeight / 2)
+    .text(function (d) { return d.name; });
+
+  bar.append("image")
+    .attr("xlink:href", function (d) {
+
+      if (d.score <= 2) {
+        return 'img/bronze_small_medal.png';
+      }
+      else if (d.score == 3) {
+        return 'img/silver_small_medal.png';
+      }
+      else if (d.score == 4) {
+        return 'img/gold_small_medal.png';
+      }
+      else {
+        return 'img/platinum_small_medal.png';
+      };
+    })
+    .attr("x", function (d) { return x(75); })
+    .attr("y", barHeight / 10)
+    .attr("width", barHeight)
+    .attr("height", barHeight);
+
+
+
+}
 
   //window.addEventListener("load", init, false);
 
