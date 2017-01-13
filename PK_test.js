@@ -245,8 +245,8 @@ function drillDown() {
     { name: "delete", score: DeleteQuestion }
   ];
 
-  var width = 600,
-    height = 300,
+  var width = 1200,
+    height = 600,
     barHeight = 70;
 
   var x = d3.scale.linear()
@@ -268,10 +268,10 @@ function drillDown() {
   var bar = chart.selectAll("g")
     .data(data)
     .enter().append("g")
-    .attr("transform", function (d, i) { return "translate(250," + i * barHeight + ")"; });
+    .attr("transform", function (d, i) { return "translate(0," + i * barHeight + ")"; });
 
   bar.append("rect")
-    .attr("width", function (d) { return x(d.score) * 150; })
+    .attr("width", function (d) { return x(d.score) * 30; })
     .attr("height", barHeight - 1)
     .attr("rx", 20)
     .attr("ry", 20)
@@ -304,7 +304,7 @@ function drillDown() {
 
   bar.append("text")
     .style({ "fill": "#31708f", "font-size": 15 })
-    .attr("x", -10)
+    .attr("x", 30)
     .attr("y", barHeight / 2)
     .text(function (d) { return d.name; });
 
