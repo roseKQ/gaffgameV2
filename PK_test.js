@@ -127,6 +127,7 @@ else{
 
   }
 
+
 if(correctCards==3)
 {
 if(questions[pos][4]=="CREATE")
@@ -194,6 +195,7 @@ var dataThis = { "create": create, "insert": insert, "retrieve": retrieve, "summ
 console.log(dataThis);
 
 }
+
 
 function scoreOverall(totalAnswer) {
 
@@ -328,7 +330,7 @@ function drillDown() {
     .attr("y", barHeight / 10)
     .attr("width", barHeight)
     .attr("height", barHeight);
-
+bar.exit();
 
 
 }

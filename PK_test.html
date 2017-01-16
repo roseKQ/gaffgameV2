@@ -115,7 +115,13 @@
 <a href="" id="emnbutton" class="btn btn-outline btn-xl" onclick="myPractice()">Practice</a>
 <div id="test" class="btn btn-outline btn-xl" ></div>
 <div id="showData" class="btn btn-outline btn-xl">Show Data</div>
-<img id="book"src="img/PK_table-01.png" alt="table" width="700" style="display:none"</img>
+<div id="dataButtons" style="display:none">
+<div id="showSchema" class="btn btn-outline btn-xl">Show Schema</div>
+<div id="showTables" class="btn btn-outline btn-xl">Show Tables</div>
+<div id="showDefinitions" class="btn btn-outline btn-xl">Show Definitions</div>
+</div>
+
+
 
 
 
@@ -135,9 +141,12 @@ function myPractice() { window.open("SQL_practice.html");
 window.close("PK_test.html");} 
 
 $( "#showData" ).click(function() {
-  $( "#book" ).toggle( "slow", function() {
+  $( "#dataButtons" ).toggle( "slow", function() {
     // Animation complete.
   });
+
+
+
 });
     
 
