@@ -18,7 +18,9 @@ var attempts = 0;
 $(init);
 
   var questions = [
-    ["img/bronze_small_medal.png", "Susie wants to create the crime table", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE", "INT", "IDENTITY"], "CREATE"],
+    ["img/bronze_small_medal.png", "Sargent Jones is creating the crime table. Help him by finishing the following query", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE", "INT", "IDENTITY"], "CREATE"],
+    ["img/bronze_small_medal.png", "Sargent Sheridan is creating the crime table. Help him by finishing the following query", [" CRIME_TYPE (CrimeType ", " NOT NULL ", " )"], ["CREATE TABLE", "VARCHAR", "PRIMARY KEY"], "CREATE"],
+    ["img/bronze_small_medal.png", "Ms. Honeysuckle is creating the playground table. Help him by finishing the following query", [" table PLAYGROUNDS (Playground ID ", ", Co-ordinates ", "  (1,6) )"], ["CREATE ", "INT", "DECIMAL"], "CREATE"],
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
@@ -62,18 +64,19 @@ else{
 
     for (var i = 1; i <= retrievalwords.length; i++) {
       //$('<div>' + retrievalQuestions[i-1] + '</div>').data( 'number', retrievalQuestions[i-1] ).appendTo( '#cardSlots' )
+//$('<div id="cardQuestions">' + retrievalQuestions[i - 1] + '</div>').data('number', retrievalQuestions[i - 1]).appendTo('#cardSlots');
       $('<div name="choices">' + retrievalwords[i - 1] + '</div>').data('number', retrievalwords[i - 1]).appendTo('#cardSlots').droppable({
         accept: '#cardPile div',
         hoverClass: 'hovered',
         drop: handleCardDrop
 
       });
-      $('<div id="cardQuestions">' + retrievalQuestions[i - 1] + '</div>').data('number', retrievalQuestions[i - 1]).appendTo('#cardSlots');
+     $('<div id="cardQuestions">' + retrievalQuestions[i - 1] + '</div>').data('number', retrievalQuestions[i - 1]).appendTo('#cardSlots');
 
 
     }
 
-  var retrievalCommands = ["SELECT", "FROM", "DISTINCT", "WHERE", "ORDER BY", "MONTH", "ON", "ASC", "DESC", "BETWEEN", "AND", "OR", "LIKE", "CREATE", "INT", "IDENTITY"];
+  var retrievalCommands = ["SELECT", "FROM", "DISTINCT", "WHERE", "ORDER BY", "MONTH", "ON", "ASC", "DESC", "BETWEEN", "AND", "OR", "LIKE", "CREATE", "INT", "IDENTITY", "VARCHAR", "PRIMARY KEY", "CREATE TABLE"];
 
 
     // Create the cards for the retrieval of data questions 
