@@ -93,7 +93,7 @@ box-shadow: 10px 10px 5px #888888;}
  
  cardQuestions{
   float: left;
-  width:150px;
+ /* width:150px;*/
   height: 40px;
   text-align: center;
   vertical-align: middle;
@@ -104,6 +104,8 @@ box-shadow: 10px 10px 5px #888888;}
   border-radius: 10px;
   margin: 5px 5 5 5px;
   background: #fff;
+  display: inline-block;
+
 
  }
 
@@ -147,6 +149,7 @@ box-shadow: 10px 10px 5px #888888;}
   border-radius: 10px;
   margin: 5px 5 5 5px;
   background: #fff;
+  display: inline-block;
 }
  
 #cardSlots div:first-child, #cardPile div:first-child {
@@ -167,6 +170,7 @@ box-shadow: 10px 10px 5px #888888;}
   color: #fff;
   font-size: 20px;
   text-shadow: 0 0 3px #fff;
+  display: inline-block;
 }
  
 #cardPile div.ui-draggable-dragging {

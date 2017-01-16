@@ -18,9 +18,14 @@ var attempts = 0;
 $(init);
 
   var questions = [
-    ["img/bronze_small_medal.png", "Sargent Jones is creating the crime table. Help him by finishing the following query", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE", "INT", "IDENTITY"], "CREATE"],
-    ["img/bronze_small_medal.png", "Sargent Sheridan is creating the crime table. Help him by finishing the following query", [" CRIME_TYPE (CrimeType ", " NOT NULL ", " )"], ["CREATE TABLE", "VARCHAR", "PRIMARY KEY"], "CREATE"],
-    ["img/bronze_small_medal.png", "Ms. Honeysuckle is creating the playground table. Help him by finishing the following query", [" table PLAYGROUNDS (Playground ID ", ", Co-ordinates ", "  (1,6) )"], ["CREATE ", "INT", "DECIMAL"], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant Jones is creating the crime table. Help him by finishing the following query", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE ", " INT ", " IDENTITY "], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant Sheridan is creating the crime table. Help him by finishing the following query", [" CRIME_TYPE (CrimeType ", " NOT NULL ", " )"], ["CREATE TABLE ", " VARCHAR ", " PRIMARY KEY "], "CREATE"],
+    ["img/bronze_small_medal.png", "Ms. Honeysuckle is creating the playground table. Help him by finishing the following query", [" table PLAYGROUNDS (Playground ID ", ", Co-ordinates ", "  (1,6) )"], ["CREATE ", " INT ", " DECIMAL "], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant Smith is creating the crime table. Help him by finishing the following query", [" Crime ( Date ", " NULL ", " (CrimeID)"], [" CREATE table ", " DATE ", " PRIMARY KEY "], "CREATE"],
+    ["img/bronze_small_medal.png","Laura is creating the schools table. Help her by finishing the following query", [" table Schools ( Postcode ", " [7] ", ") "], ["CREATE ", " VARCHAR ", " NOT NULL "], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant shirley is creating the Crime table. Help her by finishing the following query", [" table School (", " (SchoolType) ", " SCHOOL_TYPE(SchoolType) "], ["CREATE ", " FOREIGN KEY ", " REFERENCES "], "CREATE"],
+
+   
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
@@ -308,7 +313,7 @@ function drillDown() {
     .text(function (d) { return d.score; });
 
   bar.append("text")
-    .style({ "fill": "#31708f", "font-size": 15 })
+    .style({ "fill": "#ffffff", "font-size": 30 })
     .attr("x", 30)
     .attr("y", barHeight / 2)
     .text(function (d) { return d.name; });
@@ -336,6 +341,25 @@ function drillDown() {
 bar.exit();
 
 
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 
   //window.addEventListener("load", init, false);
