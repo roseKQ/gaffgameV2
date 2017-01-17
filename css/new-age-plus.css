@@ -1,0 +1,276 @@
+/* 
+ * Additional styling for querySQL pages
+ */
+/* 
+ *  Created on : 16-Jan-2017
+ *  Author     : Neueda
+ */
+
+/* Theme overrides */
+
+.btn-outline {
+    background-color: #888889;
+    border-color: #ffffff;
+}
+
+/* End of theme overrides */
+
+.chart
+{
+    background-color:#fff;
+    color: #6b9aff;
+    padding: 15px;
+    font-family:Catamaran,Helvetica,Arial,sans-serif;
+    font-weight:200;
+
+    letter-spacing:1px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+#map { position:relative; top:0; bottom:0; width:100%; height:100%; }
+.hover {
+    position:relative;
+    top:0px;
+    left:0px;
+    line-height: 100%;
+    display:inline-block;
+}
+
+.tooltip {
+    top:-125px;
+    left:30px;
+    width:175px;
+    position:absolute;
+    background-color:#6b9aff;
+    color:white;
+    border-radius:5px;
+    opacity:0;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition:  opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition:  opacity 0.5s;
+    transition:  opacity 0.5s;
+    line-height: 1.2;
+
+    height: 160px;
+    padding:8px;
+    font-family:Lato,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+}
+
+.hover:hover .tooltip {
+    opacity:1;
+} 
+
+/*Eamonn's styling stuff for querySQL page*/
+
+/* Main content area */
+
+#content {
+    text-align: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Header/footer boxes */
+
+.wideBox {
+    clear: both;
+    text-align: center;
+    margin: 70px;
+    padding: 10px;
+    background: #ebedf2;
+    /*border: 1px solid #333;*/
+}
+
+.wideBox h1 {
+    font-weight: bold;
+    margin: 20px;
+    color: #666;
+    font-size: 1.5em;
+}
+
+/* Slots for final card positions */
+
+#cardSlots {
+    /*margin: 50px auto 0 auto;*/
+    background: #ffffff;
+    color: #888889;
+}
+
+/* The initial pile of unsorted cards */
+
+#cardPile {
+    clear: left;
+    float:top;
+    width: fit-content;
+    height: auto;
+    margin: 0 auto;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 0 .3em #888889;
+    -webkit-box-shadow: 0 0 .3em #888889;
+    box-shadow: 0 0 .3em #888889;
+}
+
+#cardSlots {
+    float: bottom;
+    width: fit-content;
+    height:60px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    padding: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+/* Individual cards and slots */
+#cardSlots div, #cardPile div {
+    float: left;
+    width:150px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px; 
+    border: 2px solid #888889;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    background: #fff;
+}
+
+#cardSlots div.hovered {
+    background: #aaa;
+}
+
+#cardSlots div {
+    border-style: dashed;
+    color: #888889;
+}
+
+#cardSlots div.cardQuestions {
+    border: none;
+    font-weight: bold;
+}
+
+#cardPile div {
+    background-color: #eee;
+    border: 2px solid #666;
+    color: #666;
+    cursor: move;
+    font-size: 20px;
+    text-shadow: 0 0 3px #fff;
+}
+
+#cardPile div:hover {
+    background-color: #666;
+    color: #fff;
+}
+
+#cardPile div.ui-draggable-dragging {
+    -moz-box-shadow: 0 0 .5em #888889;
+    -webkit-box-shadow: 0 0 .5em #888889;
+    box-shadow: 0 0 .5em #888889;
+}
+
+#cardPile div.correct {
+    background-color: #65b858;
+    color: #fff;
+}
+
+#cardPile div.incorrect {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+#cardPile div.ui-draggable-disabled {
+    cursor: auto;
+}
+
+/* Individually coloured cards */
+/*Sql queries page*/
+#cardSelect.correct { background: #65b858; }
+#card\*.correct { background: #65b858; }
+#cardFrom.correct { background: #65b858; }
+#cardCrime.correct { background: #65b858; }
+#cardDelete.correct { background: #65b858; }
+#cardDrop.correct { background: #65b858; }
+#cardRemove.correct { background: #65b858; }
+#cardSort.correct { background: #65b858; }
+#cardDrop.correct { background: #65b858; }
+#cardDelete.correct { background: #65b858; }
+
+#cardSelect.incorrect { background: #ff0000; }
+#card\*.incorrect { background: #ff0000; }
+#cardFrom.incorrect { background: #ff0000; }
+#cardCrime.incorrect { background: #ff0000; }
+#cardDelete.incorrect { background: #ff0000; }
+#cardDrop.incorrect { background: #ff0000; }
+#cardRemove.incorrect { background: #ff0000; }
+#cardSort.incorrect { background: #ff0000; }
+#cardDrop.incorrect { background: #ff0000; }
+#cardDelete.incorrect { background: #ff0000; }
+
+/*PK_test page*/
+#cardComposite.correct { background: #65b858; }
+#cardForeign.correct { background: #65b858; }
+#cardComposite.correct { background: #65b858; }
+#cardComposite.correct { background: #65b858; }
+#cardPrimary.correct { background: #65b858; }
+
+
+
+/*#cardRemove.correct { background: #65b858; }
+#cardSort.correct { background: #65b858; }
+#cardDrop.correct { background: #65b858; }
+#cardDelete.correct { background: #65b858; }*/
+
+#cardPrimary.incorrect { background: #ff0000; }
+#cardComposite.incorrect { background: #ff0000; }
+#cardForeign.incorrect { background: #ff0000; }
+#cardComposite.incorrect { background: #ff0000; }
+#cardComposite.incorrect { background: #ff0000; }
+/*#cardRemove.incorrect { background: #ff0000; }
+#cardSort.incorrect { background: #ff0000; }
+#cardDrop.incorrect { background: #ff0000; }
+#cardDelete.incorrect { background: #ff0000; }*/
+/* "You did it!" message */
+#successMessage {
+    position: absolute;
+    left: 580px;
+    top: 250px;
+    width: 0;
+    height: 0;
+    z-index: 100;
+    background: #dfd;
+    border: 2px solid #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    -webkit-box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    padding: 20px;
+}
+
+/*End of Eamonn's styling stuff for querySQL page*/
+
+/*SQL container CSS*/
+
+div.CodeMirror {
+    border: 1px solid #ddd;
+}
+button {
+    margin-top: 1em;
+    margin-bottom: 1em !important;
+}
+#errorResult {
+    color: red;
+}
+
+/*End of SQL container CSS*/   

@@ -88,16 +88,14 @@ else{
   var retrievalwords = questions[random][pos][3];
   var retrievalQuestions = questions[random][pos][2];
 
-    for (var i = 1; i <= retrievalwords.length; i++) {
+    for (var i = 0; i < retrievalwords.length; i++) {
       //$('<div>' + retrievalQuestions[i-1] + '</div>').data( 'number', retrievalQuestions[i-1] ).appendTo( '#cardSlots' )
-//$('<div id="cardQuestions">' + retrievalQuestions[i - 1] + '</div>').data('number', retrievalQuestions[i - 1]).appendTo('#cardSlots');
-      $('<div name="choices">' + retrievalwords[i - 1] + '</div>').data('number', retrievalwords[i - 1]).appendTo('#cardSlots').droppable({
+      $('<div name="choices">' + retrievalwords[i] + '</div>').data('number', retrievalwords[i]).appendTo('#cardSlots').droppable({
         accept: '#cardPile div',
         hoverClass: 'hovered',
         drop: handleCardDrop
-
       });
-     $('<div id="cardQuestions">' + retrievalQuestions[i - 1] + '</div>').data('number', retrievalQuestions[i - 1]).appendTo('#cardSlots');
+      $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>').data('number', retrievalQuestions[i]).appendTo('#cardSlots');
 
 
     }
