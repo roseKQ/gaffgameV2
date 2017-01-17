@@ -19,9 +19,9 @@ $(init);
 
 var questions = [
   [
-    ["img/bronze_small_medal.png", "Sergeant Jones is creating the crime table. Help him by finishing the following query", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE ", " INT ", " IDENTITY "], "CREATE"],
-    ["img/bronze_small_medal.png", "Sergeant Sheridan is creating the crime table. Help him by finishing the following query", [" CRIME_TYPE (CrimeType ", " NOT NULL ", " )"], ["CREATE TABLE ", " VARCHAR ", " PRIMARY KEY "], "CREATE"],
-    ["img/bronze_small_medal.png", "Ms. Honeysuckle is creating the playground table. Help him by finishing the following query", [" table PLAYGROUNDS (Playground ID ", ", Co-ordinates ", "  (1,6) )"], ["CREATE ", " INT ", " DECIMAL "], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant Jones is creating the crime table. Help him by finishing the following query", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE", "INT", "IDENTITY"], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant Sheridan is creating the crime table. Help him by finishing the following query", [" CRIME_TYPE (CrimeType ", " NOT NULL ", " )"], ["CREATE TABLE", "VARCHAR", "PRIMARY KEY"], "CREATE"],
+    ["img/bronze_small_medal.png", "Ms. Honeysuckle is creating the playground table. Help him by finishing the following query", [" table PLAYGROUNDS (Playground ID ", ", Co-ordinates ", "  (1,6) )"], ["CREATE", "INT", "DECIMAL"], "CREATE"],
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
@@ -30,9 +30,9 @@ var questions = [
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "DELETE"]
 
   ], [
-    ["img/bronze_small_medal.png", "Laura is creating the schools table. Help her by finishing the following query", [" table Schools ( Postcode ", " [7] ", ") "], ["CREATE ", " VARCHAR ", " NOT NULL "], "CREATE"],
-    ["img/bronze_small_medal.png", "Sergeant shirley is creating the Crime table. Help her by finishing the following query", [" table School (", " (SchoolType) ", " SCHOOL_TYPE(SchoolType) "], ["CREATE ", " FOREIGN KEY ", " REFERENCES "], "CREATE"],
-    ["img/bronze_small_medal.png", "Principle Trunchbull is creating the Crime table. Help her by finishing the following query", [" Schools ( School ID ", " Coordinates  ", "  (1,6)) "], ["CREATE table ", " INT ", " DECIMAL "], "CREATE"],
+    ["img/bronze_small_medal.png", "Laura is creating the schools table. Help her by finishing the following query", [" table Schools ( Postcode ", " [7] ", ") "], ["CREATE", "VARCHAR", "NOT NULL"], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant shirley is creating the Crime table. Help her by finishing the following query", [" table School (", " (SchoolType) ", " SCHOOL_TYPE(SchoolType) "], ["CREATE", "FOREIGN KEY", "REFERENCES"], "CREATE"],
+    ["img/bronze_small_medal.png", "Principle Trunchbull is creating the Crime table. Help her by finishing the following query", [" Schools ( School ID ", " Coordinates  ", "  (1,6)) "], ["CREATE TABLE", "INT", "DECIMAL"], "CREATE"],
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
@@ -41,8 +41,8 @@ var questions = [
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "DELETE"]
 
   ], [
-    ["img/bronze_small_medal.png", "Sergeant Smith is creating the crime table. Help him by finishing the following query", [" Crime ( Date ", " NULL ", " (CrimeID)"], [" CREATE table ", " DATE ", " PRIMARY KEY "], "CREATE"],
-    ["img/bronze_small_medal.png", "Philip is creating the Area table. Help her by finishing the following query", [" Area ( CrimeCount ", " date  ", "  ) "], ["CREATE ", " INT ", " DATE"], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant Smith is creating the crime table. Help him by finishing the following query", [" Crime ( Date ", " NULL ", " (CrimeID)"], ["CREATE TABLE", "DATE", "PRIMARY KEY"], "CREATE"],
+    ["img/bronze_small_medal.png", "Philip is creating the Area table. Help her by finishing the following query", [" Area ( CrimeCount ", " date  ", "  ) "], ["CREATE", "INT", "DATE"], "CREATE"],
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
@@ -53,7 +53,10 @@ var questions = [
 
 function init() {
 
-if(pos>=questions.length) { 
+var random =  Math.floor((Math.random()*2)+0);
+console.log("random variable "+random );
+
+if(pos>=questions[random].length) { 
   
  // document.getElementById('scoreOverall').innerHTML = overallMedal();
   //here I will be placing all the data drill down stuff and overall score eventually in the form of a method??
@@ -65,8 +68,7 @@ scoreOverall();
 }
 
 else{
-  var random =  Math.floor((Math.random()*2)+0);
-console.log("random variable "+random );
+
     console.log(questions[random][pos]);
     document.getElementById('premise').innerHTML = questions[random][pos][1];
     document.getElementById('image').src = questions[random][pos][0];
@@ -100,7 +102,7 @@ console.log("random variable "+random );
 
     }
 
-  var retrievalCommands = ["SELECT", "FROM", "DISTINCT", "WHERE", "ORDER BY", "MONTH", "ON", "ASC", "DESC", "BETWEEN", "AND", "OR", "LIKE", "CREATE", "INT", "IDENTITY", "VARCHAR", "PRIMARY KEY", "CREATE TABLE", "DECIMAL", "DATE", "NOT NULL"];
+  var retrievalCommands = ["SELECT", "FROM", "DISTINCT", "WHERE", "ORDER BY", "MONTH", "ON", "ASC", "DESC", "BETWEEN", "AND", "OR", "LIKE", "CREATE", "INT", "IDENTITY", "VARCHAR", "PRIMARY KEY", "CREATE TABLE", "DECIMAL", "DATE", "NOT NULL", "FOREIGN KEY", "REFERENCES"];
 
 
     // Create the cards for the retrieval of data questions 
@@ -357,7 +359,7 @@ function drillDown() {
     .attr("y", barHeight / 10)
     .attr("width", barHeight)
     .attr("height", barHeight);
-bar.exit();
+
 
 }
 
