@@ -86,13 +86,13 @@
     
     <div class="chart">
         <img id="image";></img>
-        <h1 id="premise"></h1>
-        <div id="scoreOverall"></div>
+        <h1 id="premise" style="display: inline-block;"></h1>
+        <img id="scoreOverall"></img>
     
-    <p>Move the command to the right box to complete the query</p>
+    <p id="questionDescription"></p>
 	<div id="cardSlots"> </div>
     <div id="cardPile" class="clearfix"> </div><br>
-	
+	<div class="drillDown" id = "drillDown" style="float:left;"></div>
     <table id="sqlTable">
        <tr></tr>
        <table><br><br> 
@@ -111,12 +111,20 @@
 </div>
 
 </div>
-
+<br><br><br><br>
 <a href="" id="emnbutton" class="btn btn-outline btn-xl" onclick="myFunction()">Home</a>
 <a href="" id="emnbutton" class="btn btn-outline btn-xl" onclick="myPractice()">Practice</a>
-<div id="test">test</div>
-<div id="showData">Show Data Placeholder</div>
-<img id="book"src="img/PK_table-01.png" alt="table" width="700" style="display:none"</img>
+<div id="test" class="btn btn-outline btn-xl" ></div>
+<div id="showData" class="btn btn-outline btn-xl">Show Data</div>
+<div id="dataButtons" style="display:none">
+<div id="showSchema" class="btn btn-outline btn-xl">Show Schema</div>
+
+<div id="showTables" class="btn btn-outline btn-xl">Show Tables</div>
+<div id="showDefinitions" class="btn btn-outline btn-xl">Show Definitions</div>
+</div>
+<img id="schema" src="img/gaffgame_schema.png" style="display: none"></img>
+
+
 
 
 
@@ -128,16 +136,22 @@
 
 <script>
 
-function myFunction() { window.open("index.html");
+function myFunction() { 
+    window.open("index.html");
 window.close("PK_test.html");} 
 
 function myPractice() { window.open("SQL_practice.html");
 window.close("PK_test.html");} 
 
 $( "#showData" ).click(function() {
-  $( "#book" ).toggle( "slow", function() {
+  $( "#dataButtons" ).toggle( "slow", function() {
     // Animation complete.
   });
+$("#showSchema").click(function(){
+$("#schema").toggle("slow", function(){});
+});
+
+
 });
     
 
