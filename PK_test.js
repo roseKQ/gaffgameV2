@@ -24,8 +24,9 @@ $(init);
     ["img/bronze_small_medal.png", "Sergeant Smith is creating the crime table. Help him by finishing the following query", [" Crime ( Date ", " NULL ", " (CrimeID)"], [" CREATE table ", " DATE ", " PRIMARY KEY "], "CREATE"],
     ["img/bronze_small_medal.png","Laura is creating the schools table. Help her by finishing the following query", [" table Schools ( Postcode ", " [7] ", ") "], ["CREATE ", " VARCHAR ", " NOT NULL "], "CREATE"],
     ["img/bronze_small_medal.png", "Sergeant shirley is creating the Crime table. Help her by finishing the following query", [" table School (", " (SchoolType) ", " SCHOOL_TYPE(SchoolType) "], ["CREATE ", " FOREIGN KEY ", " REFERENCES "], "CREATE"],
+["img/bronze_small_medal.png", "Principle Trunchbull is creating the Crime table. Help her by finishing the following query", [" Schools ( School ID ", " Coordinates  ", "  (1,6)) "], ["CREATE table ", " INT ", " DECIMAL "], "CREATE"],
+["img/bronze_small_medal.png", "Principle Trunchbull is creating the Crime table. Help her by finishing the following query", [" Area ( CrimeCount ", " date  ", "  ) "], ["CREATE ", " INT ", " DATE"], "CREATE"],
 
-   
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
