@@ -17,23 +17,39 @@ var attempts = 0;
 
 $(init);
 
-  var questions = [
+var questions = [
+  [
     ["img/bronze_small_medal.png", "Sergeant Jones is creating the crime table. Help him by finishing the following query", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE ", " INT ", " IDENTITY "], "CREATE"],
     ["img/bronze_small_medal.png", "Sergeant Sheridan is creating the crime table. Help him by finishing the following query", [" CRIME_TYPE (CrimeType ", " NOT NULL ", " )"], ["CREATE TABLE ", " VARCHAR ", " PRIMARY KEY "], "CREATE"],
     ["img/bronze_small_medal.png", "Ms. Honeysuckle is creating the playground table. Help him by finishing the following query", [" table PLAYGROUNDS (Playground ID ", ", Co-ordinates ", "  (1,6) )"], ["CREATE ", " INT ", " DECIMAL "], "CREATE"],
-    ["img/bronze_small_medal.png", "Sergeant Smith is creating the crime table. Help him by finishing the following query", [" Crime ( Date ", " NULL ", " (CrimeID)"], [" CREATE table ", " DATE ", " PRIMARY KEY "], "CREATE"],
-    ["img/bronze_small_medal.png","Laura is creating the schools table. Help her by finishing the following query", [" table Schools ( Postcode ", " [7] ", ") "], ["CREATE ", " VARCHAR ", " NOT NULL "], "CREATE"],
-    ["img/bronze_small_medal.png", "Sergeant shirley is creating the Crime table. Help her by finishing the following query", [" table School (", " (SchoolType) ", " SCHOOL_TYPE(SchoolType) "], ["CREATE ", " FOREIGN KEY ", " REFERENCES "], "CREATE"],
-["img/bronze_small_medal.png", "Principle Trunchbull is creating the Crime table. Help her by finishing the following query", [" Schools ( School ID ", " Coordinates  ", "  (1,6)) "], ["CREATE table ", " INT ", " DECIMAL "], "CREATE"],
-["img/bronze_small_medal.png", "Principle Trunchbull is creating the Crime table. Help her by finishing the following query", [" Area ( CrimeCount ", " date  ", "  ) "], ["CREATE ", " INT ", " DATE"], "CREATE"],
-
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "JOIN"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "UPDATE"],
-     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "DELETE"]
-  ];
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "DELETE"]
+
+  ], [
+    ["img/bronze_small_medal.png", "Laura is creating the schools table. Help her by finishing the following query", [" table Schools ( Postcode ", " [7] ", ") "], ["CREATE ", " VARCHAR ", " NOT NULL "], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant shirley is creating the Crime table. Help her by finishing the following query", [" table School (", " (SchoolType) ", " SCHOOL_TYPE(SchoolType) "], ["CREATE ", " FOREIGN KEY ", " REFERENCES "], "CREATE"],
+    ["img/bronze_small_medal.png", "Principle Trunchbull is creating the Crime table. Help her by finishing the following query", [" Schools ( School ID ", " Coordinates  ", "  (1,6)) "], ["CREATE table ", " INT ", " DECIMAL "], "CREATE"],
+    ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "JOIN"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "UPDATE"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "DELETE"]
+
+  ], [
+    ["img/bronze_small_medal.png", "Sergeant Smith is creating the crime table. Help him by finishing the following query", [" Crime ( Date ", " NULL ", " (CrimeID)"], [" CREATE table ", " DATE ", " PRIMARY KEY "], "CREATE"],
+    ["img/bronze_small_medal.png", "Philip is creating the Area table. Help her by finishing the following query", [" Area ( CrimeCount ", " date  ", "  ) "], ["CREATE ", " INT ", " DATE"], "CREATE"],
+    ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "JOIN"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "UPDATE"],
+    ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "DELETE"]
+  ]];
 
 function init() {
 
@@ -49,9 +65,11 @@ scoreOverall();
 }
 
 else{
-    console.log(questions[pos]);
-    document.getElementById('premise').innerHTML = questions[pos][1];
-    document.getElementById('image').src = questions[pos][0];
+  var random =  Math.floor((Math.random()*2)+0);
+console.log("random variable "+random );
+    console.log(questions[random][pos]);
+    document.getElementById('premise').innerHTML = questions[random][pos][1];
+    document.getElementById('image').src = questions[random][pos][0];
     document.getElementById('questionDescription').innerHTML = "Move the command to the right box to complete the query";
 
     // Hide the success message and correct message
@@ -65,8 +83,8 @@ else{
     $('#cardSlots').html('');
 
 
-  var retrievalwords = questions[pos][3];
-  var retrievalQuestions = questions[pos][2];
+  var retrievalwords = questions[random][pos][3];
+  var retrievalQuestions = questions[random][pos][2];
 
     for (var i = 1; i <= retrievalwords.length; i++) {
       //$('<div>' + retrievalQuestions[i-1] + '</div>').data( 'number', retrievalQuestions[i-1] ).appendTo( '#cardSlots' )
@@ -82,7 +100,7 @@ else{
 
     }
 
-  var retrievalCommands = ["SELECT", "FROM", "DISTINCT", "WHERE", "ORDER BY", "MONTH", "ON", "ASC", "DESC", "BETWEEN", "AND", "OR", "LIKE", "CREATE", "INT", "IDENTITY", "VARCHAR", "PRIMARY KEY", "CREATE TABLE"];
+  var retrievalCommands = ["SELECT", "FROM", "DISTINCT", "WHERE", "ORDER BY", "MONTH", "ON", "ASC", "DESC", "BETWEEN", "AND", "OR", "LIKE", "CREATE", "INT", "IDENTITY", "VARCHAR", "PRIMARY KEY", "CREATE TABLE", "DECIMAL", "DATE", "NOT NULL"];
 
 
     // Create the cards for the retrieval of data questions 
@@ -139,31 +157,31 @@ else{
 
 if(correctCards==3)
 {
-if(questions[pos][4]=="CREATE")
+if(questions[random][pos][4]=="CREATE")
 {
   create++;
   console.log("Create questions count "+create);
 }
-else if(questions[pos][4]=="INSERT") {
+else if(questions[random][pos][4]=="INSERT") {
 insert++;
 console.log("Insert questions count "+insert);
 
 }
-else if(questions[pos][4]=="RETRIEVE") {
+else if(questions[random][pos][4]=="RETRIEVE") {
 retrieve++;
 console.log("Retrieve questions count "+retrieve);
 
-}else if(questions[pos][4]=="SUMMARY"){
+}else if(questions[random][pos][4]=="SUMMARY"){
 
 summary++;
 console.log("Summary questions count "+summary);
 
-}else if(questions[pos][4]=="JOIN"){
+}else if(questions[random][pos][4]=="JOIN"){
 
 join++;
 console.log("Join questions count "+join);
 
-}else if(questions[pos][4]=="UPDATE"){
+}else if(questions[random][pos][4]=="UPDATE"){
 
 update++;
 console.log("Update questions count "+update);
@@ -341,7 +359,6 @@ function drillDown() {
     .attr("height", barHeight);
 bar.exit();
 
-
 }
 
 function shuffle(array) {
@@ -362,6 +379,14 @@ function shuffle(array) {
 
   return array;
 }
+
+function random(){
+
+ random =  Math.floor((Math.random()*3)+0);
+console.log(random);
+ return random;
+}
+
 
   //window.addEventListener("load", init, false);
 
