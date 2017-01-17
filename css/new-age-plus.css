@@ -6,6 +6,15 @@
  *  Author     : Neueda
  */
 
+/* Theme overrides */
+
+.btn-outline {
+    background-color: #888889;
+    border-color: #ffffff;
+}
+
+/* End of theme overrides */
+
 .chart
 {
     background-color:#fff;
