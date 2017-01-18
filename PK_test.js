@@ -167,6 +167,7 @@ var retrievalCommands = [];
     console.log(correctCards);
     attempts++;
       }
+      
 
     if (slotNumber== cardNumber) {
       ui.draggable.addClass('correct');
