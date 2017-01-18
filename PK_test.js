@@ -100,7 +100,31 @@ else{
 
     }
 
-  var retrievalCommands = ["SELECT", "FROM", "DISTINCT", "WHERE", "ORDER BY", "MONTH", "ON", "ASC", "DESC", "BETWEEN", "AND", "OR", "LIKE", "CREATE", "INT", "IDENTITY", "VARCHAR", "PRIMARY KEY", "CREATE TABLE", "DECIMAL", "DATE", "NOT NULL", "FOREIGN KEY", "REFERENCES"];
+ // var retrievalCommands = ["SELECT", "FROM", "DISTINCT", "WHERE", "ORDER BY", "MONTH", "ON", "ASC", "DESC", "BETWEEN", "AND", "OR", "LIKE", "CREATE", "INT", "IDENTITY", "VARCHAR", "PRIMARY KEY", "CREATE TABLE", "DECIMAL", "DATE", "NOT NULL", "FOREIGN KEY", "REFERENCES"];
+var retrievalCommands = [];
+
+  if (questions[random][pos][4] == "CREATE") {
+    var retrievalCommands = ["CREATE", "CREATE TABLE", "VARCHAR", "PRIMARY KEY", "FOREIGN KEY", "IDENTITY", "INT", "DECIMAL", "NULL", "NOT NULL", "REFERENCES"];
+
+  }
+  else if (questions[random][pos][4] == "INSERT") {
+    var retrievalCommands = ["INSERT", "INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE"];
+
+  }
+  else if (questions[random][pos][4] == "RETRIEVE") {
+  var retrievalCommands = ["SELECT", "FROM", "WHERE", "ORDER BY", "AND", "OR", "LIKE", "DATEDIFF", "DATEADD", "DATENAME", "LEFT", "RIGHT"];
+
+  }
+  else if (questions[random][pos][4] == "SUMMARY") {
+  var retrievalCommands = ["SELECT", "MIN", "MAX", "COUNT", "SUM", "ORDER BY", "HAVING", "GROUP BY", "FROM", "WHERE"];
+
+  }
+  else if (questions[random][pos][4] == "JOIN") {
+   var retrievalCommands = ["UNION", "SELECT", "AS", "FROM", "WHERE", "JOIN", "ON"];
+  }
+  else {
+   var retrievalCommands = ["UPDATE", "SET", "WHERE", "REPLACE", "DELETE", "DELETE FROM", "FROM", "SELECT"];
+  };
 
 
     // Create the cards for the retrieval of data questions 
