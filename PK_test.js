@@ -164,6 +164,7 @@ var retrievalCommands = [];
     $(this).droppable( 'disable' );
     ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
     ui.draggable.draggable( 'option', 'revert', false );
+    $('#card' + slotNumber).addClass('correct');
     console.log(correctCards);
     attempts++;
       }
