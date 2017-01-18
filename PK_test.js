@@ -5,6 +5,7 @@ var attempts = 0;
 var create = 0;
 var insert = 0;
 var retrieve = 0;
+
 var summary = 0;
 var join = 0;
 var update = 0;
@@ -19,9 +20,9 @@ $(init);
 
 var questions = [
   [
-    ["img/bronze_small_medal.png", "Sergeant Jones is creating the crime table. Help him by finishing the following query", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE", "INT", "IDENTITY"], "CREATE"],
-    ["img/bronze_small_medal.png", "Sergeant Sheridan is creating the crime table. Help him by finishing the following query", [" CRIME_TYPE (CrimeType ", " NOT NULL ", " )"], ["CREATE TABLE", "VARCHAR", "PRIMARY KEY"], "CREATE"],
-    ["img/bronze_small_medal.png", "Ms. Honeysuckle is creating the playground table. Help him by finishing the following query", [" table PLAYGROUNDS (Playground ID ", ", Co-ordinates ", "  (1,6) )"], ["CREATE", "INT", "DECIMAL"], "CREATE"],
+    ["img/bronze_small_medal.png", "Sergeant Jones is creating the crime table. Help him by finishing the following query", [" table Crime (CrimeID ", " NOT NULL ", " )"], ["CREATE", "INT", "IDENTITY"], "CREATE", "SQL"],
+    ["img/bronze_small_medal.png", "Sergeant Sheridan is creating the crime table. Help him by finishing the following query", [" CRIME_TYPE (CrimeType ", " NOT NULL ", " )"], ["CREATE TABLE", "VARCHAR", "PRIMARY KEY"], "CREATE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Ms. Honeysuckle is creating the playground table. Help him by finishing the following query", [" table PLAYGROUNDS (Playground ID ", ", Co-ordinates ", "  (1,6) )"], ["CREATE", "INT", "DECIMAL"], "CREATE", "BLANKS"],
     ["img/silver_small_medal.png", "Fred wants to see burglary in the cliftonville area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "INSERT"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY"],
@@ -137,6 +138,8 @@ var retrievalCommands = [];
         revert: true
       });
     }
+
+
     test = document.getElementById("test").addEventListener("click", checkAnswer, false);
        document.getElementById('test').innerHTML = "Next";
     //test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
@@ -240,11 +243,9 @@ init();
 
 
 function addScores(){ 
-
 var dataThis = { "create": create, "insert": insert, "retrieve": retrieve, "summary": summary, "join": join, "update": update, "delete": DeleteQuestion, "total": totalAnswer};
 //localStorage.setItem('data', JSON.stringify(data));
 console.log(dataThis);
-
 }
 
 
