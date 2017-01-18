@@ -6,13 +6,64 @@
  *  Author     : Neueda
  */
 
-/* Theme overrides */
+/* Theme overrides (mostly colours) */
 
+a, a:hover, a:focus {
+    color: #6b9aff;
+}
+hr {
+    color: #6b9aff;
+}
+p {
+    font-size: 25px;
+}
+.navbar-default .navbar-header .navbar-brand,
+.navbar-default .navbar-header .navbar-brand:hover,
+.navbar-default .navbar-header .navbar-brand:focus {
+    color: #6b9aff;
+}
+@media (min-width: 768px) {
+    .navbar-default .navbar-header .navbar-brand {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    .navbar-default .navbar-header .navbar-brand:hover,
+    .navbar-default .navbar-header .navbar-brand:focus {
+        color: white;
+    }
+}
+header {
+    background: url("../img/bg-pattern.png"), #00ddec;
+    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
+    background: url("../img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
+}
+header .device-container {
+    margin-top: auto;
+}
+@media (min-width: 768px) {
+    header .device-container {
+        margin: 100px auto 0;
+    }
+}
+section {
+    min-height: auto;
+}
+section.features .feature-item i {
+    background: -webkit-linear-gradient(to left, #00ddec, #6b9aff);
+    background: linear-gradient(to left, #00ddec, #6b9aff);
+}
+section.cta {
+    background-image: url("../img/startup-photos.jpg");
+}
+.bg-primary {
+    background: #6b9aff;
+}
+.text-primary {
+    color: #6b9aff;
+}
 .btn-outline {
     background-color: #888889;
     border-color: #ffffff;
 }
-
 /* End of theme overrides */
 
 .chart
@@ -105,19 +156,10 @@
     font-size: 1.5em;
 }
 
-/* Slots for final card positions */
-
-#cardSlots {
-    /*margin: 50px auto 0 auto;*/
-    background: #ffffff;
-    color: #888889;
-}
-
 /* The initial pile of unsorted cards */
 
 #cardPile {
     clear: left;
-    float:top;
     width: fit-content;
     height: auto;
     margin: 0 auto;
@@ -129,8 +171,11 @@
     box-shadow: 0 0 .3em #888889;
 }
 
+/* Slots for final card positions */
+
 #cardSlots {
-    float: bottom;
+    background: #ffffff;
+    color: #888889;
     width: fit-content;
     height:60px;
     padding-top: 0px;
@@ -149,7 +194,7 @@
     text-align: center;
     vertical-align: middle;
     line-height: 40px; 
-    border: 2px solid #888889;
+    border-width: 2px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -162,6 +207,7 @@
 }
 
 #cardSlots div {
+    border-color: #888889;
     border-style: dashed;
     color: #888889;
 }
@@ -169,11 +215,13 @@
 #cardSlots div.cardQuestions {
     border: none;
     font-weight: bold;
+    width: auto;
 }
 
 #cardPile div {
     background-color: #eee;
-    border: 2px solid #666;
+    border-color: #666666;
+    border-style: solid;
     color: #666;
     cursor: move;
     font-size: 20px;

@@ -28,11 +28,11 @@ a {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  color: #6b9aff;
+  color: #fdcc52;
 }
 a:hover,
 a:focus {
-  color: #6b9aff;
+  color: #fcbd20;
 }
 hr {
   max-width: 100px;
@@ -72,11 +72,11 @@ p {
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
   font-weight: 200;
   letter-spacing: 1px;
-  color: #6b9aff;
+  color: #fdcc52;
 }
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
-  color: #6b9aff;
+  color: #fcbd20;
 }
 .navbar-default .navbar-header .navbar-toggle {
   font-size: 12px;
@@ -151,11 +151,11 @@ header {
   width: 100%;
   min-height: auto;
   overflow-y: hidden;
-  background: url("../img/bg-pattern.png"), #00ddec;
+  background: url("../img/bg-pattern.png"), #7b4397;
   /* fallback for old browsers */
-  background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
+  background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: url("../img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
+  background: url("../img/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
 }
@@ -182,7 +182,6 @@ header .header-content .header-content-inner .list-badges img {
   margin-bottom: 25px;
 }
 header .device-container {
-  margin-top:100px;
   max-width: 300px;
   margin: 0 auto 100px;
 }
@@ -221,7 +220,6 @@ header .device-container .screen img {
 }
 section {
   padding: 100px 0;
-min-height: auto;
 }
 section h2 {
   font-size: 50px;
@@ -286,8 +284,8 @@ section.features .feature-item h3 {
 }
 section.features .feature-item i {
   font-size: 80px;
-  background: -webkit-linear-gradient(to left, #00ddec, #6b9aff);
-  background: linear-gradient(to left, #00ddec, #6b9aff);
+  background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: linear-gradient(to left, #7b4397, #dc2430);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -304,7 +302,7 @@ section.cta {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url('../img/startup-photos.jpg');
+  background-image: url('../img/bg-cta.jpg');
   padding: 250px 0;
 }
 section.cta .cta-content {
@@ -395,12 +393,12 @@ footer ul li a.active {
   text-decoration: none;
 }
 .bg-primary {
-  background: #6b9aff;
-  background: -webkit-linear-gradient(#6b9aff, #6b9aff);
-  background: linear-gradient(#6b9aff, #6b9aff);
+  background: #fdcc52;
+  background: -webkit-linear-gradient(#fdcc52, #fdc539);
+  background: linear-gradient(#fdcc52, #fdc539);
 }
 .text-primary {
-  color: #6b9aff;
+  color: #fdcc52;
 }
 .no-gutter > [class*='col-'] {
   padding-right: 0;
@@ -408,10 +406,8 @@ footer ul li a.active {
 }
 .btn-outline {
   color: white;
-  border-color: #888889;
+  border-color: white;
   border: 1px solid;
-  
-  
 }
 .btn-outline:hover,
 .btn-outline:focus,
@@ -430,9 +426,7 @@ footer ul li a.active {
 .btn-xl {
   padding: 15px 45px;
   font-size: 11px;
-   
 }
-
 ::-moz-selection {
   color: white;
   text-shadow: none;
@@ -453,27 +447,4 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #222222;
-}
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
 }
