@@ -36,6 +36,9 @@ header {
     background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
     background: url("../img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
 }
+.bg-primary header {
+    background: transparent;
+}
 header .device-container {
     margin-top: auto;
 }
@@ -55,7 +58,9 @@ section.cta {
     background-image: url("../img/startup-photos.jpg");
 }
 .bg-primary {
-    background: #6b9aff;
+    background: url("../img/bg-pattern.png"), #00ddec;
+    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
+    background: url("../img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
 }
 .text-primary {
     color: #6b9aff;
@@ -92,7 +97,10 @@ section.cta {
     box-shadow: 10px 10px 5px #888888;
 }
 
-#map { position:relative; top:0; bottom:0; width:100%; height:100%; }
+#map {
+    margin-bottom: 20px;
+    min-height: 80vh;
+}
 .hover {
     position:relative;
     top:0px;
@@ -125,7 +133,7 @@ section.cta {
 
 .hover:hover .tooltip {
     opacity:1;
-} 
+}
 
 /*Eamonn's styling stuff for querySQL page*/
 
@@ -250,56 +258,9 @@ section.cta {
 }
 
 #cardPile div.ui-draggable-disabled {
-    cursor: auto;
+    cursor: not-allowed;
 }
 
-/* Individually coloured cards */
-/*Sql queries page*/
-#cardSelect.correct { background: #65b858; }
-#card\*.correct { background: #65b858; }
-#cardFrom.correct { background: #65b858; }
-#cardCrime.correct { background: #65b858; }
-#cardDelete.correct { background: #65b858; }
-#cardDrop.correct { background: #65b858; }
-#cardRemove.correct { background: #65b858; }
-#cardSort.correct { background: #65b858; }
-#cardDrop.correct { background: #65b858; }
-#cardDelete.correct { background: #65b858; }
-
-#cardSelect.incorrect { background: #ff0000; }
-#card\*.incorrect { background: #ff0000; }
-#cardFrom.incorrect { background: #ff0000; }
-#cardCrime.incorrect { background: #ff0000; }
-#cardDelete.incorrect { background: #ff0000; }
-#cardDrop.incorrect { background: #ff0000; }
-#cardRemove.incorrect { background: #ff0000; }
-#cardSort.incorrect { background: #ff0000; }
-#cardDrop.incorrect { background: #ff0000; }
-#cardDelete.incorrect { background: #ff0000; }
-
-/*PK_test page*/
-#cardComposite.correct { background: #65b858; }
-#cardForeign.correct { background: #65b858; }
-#cardComposite.correct { background: #65b858; }
-#cardComposite.correct { background: #65b858; }
-#cardPrimary.correct { background: #65b858; }
-
-
-
-/*#cardRemove.correct { background: #65b858; }
-#cardSort.correct { background: #65b858; }
-#cardDrop.correct { background: #65b858; }
-#cardDelete.correct { background: #65b858; }*/
-
-#cardPrimary.incorrect { background: #ff0000; }
-#cardComposite.incorrect { background: #ff0000; }
-#cardForeign.incorrect { background: #ff0000; }
-#cardComposite.incorrect { background: #ff0000; }
-#cardComposite.incorrect { background: #ff0000; }
-/*#cardRemove.incorrect { background: #ff0000; }
-#cardSort.incorrect { background: #ff0000; }
-#cardDrop.incorrect { background: #ff0000; }
-#cardDelete.incorrect { background: #ff0000; }*/
 /* "You did it!" message */
 #successMessage {
     position: absolute;

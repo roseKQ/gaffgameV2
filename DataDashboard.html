@@ -28,6 +28,7 @@
 
     <!-- Theme CSS -->
     <link href="css/new-age.min.css" rel="stylesheet">
+    <link href="css/new-age-plus.css" rel="stylesheet">
 
     <link href='lib/leaflet/leaflet.css' rel='stylesheet'/>
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
@@ -42,7 +43,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="bg-primary">
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -73,55 +74,28 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <header>
+    <section>
         <div class="container">
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="header-content">
-                        <div class="header-content-inner">
-                            <div style="text-align:center">
-                            <img src="img/congratulations.png" class="img-responsive" alt="">
-                            
-                            <p><b>You've completed the mission!</b> 
-                            <br>Gaff has plotted the schools and playground data on a map. Press the map button and take a look at the data to see how it might help our family make a choice on where they want to live. The icons to look out for are below, and you can toggle the data on and off</p>
-                            </div>
-                            <div style="text-align:center">
-                              <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/crime_icon.png" class="img-responsive" alt=""><span class="tooltip">This is the crime icon</span></span>
-                             <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/school_icon.png" class="img-responsive" alt=""><span class="tooltip">This is the schools icon</span></span>
-                              <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/slide.png" class="img-responsive" alt=""><span class="tooltip">This is the playground icon</span></span>
-                             </div> 
-                             <div style="text-align:center">                                        
-                            <a href="#map" class="btn btn-outline btn-xl page-scroll">   Map    </a>
-                            <a href="" class="btn btn-outline btn-xl" onclick="myFunction()">Play again</a>
-                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-               
-                        
-                            <div class="device-container">
-                                <div ></div>
-                                <div class="screen">
-                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                                                       <p> <br><br></p>
-                                                                       <p> <br><br></p>
-                                                                       <img src="img/family_reversed.png" class="img-responsive" alt="">
-                                </div>
-
-                            </div>
-
+            <div class="chart">
+                <img src="img/congratulations.png" class="img-responsive center-block" alt="Congratulations!">
+                <h1 class="text-center">You've completed the mission!</h1>
+                <p class="text-center">Gaff has plotted the schools and playground data on a map. 
+                    Take a look at the map below and see how the data 
+                    might help our family make a choice on where they want to 
+                    live. The icons to look out for are below, and you can 
+                    toggle the data on and off using the legend in the top-right
+                    corner.
+                </p>
+                <div class="text-center">
+                    <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/crime_icon.png" class="img-responsive" alt=""><span class="tooltip">This is the crime icon</span></span>
+                    <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/school_icon.png" class="img-responsive" alt=""><span class="tooltip">This is the schools icon</span></span>
+                    <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/slide.png" class="img-responsive" alt=""><span class="tooltip">This is the playground icon</span></span>
+                </div> 
+                <div id="map"></div>
+                <div class="text-center">                                        
+                    <a href="" class="btn btn-outline btn-xl" onclick="myFunction()">Play again</a>
                 </div>
             </div>
-        </div>
-    </header>
-    <section id="map" class="contact bg-primary">
-        <div class="container">
-                          <h1>Map viz</h1>
-                            <div class="chart" id = "chart">
-                                <div id='map'></div>
-                            </div>
-                             
         </div>
     </section>
 
