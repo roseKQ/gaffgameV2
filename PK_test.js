@@ -28,9 +28,9 @@ var questions = [
     ["img/bronze_small_medal.png", "Laura is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
     ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
     ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],
-   ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "Location"], "INSERT", "SQL"],
+   ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
     ["img/bronze_small_medal.png", " Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
-   ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["", " ( ", " ", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date" ], "INSERT", "BLANKS"],
+   ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["", " ( ", " ", " "," ","", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date" ], "INSERT", "BLANKS"],
 
 
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE", "SQL"],
@@ -42,10 +42,10 @@ var questions = [
   ], [
         ["img/bronze_small_medal.png", "Laura is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
     ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE table Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],    
-    ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "Location"], "INSERT", "SQL"],
-    ["img/bronze_small_medal.png", " Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
-   ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["", " ( ", " ", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date" ], "INSERT", "BLANKS"],
+    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],    
+    ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
+    ["img/bronze_small_medal.png", " Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "LOCATION"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
+   ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["", " ( ", " ", " "," ","", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date" ], "INSERT", "BLANKS"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE", "SQL"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY", "SQL"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "JOIN", "SQL"],
@@ -55,10 +55,10 @@ var questions = [
   ], [
     ["img/bronze_small_medal.png", "Laura is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
     ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE table Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],,
-    ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "Location"], "INSERT", "SQL"],
-    ["img/bronze_small_medal.png", " Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
-   ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["", " ( ", " ", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date" ], "INSERT", "BLANKS"],
+    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],,
+    ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
+    ["img/bronze_small_medal.png", " Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "LOCATION"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
+   ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["", " ( ", " ", " "," ","", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date" ], "INSERT", "BLANKS"],
   ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "RETRIEVE", "SQL"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "SUMMARY", "SQL"],
     ["img/gold_small_medal.png", "Rathlin wants to see burglary in the antrim road area", ["robberies", "crime", "month=7"], ["SELECT", "FROM", "WHERE"], "JOIN", "SQL"],
@@ -106,6 +106,7 @@ else{
     console.log("Check question type " + questionTypeKey);
     if (questionTypeKey == "SQL" || questionTypeKey == "BLANKS") {
 
+    
       for (var i = 0; i < retrievalwords.length; i++) {
         $('<div name="choices">' + retrievalwords[i] + '</div>').data('number', retrievalwords[i]).appendTo('#cardSlots').droppable({
           accept: '#cardPile div',
@@ -116,6 +117,7 @@ else{
 
       }
     } else {
+
       for (var i = 0; i < retrievalwords.length; i++) {
         $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>').data('number', retrievalQuestions[i]).appendTo('#cardSlots');
         //$('<div>' + retrievalQuestions[i-1] + '</div>').data( 'number', retrievalQuestions[i-1] ).appendTo( '#cardSlots' )
@@ -143,33 +145,37 @@ else{
 
 /*This section pertains to */
 
-var retrievalCommands = [];
+    var retrievalCommands = [];
 
-if (questions[random][pos][4] == "CREATE") {
+    if (questions[random][pos][4] == "CREATE") {
 
-console.log("Retrieval Commands "+retrievalCommands)
-  if (questions[random][pos][5] == "SQL") {
+      console.log("Retrieval Commands " + retrievalCommands)
+      if (questions[random][pos][5] == "SQL") {
 
-    var retrievalCommands = ["CREATE", "CREATE TABLE", "VARCHAR", "PRIMARY KEY", "FOREIGN KEY", "IDENTITY", "INT", "DECIMAL", "NULL", "NOT NULL", "REFERENCES"];
-console.log("Retrieval Commands SQL "+retrievalCommands)
-  } else if (questions[random][pos][5] == "INTERROGATE") {
+        var retrievalCommands = ["CREATE", "CREATE TABLE", "VARCHAR", "PRIMARY KEY", "FOREIGN KEY", "IDENTITY", "INT", "DECIMAL", "NULL", "NOT NULL", "REFERENCES"];
+        console.log("Retrieval Commands SQL " + retrievalCommands)
+      } else if (questions[random][pos][5] == "INTERROGATE") {
 
-    var retrievalCommands = ["TABLE", "Schools", "Crime", "CrimeType", "SchoolType", "Playground", "Postcode", "Playgrounds ( Playground ID", "Playgrounds ( Name", "CREATE TABLE", "NOT NULL", ")"]
+        var retrievalCommands = ["TABLE",
+          "Schools",
+          "Crime",
+          "CrimeType",
+          "SchoolType", "Playground", "Postcode", "Playgrounds ( Playground ID", "Playgrounds ( Name", "CREATE TABLE", "NOT NULL", ")"]
+      }
+      else
+        var retrievalCommands = ["CREATE", "CREATE TABLE", "VARCHAR", "PRIMARY KEY", "FOREIGN KEY", "IDENTITY", "INT", "DECIMAL", "NULL", "NOT NULL", "REFERENCES", "TABLE", "CREATE table Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY", "Schools", "Crime", "CrimeType", "SchoolType", "Playground", "Postcode", "Playgrounds ( Playground ID", "Playgrounds ( Name", "Playground ID, INT", "NOT NULL IDENTITY", "CREATE TABLE Playgrounds"]
+    }
+    else if (questions[random][pos][4] == "INSERT") {
+
+      if (questions[random][pos][5] == "SQL") {
+        var retrievalCommands = ["INSERT", "INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE"];
+      } else if (questions[random][pos][5] == "INTERROGATE") {
+
+        var retrievalCommands = ["TABLE", "Schools", "Crime", "CrimeType", "SchoolType",  "Playground", "Postcode", "Crime", " (CrimeType, Latitude, Longitude", " Date)"]
   }
   else
-    var retrievalCommands = ["CREATE", "CREATE TABLE", "VARCHAR", "PRIMARY KEY", "FOREIGN KEY", "IDENTITY", "INT", "DECIMAL", "NULL", "NOT NULL", "REFERENCES","TABLE", "Schools", "Crime", "CrimeType", "SchoolType", "Playground", "Postcode", "Playgrounds ( Playground ID", "Playgrounds ( Name",  "Playground ID, INT", "NOT NULL IDENTITY", "CREATE TABLE Playgrounds"]
-}
-else if (questions[random][pos][4] == "INSERT") {
 
-  if (questions[random][pos][5] == "SQL") {
-    var retrievalCommands = ["INSERT", "INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE"];
-  } else if (questions[random][pos][5] == "INTERROGATE") {
-
-    var retrievalCommands = ["TABLE", "Schools", "Crime", "CrimeType", "SchoolType",  "Playground", "Postcode"]
-  }
-  else
-
-    var retrievalCommands = ["INSERT", "INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE", "INSERT INTO", "Crime", "Values", "latitude, longitude", "location, Date" ];
+    var retrievalCommands = ["INSERT", "INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE", "INSERT INTO", "Crime", "Values", "latitude, longitude", "location, Date", "CrimeType", "Values" ];
 
 }
 else if (questions[random][pos][4] == "RETRIEVE") {
