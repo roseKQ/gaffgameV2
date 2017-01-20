@@ -1,3 +1,15 @@
+$(document).ready(function() {
+    $("#showData").click(function () {
+        $("#dataButtons").toggle("slow", function () {
+            // Animation complete.
+        });
+        $("#showSchema").click(function () {
+            $("#schema").toggle("slow", function () {});
+        });
+    });
+});
+
+
 var correctCards = 0;
 var attempts = 0;
 
@@ -284,10 +296,9 @@ function scoreOverall(totalAnswer) {
   drillDown();
 }
 
-function restart(){
-
-  window.open("PK_test.html");
-window.close("PK_test.html");} 
+function restart() {
+    window.location.href = 'PK_test.html';
+}
 
 function drillDown() {
 

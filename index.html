@@ -1,295 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-<head>
+        <title>gaff game </title>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
+        <!-- Bootstrap Core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-	<title>gaff game </title>
+        <!-- Custom Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
-	<!-- Bootstrap Core CSS -->
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Plugin CSS -->
+        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
 
-	<!-- Custom Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <!-- Theme CSS -->
+        <link href="css/new-age.min.css" rel="stylesheet">
+        <link href="css/new-age-plus.css" rel="stylesheet">
 
-	<!-- Plugin CSS -->
-	<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-	<link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
 
-	<!-- Theme CSS -->
-    <link href="css/new-age.min.css" rel="stylesheet">
-    <link href="css/new-age-plus.css" rel="stylesheet">
+    <body id="page-top">
 
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="#page-top">Gaff Game</a>
+                </div>
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="page-scroll" href="#about">About</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#features">Features</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#play">Play</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
 
-</head>
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="header-content">
+                            <div class="header-content-inner">
+                                <h1>This is Gaff<br>
+                                    Gaff wants to help you learn about data. Will you accept the data mission?</h1>
+                                <a href="#about" class="btn btn-outline btn-xl page-scroll">what is my mission? </a>
+                                <a href="#features" class="btn btn-outline btn-xl page-scroll">Info for educators </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="device-container">
+                            <div></div>
+                            <div class="screen">
+                                <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                                <img src="img/icon-01.png" class="img-responsive" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-<body id="page-top">
+        <section id="about" class="text-center">
+            <div class="container mission-step">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h2><img src="img/mission.png" class="img-responsive center-block heading-img" alt="Your Mission"></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2">
+                        <!--<img src="img/mission.png" class="img-responsive" alt="">-->
+                        <p>A young family are moving to Belfast, and they don't 
+                            know where they should live. Your mission is to use 
+                            open data to find the perfect area for them to call 
+                            home.</p>
+                        <a href="#dataset" class="btn btn-outline btn-xl page-scroll">next step </a>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="img/family-01.png" class="img-responsive" alt="">
+                    </div>
+                </div>
+            </div>
+            <div id="dataset" class="container mission-step">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2">
+                        <img src="img/database_table_BIG-01.png" class="img-responsive" style="width:800px;height:500px" alt="">
+                    </div>
+                    <div class="col-md-4">
+                        <p>Gaff has helped you get started on the mission by visiting open 
+                            data NI and selecting three datasets on crime, parks and schools. 
+                            Gaff has taken the <abbr data-toggle="tooltip" title="JSON data transmits data objects consisting of key-value pairs">JSON</abbr>
+                            and <abbr data-toggle="tooltip" title="CSV stands for comma separated values. CSV files store data in a table structured format and allow data to be easily imported into a database.">.csv</abbr>
+                            files and put them into a <abbr data-toggle="tooltip" title="SQL stands for Structured Query Language. It is used to interact with databases. We can use SQL to insert, update and modify data in the database.">SQL</abbr>
+                            database.
+                        </p>
+                        <a href="#dataviz" class="btn btn-outline btn-xl page-scroll">next step </a>
+                    </div>
+                </div>
+            </div>
+            <div id="dataviz" class="container mission-step">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2">
+                        <img src="img/dataviz.png" class="img-responsive" alt="">
+                    </div>
+                    <div class="col-md-4">
+                        <p>You will identify the datatypes, find the primary and 
+                            foreign keys and write SQL queries. Then you can 
+                            visualise the data and help the family make an 
+                            informed decision on where they should live.</p>
+                        <a href="#play" class="btn btn-outline btn-xl page-scroll">next step </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-				<a class="navbar-brand page-scroll" href="#page-top">Gaff Game</a>
-			</div>
+        <section id="features" class="features">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="section-heading">
+                            <h2>The best way to learn about Data</h2>
+                            <p class="text-muted">Learning about data with Gaff Game is fun and effective. Our bitesize lessons will help you prepare for your exams
+                                and understand data in a wider context</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="device-container">
+                            <div class="device">
+                                <div class="screen">
+                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                                    <img src="img/icon-01.png" class="img-responsive" alt=""> </div>
+                                <div class="button">
+                                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-item">
+                                        <h3>Medals</h3>
+                                        <p class="text-muted">Achieve gold, silver or bronze. Platinum if you're perfect!</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-item">
+                                        <h3>Score Drill Down</h3>
+                                        <p class="text-muted">Get a drill down analysis on your scores; on what you were good at and on what you need to work on</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-item">
+                                        <h3>Gamification</h3>
+                                        <p class="text-muted">Learning about Data with Gaff game is fun and addictive, with gamification in everything we do</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-item">
+                                        <h3>Understand Data</h3>
+                                        <p class="text-muted">ETL, writing queries, understanding normal form, primary keys... We've got you covered. The Gaff Game covers the
+                                            specifications for GCE A-Level Software Systems Development</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a class="page-scroll" href="#download">About</a>
-					</li>
-					<li>
-						<a class="page-scroll" href="#features">Features</a>
-					</li>
-					<li>
-						<a class="page-scroll" href="#play">Play</a>
-					</li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
+        <section id="play" class="cta">
+            <div class="cta-content">
+                <div class="container">
+                    <h2>Learn about Data</h2>
+                    <a href="PK_test.html" class="btn btn-outline btn-xl ui-btn">play the game</a>
+                </div>
+            </div>
+            <div class="overlay"></div>
+        </section>
 
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-7">
-					<div class="header-content">
-						<div class="header-content-inner">
-							<h1>This is Gaff<br>
-                                Gaff wants to help you learn about data. Will you accept the data mission?</h1>
-							<a href="#download" class="btn btn-outline btn-xl page-scroll">what is my mission? </a>
-							<a href="#features" class="btn btn-outline btn-xl page-scroll">Info for educators </a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-5">
+        <footer>
+            <div class="container">
+                <p>&copy; 2016 Gaff Game. All Rights Reserved.</p>
 
+                <ul class="list-inline">
+                    <li>
+                        <a href="#">Privacy</a>
+                    </li>
+                    <li>
+                        <a href="#">Terms</a>
+                    </li>
+                    <li>
+                        <a href="#">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
 
-					<div class="device-container">
-						<div></div>
-						<div class="screen">
-							<!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-							<img src="img/icon-01.png" class="img-responsive" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+        <!-- jQuery -->
+        <script src="vendor/jquery/jquery.min.js"></script>
 
-	<section id="download" class="download text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-md-offset-2">
-					<img src="img/mission.png" class="img-responsive" alt="">
-					<p>A young family are moving to Belfast. They don't know where they should live. Your mission is to use open data to find
-						the perfect area for them to call home</p>
-					<a href="#dataset" class="btn btn-outline btn-xl page-scroll">next step </a>
-				</div>
-				<div class="col-md-4">
+        <!-- Bootstrap Core JavaScript -->
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-					<img src="img/family-01.png" class="img-responsive" alt="">
-					<h2 class="section-heading"></h2>
-				</div>
-			</div>
-		</div>
+        <!-- Plugin JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-	</section>
+        <!-- Theme JavaScript -->
+        <script src="js/new-age.min.js"></script>
 
-	<section id="dataset" class="download text-center">
-		<div class="container">
-
-	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
-			<img src="img/database_table_BIG-01.png" class="img-responsive" style="width:800px;height:500px"alt="">
-
-		</div>
-		<div class="col-md-4">
-
-<br>
-
-			<p>Gaff has helped you get started on the mission by visiting open data NI and selecting three datasets on crime, parks and
-				schools. Gaff has taken the <span class="hover" style="color:#6b9aff">JSON<span class="tooltip">JSON data transmits data objects consisting of key–value pairs</span></span> and <span class="hover" style="color:#6b9aff">.csv<span class="tooltip">CSV stands for comma separated values. CSV files store data in a table structured format and allow data to be easily imported into a database.</span></span> files and put them into a <span class="hover" style="color:#6b9aff">SQL<span class="tooltip">SQL stands for Structured Query Language. It is used to interact with databases. We can use SQL to insert, update and modify data in the database.</span></span> database</p>
-
-
-			<a href="#dataviz" class="btn btn-outline btn-xl page-scroll">next step </a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="dataviz" class="download text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-md-offset-2">
-					<img src="img/dataviz.png" class="img-responsive" alt="">
-
-
-				</div>
-				<div class="col-md-4">
-
-					<p>You will identify the datatypes, find the primary and foreign keys and write SQL queries. Then you can visualise the
-						data and help the family make an informed decision on where they should live</p>
-					<a href="#play" class="btn btn-outline btn-xl page-scroll">next step </a>
-
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="features" class="features">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="section-heading">
-						<h2>The best way to learn about Data</h2>
-						<p class="text-muted">Learning about data with Gaff Game is fun and effective. Our bitesize lessons will help you prepare for your exams
-							and understand data in a wider context</p>
-						<hr>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="device-container">
-
-						<div class="device">
-							<div class="screen">
-								<!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-								<img src="img/icon-01.png" class="img-responsive" alt=""> </div>
-							<div class="button">
-								<!-- You can hook the "home button" to some JavaScript events or just remove it -->
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="feature-item">
-
-									<h3>Medals</h3>
-									<p class="text-muted">Achieve gold, silver or bronze. Platinum if you're perfect!</p>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="feature-item">
-
-									<h3>Score Drill Down</h3>
-									<p class="text-muted">Get a drill down analysis on your scores; on what you were good at and on what you need to work on</p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="feature-item">
-
-									<h3>Gamification</h3>
-									<p class="text-muted">Learning about Data with Gaff game is fun and addictive, with gamification in everything we do</p>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="feature-item">
-
-									<h3>Understand Data</h3>
-									<p class="text-muted">ETL, writing queries, understanding normal form, primary keys... We've got you covered. The Gaff Game covers the
-										specifications for GCE A-Level Software Systems Development</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-	</section>
-
-	<section id="play" class="cta">
-		<div class="cta-content">
-			<div class="container">
-				<h2>Learn about Data</h2>
-				<a href="" class="btn btn-outline btn-xl ui-btn" onclick="myFunction()">play the game</a>
-			</div>
-		</div>
-		<div class="overlay"></div>
-	</section>
-
-	<section id="contact" class="contact">
-		<div class="container">
-			<h2>We <i class="fa fa-heart"></i> new friends!</h2>
-			<ul class="list-inline list-social">
-				<li class="social-twitter">
-					<a href="#"><i class="fa fa-twitter"></i></a>
-				</li>
-				<li class="social-facebook">
-					<a href="#"><i class="fa fa-facebook"></i></a>
-				</li>
-				<li class="social-google-plus">
-					<a href="#"><i class="fa fa-google-plus"></i></a>
-				</li>
-			</ul>
-		</div>
-	</section>
-
-	<footer>
-
-		<div class="container">
-			<p>&copy; 2016 Gaff Game. All Rights Reserved.</p>
-
-			<ul class="list-inline">
-				<li>
-					<a href="#">Privacy</a>
-				</li>
-				<li>
-					<a href="#">Terms</a>
-				</li>
-				<li>
-					<a href="#">FAQ</a>
-				</li>
-			</ul>
-		</div>
-	</footer>
-
-
-<script>
-function myFunction() {
-    window.open("PK_test.html");
-    window.close("index.html");
-}
-</script>
-
-	<!-- jQuery -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Plugin JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-	<!-- Theme JavaScript -->
-	<script src="js/new-age.min.js"></script>
-
-</body>
-
+        <script src="js/common.js"></script>
+    </body>
 </html>

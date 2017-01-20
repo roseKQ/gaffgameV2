@@ -71,6 +71,34 @@ section.cta {
 }
 /* End of theme overrides */
 
+main {
+    min-height: calc(100vh - 50px - 2.7em);
+    padding: 100px 0;
+}
+
+abbr[data-original-title], abbr[title] {
+    border-bottom: none;
+    color: #6b9aff;
+    text-decoration: none;
+}
+
+.mission-step {
+    padding: 150px 0;
+    position: relative;
+}
+
+section#about {
+    padding: 0;
+}
+
+.heading-img {
+    max-height: 20vh;
+}
+
+.btn-container {
+    margin-top: 30px;
+}
+
 .chart
 {
     background-color:#fff;
@@ -101,38 +129,9 @@ section.cta {
     margin-bottom: 20px;
     min-height: 80vh;
 }
-.hover {
-    position:relative;
-    top:0px;
-    left:0px;
-    line-height: 100%;
-    display:inline-block;
-}
 
-.tooltip {
-    top:-125px;
-    left:30px;
-    width:175px;
-    position:absolute;
-    background-color:#6b9aff;
-    color:white;
-    border-radius:5px;
-    opacity:0;
-    -webkit-transition: opacity 0.5s;
-    -moz-transition:  opacity 0.5s;
-    -ms-transition: opacity 0.5s;
-    -o-transition:  opacity 0.5s;
-    transition:  opacity 0.5s;
-    line-height: 1.2;
-
-    height: 160px;
-    padding:8px;
-    font-family:Lato,Helvetica,Arial,sans-serif;
-    font-size: 16px;
-}
-
-.hover:hover .tooltip {
-    opacity:1;
+.inline-img {
+    display: inline-block;
 }
 
 /*Eamonn's styling stuff for querySQL page*/
@@ -231,7 +230,7 @@ section.cta {
     border-color: #666666;
     border-style: solid;
     color: #666;
-    cursor: move;
+    cursor: grab;
     font-size: 20px;
     text-shadow: 0 0 3px #fff;
 }
@@ -245,6 +244,7 @@ section.cta {
     -moz-box-shadow: 0 0 .5em #888889;
     -webkit-box-shadow: 0 0 .5em #888889;
     box-shadow: 0 0 .5em #888889;
+    cursor: grabbing;
 }
 
 #cardPile div.correct {

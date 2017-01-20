@@ -1,142 +1,132 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-<head>
+        <title>gaff game </title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <!-- Bootstrap Core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>gaff game </title>
+        <!-- Custom Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Plugin CSS -->
+        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
 
-    <!-- Custom Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <!-- Theme CSS -->
+        <link href="css/new-age.min.css" rel="stylesheet">
+        <link href="css/new-age-plus.css" rel="stylesheet">
 
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+        <link href='lib/leaflet/leaflet.css' rel='stylesheet'/>
+        <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 
-    <!-- Theme CSS -->
-    <link href="css/new-age.min.css" rel="stylesheet">
-    <link href="css/new-age-plus.css" rel="stylesheet">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
 
-    <link href='lib/leaflet/leaflet.css' rel='stylesheet'/>
-<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+    <body id="page-top" class="bg-primary">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="/#page-top">Gaff Game</a>
+                </div>
 
-</head>
-
-<body id="page-top" class="bg-primary">
-
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Gaff Game</a>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="page-scroll" href="/#download">About</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="/#features">Features</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="/#contact">Play</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
+            <!-- /.container-fluid -->
+        </nav>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+        <main>
+            <div class="container">
+                <div class="chart">
+                    <img src="img/congratulations.png" class="img-responsive center-block" alt="Congratulations!">
+                    <h1 class="text-center">You've completed the mission!</h1>
+                    <p class="text-center">Gaff has plotted the schools and playground data on a map. 
+                        Take a look at the map below and see how the data 
+                        might help our family make a choice on where they want to 
+                        live. The icons to look out for are below, and you can 
+                        toggle the data on and off using the legend in the top-right
+                        corner.
+                    </p>
+                    <div class="text-center">
+                        <img src="lib/leaflet/images/crime_icon.png" class="inline-img" alt="Crime icon" data-toggle="tooltip" title="This is the crime icon">
+                        <img src="lib/leaflet/images/school_icon.png" class="inline-img" alt="School icon" data-toggle="tooltip" title="This is the schools icon">
+                        <img src="lib/leaflet/images/slide.png" class="inline-img" alt="Playground icon" data-toggle="tooltip" title="This is the playground icon">
+                    </div> 
+                    <div id="map"></div>
+                    <div class="text-center">                                        
+                        <a href="/" class="btn btn-outline btn-xl">Play again</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2016 Gaff Game. All Rights Reserved.</p>
+                <ul class="list-inline">
                     <li>
-                        <a class="page-scroll" href="#download">About</a>
+                        <a href="#">Privacy</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#features">Features</a>
+                        <a href="#">Terms</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Play</a>
+                        <a href="#">FAQ</a>
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+        </footer>
 
-    <section>
-        <div class="container">
-            <div class="chart">
-                <img src="img/congratulations.png" class="img-responsive center-block" alt="Congratulations!">
-                <h1 class="text-center">You've completed the mission!</h1>
-                <p class="text-center">Gaff has plotted the schools and playground data on a map. 
-                    Take a look at the map below and see how the data 
-                    might help our family make a choice on where they want to 
-                    live. The icons to look out for are below, and you can 
-                    toggle the data on and off using the legend in the top-right
-                    corner.
-                </p>
-                <div class="text-center">
-                    <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/crime_icon.png" class="img-responsive" alt=""><span class="tooltip">This is the crime icon</span></span>
-                    <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/school_icon.png" class="img-responsive" alt=""><span class="tooltip">This is the schools icon</span></span>
-                    <span class="hover" style="color:#6b9aff"><img src="lib/leaflet/images/slide.png" class="img-responsive" alt=""><span class="tooltip">This is the playground icon</span></span>
-                </div> 
-                <div id="map"></div>
-                <div class="text-center">                                        
-                    <a href="" class="btn btn-outline btn-xl" onclick="myFunction()">Play again</a>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- jQuery -->
+        <script src="vendor/jquery/jquery.min.js"></script>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2016 Gaff Game. All Rights Reserved.</p>
-            <ul class="list-inline">
-                <li>
-                    <a href="#">Privacy</a>
-                </li>
-                <li>
-                    <a href="#">Terms</a>
-                </li>
-                <li>
-                    <a href="#">FAQ</a>
-                </li>
-            </ul>
-        </div>
-    </footer>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<script>
-function myFunction() { window.open("index.html");
-window.close("DataDashboard.html");} </script>
+        <!-- Plugin JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+        <!-- Theme JavaScript -->
+        <script src="js/new-age.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="js/new-age.min.js"></script>
-
-    <script src="data/playgrounds.js"></script>
-    <script src="data/schools.js"></script>
-<script src="data/crime.js"></script>
-    <script src="map.js"></script>
-
-</body>
-
+        <script src="js/common.js"></script>
+        <script src="data/playgrounds.js"></script>
+        <script src="data/schools.js"></script>
+        <script src="data/crime.js"></script>
+        <script src="map.js"></script>
+    </body>
 </html>
