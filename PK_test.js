@@ -11,6 +11,8 @@ var JOIN_UNION_DELETE = 0;
 var pos = 0;
 var totalAnswer = 0;
 var attempts = 0;
+var JOIN_UNION_DELETE = 0;
+var JOIN_UPDATE_DELETE = 0;
 
 //var data = [create, insert, retrieve, summary, join, update, DeleteQuestion]; 
 
@@ -337,9 +339,8 @@ JOIN_UNION_DELETE++;
   console.log("Insert questions count " +insert);
   console.log("Retrieve questions count " +retrieve);
   console.log("Summary questions count " +summary);
-  console.log("Join / Union / Delete questions count " +join);
-  console.log("Update questions count " +update);
-  console.log("Delete questions count "+DeleteQuestion);
+  console.log("Join / Union / Delete questions count " +JOIN_UNION_DELETE);
+
 
 }
 }
@@ -404,9 +405,8 @@ function drillDown() {
     { name: "insert", score: insert },
     { name: "retrieve", score: retrieve },
     { name: "summary", score: summary },
-    { name: "join", score: join },
-    { name: "update", score: update },
-    { name: "delete", score: DeleteQuestion }
+    { name: "join", score: JOIN_UPDATE_DELETE },
+
   ];
 
   var width = 1200,
