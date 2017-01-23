@@ -167,9 +167,6 @@ section#about {
 
 #cardPile {
     clear: left;
-    width: fit-content;
-    height: auto;
-    margin: 0 auto;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -183,18 +180,11 @@ section#about {
 #cardSlots {
     background: #ffffff;
     color: #888889;
-    width: fit-content;
-    height:60px;
-    padding-top: 0px;
-    padding-bottom: 20px;
-    padding: 0px;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
 }
 
 /* Individual cards and slots */
-#cardSlots div, #cardPile div {
+/* #cardSlots div, #cardPile div */
+.cardSlot, .cardQuestions, .cardOption {
     float: left;
     height: 40px;
     text-align: center;
@@ -208,28 +198,35 @@ section#about {
     background: #fff;
 }
 
-#cardSlots div.hovered {
+.cardSlot.hovered {
     background: #aaa;
 }
 
-#cardSlots div {
+.cardSlot, .cardQuestions {
     color: #888889;
 }
 
-#cardSlots div.ui-droppable {
+.cardSlot {
     border-color: #888889;
     border-style: dashed;
     min-width: 150px;
-    padding: 0 15px;
 }
 
-#cardSlots div.cardQuestions {
+.cardSlot.filled {
+    border: none;
+}
+
+.cardSlot > .cardOption {
+    margin: 0;
+}
+
+.cardQuestions {
     border: none;
     font-weight: bold;
     width: auto;
 }
 
-#cardPile div {
+.cardOption {
     background-color: #eee;
     border-color: #666666;
     border-style: solid;
@@ -241,28 +238,28 @@ section#about {
     text-shadow: 0 0 3px #fff;
 }
 
-#cardPile div:hover {
+.cardOption:hover {
     background-color: #666;
     color: #fff;
 }
 
-#cardPile div.ui-draggable-dragging {
+.cardOption.ui-draggable-dragging {
     -moz-box-shadow: 0 0 .5em #888889;
     -webkit-box-shadow: 0 0 .5em #888889;
     box-shadow: 0 0 .5em #888889;
 }
 
-#cardPile div.correct {
+.cardOption.correct {
     background-color: #65b858;
     color: #fff;
 }
 
-#cardPile div.incorrect {
+.cardOption.incorrect {
     background-color: #ff0000;
     color: #fff;
 }
 
-#cardPile div.ui-draggable-disabled {
+.cardOption.ui-draggable-disabled {
     cursor: not-allowed;
 }
 
