@@ -38,12 +38,12 @@ $(init);
 
 var questions = [
   [
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],
-    ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
-    ["img/bronze_small_medal.png", " Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Build the whole query to define the primary key", ["", " ( ", " ", " ", " ", "", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date"], "INSERT", "BLANKS"],
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Build the whole query to define the primary key", ["", " ( ", " ", " ", " ", "", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date"], "INSERT", "BLANKS"],
 
     ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her complete the query", ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], ["SELECT", "FROM", "WHERE", "BETWEEN"], "RETRIEVE", "SQL"],
     ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her query the data", ["SELECT", "FROM", "WHERE", "BETWEEN"], ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "INTERROGATE"],
@@ -67,46 +67,16 @@ var questions = [
     ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["UPDATE", "SET", "REPLACE"], ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
     ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["", "", "", "", "", ""], ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "BLANKS"],
     ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], ["SELECT", "UNION", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-    ["img/bronze_small_medal.png", "", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
-
-  ], [
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],
-    ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
-    ["img/bronze_small_medal.png", " Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "LOCATION"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her complete the query", ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], ["SELECT", "FROM", "WHERE", "BETWEEN"], "RETRIEVE", "SQL"],
-    ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her query the data", ["SELECT", "FROM", "WHERE", "BETWEEN"], ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "BLANKS"],
-    ["img/bronze_small_medal.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her complete the query", ["CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'", "Date"], ["SELECT", "OR", "ORDER BY"], "RETRIEVE", "SQL"],
-    ["img/bronze_small_medal.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her query the data", ["SELECT", "OR", "ORDER BY"], ["CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'", "Date"], "RETRIEVE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her write the query", [" ", " ", " ", " ", " ", " "], ["SELECT", "CrimeType FROM Crime WHERE CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date"], "RETRIEVE", "BLANKS"],
-    ["img/bronze_small_medal.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", ["(SchoolType) AS SchoolNo, ", "(SchoolType) AS TOTAL", "Schools"], ["SELECT COUNT", "SUM", "FROM"], "SUMMARY", "SQL"],
-    ["img/bronze_small_medal.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", ["SELECT COUNT", "SUM", "FROM"], ["(SchoolType) AS SchoolNo, ", "(SchoolType) AS TOTAL", "Schools"], "SUMMARY", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT COUNT", "(SchoolType) AS SchoolNo, ", "SUM", "(SchoolType) AS TOTAL", "FROM", "Schools"], "SUMMARY", "BLANKS"],
-    ["img/bronze_small_medal.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", ["Schools", "SchoolPopulation=SchoolPopulation*1.05", "Postcode='BT15'"], ["UPDATE", "SET", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-    ["img/bronze_small_medal.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", ["UPDATE", "SET", "WHERE"], ["Schools", "SchoolPopulation=SchoolPopulation*1.05", "Postcode='BT15'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", [" ", " ", " ", " ", " ", " "], ["UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'"], "JOIN_UPDATE_DELETE", "BLANKS"],
-    ["img/bronze_small_medal.png", "Peter wants to remove crimes that are classified as case closed. Help him complete the query", [" ", "Crimes", "CaseClosed='true'"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-    ["img/bronze_small_medal.png", "Peter wants to remove crimes that are classified as case closed. Help him query the data", ["DELETE FROM", "WHERE"], ["Crimes", "CaseClosed='true'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Peter wants to remove crimes that are classified as case closed. Help him write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["DELETE", "Crimes", "FROM", "WHERE", "CaseClosed='true'"], "JOIN_UPDATE_DELETE", "BLANKS"],
-    ["img/bronze_small_medal.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him complete the query", ["", "Playgrounds", "PlayCapacity<10"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-    ["img/bronze_small_medal.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him query the data", ["DELETE", "FROM", "WHERE"], ["", "Playgrounds", "PlayCapacity<10"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him write the query", [" ", " ", " ", " ", " "], ["DELETE", "FROM", "Playgrounds", "WHERE", "PlayCapacity<10"], "JOIN_UPDATE_DELETE", "BLANKS"],
-    ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], ["UPDATE", "SET", "REPLACE"], "JOIN_UPDATE_DELETE", "SQL"],
-    ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["UPDATE", "SET", "REPLACE"], ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["", "", "", "", "", ""], ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "BLANKS"],
-    ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], ["SELECT", "UNION", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-    ["img/bronze_small_medal.png", "", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
+    ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
 
   ], [
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "Laura is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"], ,
-    ["img/bronze_small_medal.png", "Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
-    ["img/bronze_small_medal.png", " Peter is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "LOCATION"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "LOCATION"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Build the whole query to define the primary key", ["", " ( ", " ", " ", " ", "", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date"], "INSERT", "BLANKS"],
     ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her complete the query", ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], ["SELECT", "FROM", "WHERE", "BETWEEN"], "RETRIEVE", "SQL"],
     ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her query the data", ["SELECT", "FROM", "WHERE", "BETWEEN"], ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "INTERROGATE"],
     ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "BLANKS"],
@@ -129,8 +99,40 @@ var questions = [
     ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["UPDATE", "SET", "REPLACE"], ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
     ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["", "", "", "", "", ""], ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "BLANKS"],
     ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], ["SELECT", "UNION", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-    ["img/bronze_small_medal.png", "", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ["img/bronze_small_medal.png", "", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
+    ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
+
+  ], [
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Park Keeper Norris is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"], ,
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "LOCATION"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Sergeant Bloom is inserting values into the Crime table. Build the whole query to define the primary key", ["", " ( ", " ", " ", " ", "", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date"], "INSERT", "BLANKS"],
+    ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her complete the query", ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], ["SELECT", "FROM", "WHERE", "BETWEEN"], "RETRIEVE", "SQL"],
+    ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her query the data", ["SELECT", "FROM", "WHERE", "BETWEEN"], ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Winnie wants to see all the robberies between May and August. Help her write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "BLANKS"],
+    ["img/bronze_small_medal.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her complete the query", ["CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'", "Date"], ["SELECT", "OR", "ORDER BY"], "RETRIEVE", "SQL"],
+    ["img/bronze_small_medal.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her query the data", ["SELECT", "OR", "ORDER BY"], ["CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'", "Date"], "RETRIEVE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her write the query", [" ", " ", " ", " ", " ", " ", ""], ["SELECT", "CrimeType FROM Crime", " WHERE CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date"], "RETRIEVE", "BLANKS"],
+    ["img/bronze_small_medal.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", ["(SchoolType) AS SchoolNo, ", "(SchoolType) AS TOTAL", "Schools"], ["SELECT COUNT", "SUM", "FROM"], "SUMMARY", "SQL"],
+    ["img/bronze_small_medal.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", ["SELECT COUNT", "SUM", "FROM"], ["(SchoolType) AS SchoolNo, ", "(SchoolType) AS TOTAL", "Schools"], "SUMMARY", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT COUNT", "(SchoolType) AS SchoolNo, ", "SUM", "(SchoolType) AS TOTAL", "FROM", "Schools"], "SUMMARY", "BLANKS"],
+    ["img/bronze_small_medal.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", ["Schools", "SchoolPopulation=SchoolPopulation*1.05", "Postcode='BT15'"], ["UPDATE", "SET", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
+    ["img/bronze_small_medal.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", ["UPDATE", "SET", "WHERE"], ["Schools", "SchoolPopulation=SchoolPopulation*1.05", "Postcode='BT15'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", [" ", " ", " ", " ", " ", " "], ["UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'"], "JOIN_UPDATE_DELETE", "BLANKS"],
+    ["img/bronze_small_medal.png", "Peter wants to remove crimes that are classified as case closed. Help him complete the query", [" ", "Crimes", "CaseClosed='true'"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
+    ["img/bronze_small_medal.png", "Peter wants to remove crimes that are classified as case closed. Help him query the data", ["DELETE FROM", "WHERE"], ["Crimes", "CaseClosed='true'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Peter wants to remove crimes that are classified as case closed. Help him write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["DELETE", "Crimes", "FROM", "WHERE", "CaseClosed='true'"], "JOIN_UPDATE_DELETE", "BLANKS"],
+    ["img/bronze_small_medal.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him complete the query", ["", "Playgrounds", "PlayCapacity<10"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
+    ["img/bronze_small_medal.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him query the data", ["DELETE", "FROM", "WHERE"], ["", "Playgrounds", "PlayCapacity<10"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him write the query", [" ", " ", " ", " ", " "], ["DELETE", "FROM", "Playgrounds", "WHERE", "PlayCapacity<10"], "JOIN_UPDATE_DELETE", "BLANKS"],
+    ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], ["UPDATE", "SET", "REPLACE"], "JOIN_UPDATE_DELETE", "SQL"],
+    ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["UPDATE", "SET", "REPLACE"], ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["", "", "", "", "", ""], ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "BLANKS"],
+    ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], ["SELECT", "UNION", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
+    ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+    ["img/bronze_small_medal.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
   ]];
 
 function init() {
@@ -245,29 +247,29 @@ else{
     else if (questions[random][pos][4] == "INSERT") {
 
       if (questions[random][pos][5] == "SQL") {
-        var retrievalCommands = ["INSERT", "INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE"];
+        var retrievalCommands = ["INSERT", "INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE", "BETWEEN"];
       } else if (questions[random][pos][5] == "INTERROGATE") {
 
         var retrievalCommands = ["TABLE", "Schools", "Crime", "CrimeType", "SchoolType",  "Playground", "Postcode", "Crime", " (CrimeType, Latitude, Longitude", " Date)"]
   }
   else
 
-    var retrievalCommands = ["INSERT", "INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE", "INSERT INTO", "Crime", "Values", "latitude, longitude", "location, Date", "CrimeType", "Values" ];
+    var retrievalCommands = ["INSERT", "BETWEEN","INSERT INTO", "VALUES", "NAME", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE", "INSERT INTO", "Crime", "Values", "latitude, longitude", "location, Date", "CrimeType", "Values" ];
 
 }
 else if (questions[random][pos][4] == "RETRIEVE") {
-  var retrievalCommands = ["SELECT", "FROM", "WHERE", "ORDER BY", "AND", "OR", "LIKE", "DATEDIFF", "DATEADD", "DATENAME", "LEFT", "RIGHT"];
+  var retrievalCommands = ["SELECT", "FROM", "WHERE", "ORDER BY", "AND", "OR", "LIKE", "DATEDIFF", "DATEADD", "DATENAME", "LEFT", "RIGHT", "SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'", "SELECT", "CrimeType FROM Crime", " WHERE CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date", "CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'"];
 
 }
 else if (questions[random][pos][4] == "SUMMARY") {
-  var retrievalCommands = ["SELECT", "MIN", "MAX", "COUNT", "SUM", "ORDER BY", "HAVING", "GROUP BY", "FROM", "WHERE"];
+  var retrievalCommands = ["SELECT", "MIN", "MAX", "COUNT", "SUM", "ORDER BY", "HAVING", "GROUP BY", "FROM", "WHERE", "SELECT COUNT", "(SchoolType) AS SchoolNo, ", "SUM", "(SchoolType) AS TOTAL", "FROM", "Schools"];
 
 }
 else if (questions[random][pos][4] == "JOIN_UNION_DELETE") {
-  var retrievalCommands = ["UNION", "SELECT", "AS", "FROM", "WHERE", "JOIN", "ON"];
+  var retrievalCommands = ["UNION", "SELECT", "AS", "FROM", "WHERE", "JOIN", "ON", "SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'", "UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')", "DELETE", "Crimes", "FROM", "WHERE", "CaseClosed='true'", "UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'"];
 }
 else {
-  var retrievalCommands = ["UPDATE", "SET", "WHERE", "REPLACE", "DELETE", "DELETE FROM", "FROM", "SELECT"];
+  var retrievalCommands = ["UPDATE", "SET", "WHERE", "REPLACE", "DELETE", "DELETE FROM", "FROM", "SELECT", "SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'", "UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')", "DELETE", "Crimes", "FROM", "WHERE", "CaseClosed='true'", "Playgrounds", "WHERE", "PlayCapacity<10", "UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'", "PlaygroundCapacity"];
 };
 
 
@@ -381,7 +383,7 @@ init();
 
 
 function addScores(){ 
-var dataThis = { "create": create, "insert": insert, "retrieve": retrieve, "summary": summary, "join": join, "update": update, "delete": DeleteQuestion, "total": totalAnswer};
+var dataThis = { "create": create, "insert": insert, "retrieve": retrieve, "summary": summary, "join": JOIN_UNION_DELETE, "total": totalAnswer};
 //localStorage.setItem('data', JSON.stringify(data));
 console.log(dataThis);
 }
@@ -399,7 +401,7 @@ function scoreOverall(totalAnswer) {
   document.getElementById('test').innerHTML = "refresh";
   document.getElementById("test").addEventListener("click", restart, false);
 
-  if (total <= (pos-5)) {
+  if (total <= (pos-3)) {
 
     document.getElementById('image').src = "img/bronze_big.png";
 
@@ -468,13 +470,13 @@ function drillDown() {
     .style({
       'fill': function (d) {
 
-        if (d.score <= 2) {
+        if (d.score <= 0) {
           return '#CD7F32';
         }
-        else if (d.score == 3) {
+        else if (d.score == 1) {
           return '#c0c0c0';
         }
-        else if (d.score == 4) {
+        else if (d.score == 2) {
           return '#FFD700';
         }
         else {
@@ -501,13 +503,13 @@ function drillDown() {
   bar.append("image")
     .attr("xlink:href", function (d) {
 
-      if (d.score <= 2) {
+      if (d.score <= 0) {
         return 'img/bronze_small_medal.png';
       }
-      else if (d.score == 3) {
+      else if (d.score == 1) {
         return 'img/silver_small_medal.png';
       }
-      else if (d.score == 4) {
+      else if (d.score == 2) {
         return 'img/gold_small_medal.png';
       }
       else {
