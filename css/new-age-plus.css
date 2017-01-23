@@ -196,7 +196,6 @@ section#about {
 /* Individual cards and slots */
 #cardSlots div, #cardPile div {
     float: left;
-    width:150px;
     height: 40px;
     text-align: center;
     vertical-align: middle;
@@ -214,9 +213,14 @@ section#about {
 }
 
 #cardSlots div {
+    color: #888889;
+}
+
+#cardSlots div.ui-droppable {
     border-color: #888889;
     border-style: dashed;
-    color: #888889;
+    min-width: 150px;
+    padding: 0 15px;
 }
 
 #cardSlots div.cardQuestions {
@@ -230,8 +234,10 @@ section#about {
     border-color: #666666;
     border-style: solid;
     color: #666;
-    cursor: grab;
+    cursor: move;
     font-size: 20px;
+    min-width: 150px;
+    padding: 0 15px;
     text-shadow: 0 0 3px #fff;
 }
 
@@ -244,7 +250,6 @@ section#about {
     -moz-box-shadow: 0 0 .5em #888889;
     -webkit-box-shadow: 0 0 .5em #888889;
     box-shadow: 0 0 .5em #888889;
-    cursor: grabbing;
 }
 
 #cardPile div.correct {
