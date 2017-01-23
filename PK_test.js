@@ -3,13 +3,14 @@ $(document).ready(function() {
         $("#dataButtons").toggle("slow", function () {
             // Animation complete.
         });
-        $("#showSchema").click(function () {
-            $("#schema").toggle("slow", function () {});
-        });
     });
+    $("#showSchema").click(function () {
+        $("#schema").toggle("slow", function () {});
+    });
+    $('.hidden').hide().removeClass('hidden');
 });
 
-
+var idReplaceChars = /[ \\\/(*-,'"=<>]/g;
 var correctCards = 0;
 var attempts = 0;
 
@@ -176,24 +177,34 @@ else{
 
     
       for (var i = 0; i < retrievalwords.length; i++) {
-        $('<div name="choices">' + retrievalwords[i] + '</div>').data('number', retrievalwords[i]).appendTo('#cardSlots').droppable({
-          accept: '#cardPile div',
-          hoverClass: 'hovered',
-          drop: handleCardDrop
-        });
-        $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>').data('number', retrievalQuestions[i]).appendTo('#cardSlots');
+        $('<div name="choices">' + retrievalwords[i] + '</div>')
+                .data('number', retrievalwords[i])
+                .appendTo('#cardSlots')
+                .droppable({
+                    accept: '#cardPile div',
+                    hoverClass: 'hovered',
+                    drop: handleCardDrop
+                });
+        $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>')
+                .data('number', retrievalQuestions[i])
+                .appendTo('#cardSlots');
 
       }
     } else {
 
       for (var i = 0; i < retrievalwords.length; i++) {
-        $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>').data('number', retrievalQuestions[i]).appendTo('#cardSlots');
+        $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>')
+                .data('number', retrievalQuestions[i])
+                .appendTo('#cardSlots');
         //$('<div>' + retrievalQuestions[i-1] + '</div>').data( 'number', retrievalQuestions[i-1] ).appendTo( '#cardSlots' )
-        $('<div name="choices">' + retrievalwords[i] + '</div>').data('number', retrievalwords[i]).appendTo('#cardSlots').droppable({
-          accept: '#cardPile div',
-          hoverClass: 'hovered',
-          drop: handleCardDrop
-        });
+        $('<div name="choices">' + retrievalwords[i] + '</div>')
+                .data('number', retrievalwords[i])
+                .appendTo('#cardSlots')
+                .droppable({
+                    accept: '#cardPile div',
+                    hoverClass: 'hovered',
+                    drop: handleCardDrop
+                });
         //$('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>').data('number', retrievalQuestions[i]).appendTo('#cardSlots');
       }
 
@@ -265,12 +276,16 @@ else {
     // Create the cards for the retrieval of data questions 
     for (var i = 0; i < retrievalCommands.length; i++) {
       console.log(retrievalCommands[1]);
-      $('<div>' + retrievalCommands[i] + '</div>').data('number', retrievalCommands[i]).attr('id', 'card' + retrievalCommands[i]).appendTo('#cardPile').draggable({
-        containment: '#header-content-inner',
-        stack: '#cardPile div',
-        cursor: 'move',
-        revert: true
-      });
+      $('<div>' + retrievalCommands[i] + '</div>')
+            .data('number', retrievalCommands[i])
+            .attr('id', 'card' + retrievalCommands[i].replace(idReplaceChars, '_'))
+            .appendTo('#cardPile')
+            .draggable({
+                containment: '#header-content-inner',
+                stack: '#cardPile div',
+                cursor: 'move',
+                revert: true
+            });
     }
 
 
@@ -299,7 +314,7 @@ else {
     $(this).droppable( 'disable' );
     ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
     ui.draggable.draggable( 'option', 'revert', false );
-    $('#card' + slotNumber).addClass('correct');
+    $('#card' + slotNumber.replace(idReplaceChars, '_')).addClass('correct');
     console.log(correctCards);
     attempts++;
       }
