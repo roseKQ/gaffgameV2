@@ -276,6 +276,7 @@ else {
 
     test = document.getElementById("test").addEventListener("click", checkAnswer, false);
        document.getElementById('test').innerHTML = "Next";
+       document.getElementById('showData').innerHTML = "Show Data";
     //test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
     handleCardDrop();
     //checkAnswer();
@@ -385,8 +386,10 @@ function scoreOverall(totalAnswer) {
   $('#cardSlots').html('');
   document.getElementById('test').innerHTML = "refresh";
   document.getElementById("test").addEventListener("click", restart, false);
+  viewData = document.getElementById("showData").addEventListener("click", dataView, false);
+  document.getElementById('showData').innerHTML = "Data Visualization";
 
-  if (total <= (pos-3)) {
+  if (total <= (pos - 3)) {
 
     document.getElementById('image').src = "img/bronze_big.png";
 
@@ -409,6 +412,10 @@ function scoreOverall(totalAnswer) {
 
 function restart() {
     window.location.href = 'PK_test.html';
+}
+
+function dataView() {
+    window.location.href = 'DataDashboard.html';
 }
 
 function drillDown() {
@@ -505,6 +512,8 @@ function drillDown() {
     .attr("y", barHeight / 10)
     .attr("width", barHeight)
     .attr("height", barHeight);
+
+
 
 
 }
