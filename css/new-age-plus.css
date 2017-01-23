@@ -36,6 +36,9 @@ header {
     background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
     background: url("../img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
 }
+.bg-primary header {
+    background: transparent;
+}
 header .device-container {
     margin-top: auto;
 }
@@ -55,7 +58,9 @@ section.cta {
     background-image: url("../img/startup-photos.jpg");
 }
 .bg-primary {
-    background: #6b9aff;
+    background: url("../img/bg-pattern.png"), #00ddec;
+    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
+    background: url("../img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
 }
 .text-primary {
     color: #6b9aff;
@@ -65,6 +70,34 @@ section.cta {
     border-color: #ffffff;
 }
 /* End of theme overrides */
+
+main {
+    min-height: calc(100vh - 50px - 2.7em);
+    padding: 100px 0;
+}
+
+abbr[data-original-title], abbr[title] {
+    border-bottom: none;
+    color: #6b9aff;
+    text-decoration: none;
+}
+
+.mission-step {
+    padding: 150px 0;
+    position: relative;
+}
+
+section#about {
+    padding: 0;
+}
+
+.heading-img {
+    max-height: 20vh;
+}
+
+.btn-container {
+    margin-top: 30px;
+}
 
 .chart
 {
@@ -92,40 +125,14 @@ section.cta {
     box-shadow: 10px 10px 5px #888888;
 }
 
-#map { position:relative; top:0; bottom:0; width:100%; height:100%; }
-.hover {
-    position:relative;
-    top:0px;
-    left:0px;
-    line-height: 100%;
-    display:inline-block;
+#map {
+    margin-bottom: 20px;
+    min-height: 80vh;
 }
 
-.tooltip {
-    top:-125px;
-    left:30px;
-    width:175px;
-    position:absolute;
-    background-color:#6b9aff;
-    color:white;
-    border-radius:5px;
-    opacity:0;
-    -webkit-transition: opacity 0.5s;
-    -moz-transition:  opacity 0.5s;
-    -ms-transition: opacity 0.5s;
-    -o-transition:  opacity 0.5s;
-    transition:  opacity 0.5s;
-    line-height: 1.2;
-
-    height: 160px;
-    padding:8px;
-    font-family:Lato,Helvetica,Arial,sans-serif;
-    font-size: 16px;
+.inline-img {
+    display: inline-block;
 }
-
-.hover:hover .tooltip {
-    opacity:1;
-} 
 
 /*Eamonn's styling stuff for querySQL page*/
 
@@ -223,7 +230,7 @@ section.cta {
     border-color: #666666;
     border-style: solid;
     color: #666;
-    cursor: move;
+    cursor: grab;
     font-size: 20px;
     text-shadow: 0 0 3px #fff;
 }
@@ -237,6 +244,7 @@ section.cta {
     -moz-box-shadow: 0 0 .5em #888889;
     -webkit-box-shadow: 0 0 .5em #888889;
     box-shadow: 0 0 .5em #888889;
+    cursor: grabbing;
 }
 
 #cardPile div.correct {
@@ -250,56 +258,9 @@ section.cta {
 }
 
 #cardPile div.ui-draggable-disabled {
-    cursor: auto;
+    cursor: not-allowed;
 }
 
-/* Individually coloured cards */
-/*Sql queries page*/
-#cardSelect.correct { background: #65b858; }
-#card\*.correct { background: #65b858; }
-#cardFrom.correct { background: #65b858; }
-#cardCrime.correct { background: #65b858; }
-#cardDelete.correct { background: #65b858; }
-#cardDrop.correct { background: #65b858; }
-#cardRemove.correct { background: #65b858; }
-#cardSort.correct { background: #65b858; }
-#cardDrop.correct { background: #65b858; }
-#cardDelete.correct { background: #65b858; }
-
-#cardSelect.incorrect { background: #ff0000; }
-#card\*.incorrect { background: #ff0000; }
-#cardFrom.incorrect { background: #ff0000; }
-#cardCrime.incorrect { background: #ff0000; }
-#cardDelete.incorrect { background: #ff0000; }
-#cardDrop.incorrect { background: #ff0000; }
-#cardRemove.incorrect { background: #ff0000; }
-#cardSort.incorrect { background: #ff0000; }
-#cardDrop.incorrect { background: #ff0000; }
-#cardDelete.incorrect { background: #ff0000; }
-
-/*PK_test page*/
-#cardComposite.correct { background: #65b858; }
-#cardForeign.correct { background: #65b858; }
-#cardComposite.correct { background: #65b858; }
-#cardComposite.correct { background: #65b858; }
-#cardPrimary.correct { background: #65b858; }
-
-
-
-/*#cardRemove.correct { background: #65b858; }
-#cardSort.correct { background: #65b858; }
-#cardDrop.correct { background: #65b858; }
-#cardDelete.correct { background: #65b858; }*/
-
-#cardPrimary.incorrect { background: #ff0000; }
-#cardComposite.incorrect { background: #ff0000; }
-#cardForeign.incorrect { background: #ff0000; }
-#cardComposite.incorrect { background: #ff0000; }
-#cardComposite.incorrect { background: #ff0000; }
-/*#cardRemove.incorrect { background: #ff0000; }
-#cardSort.incorrect { background: #ff0000; }
-#cardDrop.incorrect { background: #ff0000; }
-#cardDelete.incorrect { background: #ff0000; }*/
 /* "You did it!" message */
 #successMessage {
     position: absolute;
