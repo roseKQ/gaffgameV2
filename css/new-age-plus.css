@@ -32,9 +32,9 @@ p {
     }
 }
 header {
-    background: url("../img/bg-pattern.png"), #00ddec;
-    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
-    background: url("../img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
+    background: url("../theme/img/bg-pattern.png"), #00ddec;
+    background: url("../theme/img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
+    background: url("../theme/img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
 }
 .bg-primary header {
     background: transparent;
@@ -58,9 +58,9 @@ section.cta {
     background-image: url("../img/startup-photos.jpg");
 }
 .bg-primary {
-    background: url("../img/bg-pattern.png"), #00ddec;
-    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
-    background: url("../img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
+    background: url("../theme/img/bg-pattern.png"), #00ddec;
+    background: url("../theme/img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
+    background: url("../theme/img/bg-pattern.png"), linear-gradient(to left, #00ddec, #6b9aff);
 }
 .text-primary {
     color: #6b9aff;
