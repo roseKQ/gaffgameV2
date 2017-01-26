@@ -34,18 +34,25 @@ $(init);
 var questions = [
     [
         ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
-        ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
+        ["img/parkKeeper_icon.png", "Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you", ["Playgrounds", "(Name, Address, Postcode, Playground ID, Latitude, Longitude", " PlayCapacity)"], ["INSERT INTO", "VALUES", "PlaygroundType"], "INSERT", "SQL"],
+        ["img/principle_icon.png", "Principal Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["INSERT INTO", "SCHOOL_TYPE", "VALUES", "(SchoolType,", "SchoolDefinition", ")"], "INSERT", "BLANKS"],
+        ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "CrimeDefinition"], ["CRIME_TYPE", "(CrimeType,", " )"], "INSERT", "INTERROGATE"],
+       // ["img/winnie_icon.png", "Winnie is inserting values into the Area table. Help her complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["INSERT INTO", "Area", "VALUES", "(Date,", "Location", " Postcode)"], "INSERT", "BLANKS"],
+       // ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
         ["img/winnie_icon.png", "Winnie wants to see all the robberies between May and August. Help her write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "BLANKS"],
         ["img/winnie_icon.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her complete the query", ["CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'", "Date"], ["SELECT", "OR", "ORDER BY"], "RETRIEVE", "SQL"],
         ["img/peter_icon.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", ["SELECT COUNT", "SUM", "FROM"], ["(SchoolType) AS SchoolNo, ", "(SchoolType) AS TOTAL", "Schools"], "SUMMARY", "INTERROGATE"],
         ["img/peter_icon.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", [" ", " ", " ", " ", " ", " "], ["UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'"], "JOIN_UPDATE_DELETE", "BLANKS"],
         ["img/peter_icon.png", "Peter wants to remove crimes that are classified as case closed. Help him complete the query", [" ", "Crimes", "CaseClosed='true'"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
         ["img/peter_icon.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him complete the query", ["", "Playgrounds", "PlayCapacity<10"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-        ["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["", "", "", "", "", ""], ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "BLANKS"],
-        ["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ], 
+        //["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["", "", "", "", "", ""], ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "BLANKS"],
+        //["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+    ],
     [
         ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
+       // ["img/parkKeeper_icon.png", "Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "PlaygroundType"], ["Playgrounds,(Name, Address, Postcode, Playground ID, Latitude, Longitude", " PlayCapacity)"], "INSERT", "INTERROGATE"],
+        ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you", ["CRIME_TYPE", "(CrimeType,", " )"], ["INSERT INTO", "VALUES", "CrimeDefinition"], "INSERT", "SQL"],
+       // ["img/winnie_icon.png", "Winnie is inserting values into the Area table. Help her complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Area", "(Date,", " Postcode)"], "INSERT", "INTERROGATE"],
         ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the Crime table. Build the whole query to define the primary key", ["", " ( ", " ", " ", " ", "", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date"], "INSERT", "BLANKS"],
         ["img/winnie_icon.png", "Winnie wants to see all the robberies between May and August. Help her complete the query", ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], ["SELECT", "FROM", "WHERE", "BETWEEN"], "RETRIEVE", "SQL"],
         ["img/winnie_icon.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her query the data", ["SELECT", "OR", "ORDER BY"], ["CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'", "Date"], "RETRIEVE", "INTERROGATE"],
@@ -59,6 +66,11 @@ var questions = [
     ], [
         ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"], ,
         ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
+        //["img/parkKeeper_icon.png", "Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["Playgrounds", "INSERT INTO", "VALUES", "(Name, Address, Postcode, Playground ID, Latitude, Longitude", "PlaygroundType", " PlayCapacity)"], "INSERT", "BLANKS"],
+        ["img/principle_icon.png", "Principal Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you", ["SCHOOL_TYPE", "(SchoolType,", " )"], ["INSERT INTO", "VALUES", "SchoolDefinition"], "INSERT", "SQL"],
+        ["img/winnie_icon.png", "Winnie is inserting values into the Area table. Help her complete the query. Use the schema to help you", ["Area", "(Date,", " Postcode)"], ["INSERT INTO", "VALUES", "Location"], "INSERT", "SQL"],
+       // ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["INSERT INTO", "CRIME_TYPE", "VALUES", "(CrimeType,", "CrimeDefinition", ")"], "INSERT", "BLANKS"],
+        ["img/principle_icon.png", "Principle Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "CrimeDefinition"], ["CRIME_TYPE", "(CrimeType,", " )"], "INSERT", "INTERROGATE"],
         ["img/winnie_icon.png", "Winnie wants to see all the robberies between May and August. Help her query the data", ["SELECT", "FROM", "WHERE", "BETWEEN"], ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "INTERROGATE"],
         ["img/winnie_icon.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her write the query", [" ", " ", " ", " ", " ", " ", ""], ["SELECT", "CrimeType FROM Crime", " WHERE CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date"], "RETRIEVE", "BLANKS"],
         ["img/peter_icon.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", ["(SchoolType) AS SchoolNo, ", "(SchoolType) AS TOTAL", "Schools"], ["SELECT COUNT", "SUM", "FROM"], "SUMMARY", "SQL"],
@@ -135,18 +147,7 @@ function init() {
         }
 
 
-        /*
-         for (var i = 0; i < retrievalwords.length; i++) {
-         //$('<div>' + retrievalQuestions[i-1] + '</div>').data( 'number', retrievalQuestions[i-1] ).appendTo( '#cardSlots' )
-         $('<div name="choices">' + retrievalwords[i] + '</div>').data('number', retrievalwords[i]).appendTo('#cardSlots').droppable({
-         accept: '#cardPile div',
-         hoverClass: 'hovered',
-         drop: handleCardDrop
-         });
-         $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>').data('number', retrievalQuestions[i]).appendTo('#cardSlots');
-         }
-         
-         /*This section pertains to */
+
 
         var retrievalCommands = [];
 
