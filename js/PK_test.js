@@ -426,7 +426,7 @@ function drillDown() {
 
     bar.append("text")
             .style({"fill": "#ffffff", "font-size": 30})
-            .attr("x", 30)
+            .attr("x", - 30)
             .attr("y", barHeight / 2)
             .text(function (d) {
                 return d.name;
