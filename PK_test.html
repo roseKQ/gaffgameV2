@@ -81,14 +81,15 @@
                     </div>
                     <div class="btn-container">
                         <button id="test" type="button" class="btn btn-outline btn-xl"></button>
-                        
                         <button id="showData" type="button" class="btn btn-outline btn-xl">Show Data</button>
-                        <div id="dataButtons" style="display:none">
-                            <button id="showSchema" type="button" class="btn btn-outline btn-xl">Show Schema</button>
-                            <button id="showTables" type="button" class="btn btn-outline btn-xl">Show Tables</button>
-                            <button id="showDefinitions" type="button" class="btn btn-outline btn-xl">Show Definitions</button>
+                        <div id="dataButtons" class="hidden">
+                            <div>
+                                <button id="showSchema" type="button" class="btn btn-outline btn-xl">Show Schema</button>
+                                <button id="showTables" type="button" class="btn btn-outline btn-xl">Show Tables</button>
+                                <button id="showDefinitions" type="button" class="btn btn-outline btn-xl">Show Definitions</button>
+                            </div>
+                            <img id="schema" src="img/gaffgame_schema.png" class="hidden">
                         </div>
-                        <img id="schema" src="img/gaffgame_schema.png" class="hidden">
                     </div>
                 </div>
             </div>
@@ -117,14 +118,17 @@
 
         <!-- jQuery -->
         <script src="theme/vendor/jquery/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            // jQueryUI has its own tooltip() that conflicts with bootstrap's
+            $.widget.bridge('uitooltip', $.ui.tooltip);
+        </script>
 
         <!-- Bootstrap Core JavaScript -->
         <script src="theme/vendor/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Plugin JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <!-- REDUNDANT <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://d3js.org/d3.v3.min.js"></script>
 
         <!-- Theme JavaScript -->
