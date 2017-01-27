@@ -447,7 +447,7 @@ function drillDown() {
                 ;
             })
             .attr("x", function (d) {
-                return x(75);
+                return x(d.score) * 30;
             })
             .attr("y", barHeight / 10)
             .attr("width", barHeight)
