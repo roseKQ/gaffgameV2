@@ -15,6 +15,10 @@ $(document).ready(function () {
     $('#showSchema').click(function () {
         $('#schema').toggle('slow', function () {});
     });
+    $('#showTables').click(function () {
+        $('#tables').toggle('slow', function () {});
+    });
+
     // Toggle display of definition tooltips when "Show Definitions" is clicked
     $('#showDefinitions').click(function() {
         definitionsEnabled = !definitionsEnabled;
