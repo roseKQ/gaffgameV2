@@ -268,6 +268,15 @@ section#about {
     cursor: not-allowed;
 }
 
+.demo-table {
+    margin-bottom: 25px;
+    max-width: 100%;
+}
+
+.demo-table:last-child {
+    margin-bottom: 0;
+}
+
 /* "You did it!" message */
 #successMessage {
     position: absolute;
