@@ -1,12 +1,60 @@
 $(document).ready(function () {
-    $("#showData").click(function () {
-        $("#dataButtons").toggle("slow", function () {
+    /**
+     * Variable to toggle display of definitions
+     * @type Boolean
+     */
+    var definitionsEnabled = false;
+
+    // Toggle display of additional buttons when "Show Data" is clicked
+    $('#showData').click(function () {
+        $('#dataButtons').toggle('slow', function () {
             // Animation complete.
         });
     });
-    $("#showSchema").click(function () {
-        $("#schema").toggle("slow", function () {});
+    // Toggle display of schema mockup when "Show Schema" is clicked
+    $('#showSchema').click(function () {
+        $('#schema').toggle('slow', function () {});
     });
+    // Toggle display of definition tooltips when "Show Definitions" is clicked
+    $('#showDefinitions').click(function() {
+        definitionsEnabled = !definitionsEnabled;
+        if ( definitionsEnabled ) {
+            $(this).addClass('active');
+        }
+        else {
+            $(this).removeClass('active');
+        }
+    });
+    // Handle displaying the tooltip based on whether definitions are enabled or not
+    $('body').on('mouseover focus', '.cardOption[data-toggle=tooltip]', function(e) {
+        var target;
+        if ( definitionsEnabled ) {
+            target = $(e.currentTarget || e.target);
+            if ( !target.data('bs.tooltip') ) {
+                target.tooltip({
+                    trigger: 'manual',
+                    title: function() {
+                        // Take the title from the 'data-title' attribute
+                        // This avoids having the definition still display as an
+                        //  HTML title, but prevents us from having to hard-code 
+                        //  every definition
+                        return $(this).data('title');
+                    }
+                });
+            }
+            target.tooltip('show');
+        }
+    });
+    // Handle hiding the tooltip
+    $('body').on('mouseout blur', '.cardOption[data-toggle=tooltip]', function(e) {
+        try {
+            $(e.currentTarget || e.target).tooltip('hide');
+        } catch (e) {
+            // Tooltips may not be enabled, so ignore any exceptions thrown
+        }
+    });
+    // Hide elements with the 'hidden' class, and then remove the class (or the
+    //  show() function will not actually display them)
     $('.hidden').hide().removeClass('hidden');
 });
 
@@ -99,6 +147,39 @@ var questions = [
         ["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], ["SELECT", "UNION", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
 
     ]];
+
+// https://msdn.microsoft.com/en-us/library/ms165911.aspx
+// http://www.sqlstrings.com/Database-Glossary.htm
+// http://www.w3schools.com/sql/
+var definitions = {
+    AND: 'A logical operator used to ensure both conditions given are met.',
+    BETWEEN: 'A conditional operator used to test whether a value is "between" the two given values.',
+    COUNT: 'A function that returns the number of rows matching a specified criteria.',
+    CREATE: 'An SQL command used to create new objects in the database.',
+    DECIMAL: 'A keyword indicating a decimal number type.',
+    DELETE: 'An SQL command used to delete records from a table in the database.',
+    'FOREIGN KEY': 'A field (column) that identifies records in a different table by referencing the PRIMARY KEY for that table.',
+    FROM: 'A statement used to define the tables where the existing data resides.',
+    IDENTITY: 'A keyword indicating that the field should generate a new incremental value for each new row INSERTed into the table.',
+    INSERT: 'An SQL command used to add a new record to a table within the database.',
+    INT: 'A keyword indicating an integer type.',
+    JOIN: 'An SQL command used to combine records (rows) from two or more tables.',
+    LEFT: 'A type of JOIN that returns all rows from the left table, placing NULL in the right side when there are no matches.',
+    NULL: 'A keyword used to represent a missing value.',
+    OR: 'A logical operator used to ensure that one of the conditions given have been met.',
+    'ORDER BY': 'A keyword used to sort the result set.',
+    'PRIMARY KEY': 'A field (column) or fields that hold a unique value identifying each record (row) in the table.',
+    REFERENCES: 'A keyword indicating which table and field (column) a FOREIGN KEY is referring to.',
+    RIGHT: 'A type of JOIN that returns all rows from the right table, placing NULL in the left side when there are no matches.',
+    SELECT: 'An SQL command which is the primary means for retrieving data from a database.',
+    SUM: 'A function that returns the total sum of a numeric column.',
+    TABLE: 'A database object that stores data in records (rows) and fields (columns).',
+    UNION: 'An operator that combines the results of two or more SELECT statements.',
+    UPDATE: 'An SQL command used to edit/update existing records in a table.',
+    VALUES: 'A statement used to provide field (column) values.',
+    VARCHAR: 'A keyword indicating a string type of variable length (usually up to a given maximum).',
+    WHERE: 'A statement which limits the rows retreived to those meeting the given conditions.'
+};
 
 function init() {
     var random = Math.floor((Math.random() * 2) + 0);
@@ -208,20 +289,24 @@ function init() {
         }
         ;
 
-
+        var el;
         // Create the cards for the retrieval of data questions 
         for (var i = 0; i < retrievalCommands.length; i++) {
             console.log(retrievalCommands[1]);
-            $('<div class="cardOption">' + retrievalCommands[i] + '</div>')
+            el = $('<div class="cardOption">' + retrievalCommands[i] + '</div>')
                     .data('option', retrievalCommands[i])
                     .attr('id', 'card' + retrievalCommands[i].replace(idReplaceChars, '_'))
                     .appendTo('#cardPile')
                     .draggable({
-                        containment: '.chart',
+                        containment: 'body',
                         stack: '#cardPile div',
                         cursor: 'move',
                         revert: true
                     });
+            if ( definitions[retrievalCommands[i]] ) {
+                el.attr('data-toggle', 'tooltip')
+                        .attr('data-title', definitions[retrievalCommands[i]]);
+            }
         }
 
 
