@@ -134,6 +134,11 @@ section#about {
     display: inline-block;
 }
 
+.table{
+    max-height:100%; 
+    max-width:100%;
+}
+
 /*Eamonn's styling stuff for querySQL page*/
 
 /* Main content area */
