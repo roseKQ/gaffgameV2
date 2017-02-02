@@ -65,23 +65,60 @@ $(document).ready(function () {
 var idReplaceChars = /[ \\\/(*-,'"=<>]/g;
 var correctCards = 0;
 var attempts = 0;
+var scores = {
+    create: 0,
+    insert: 0,
+    retrieve: 0,
+    summary: 0,
+    join_update_delete: 0
+};
 
-
-var create = 0;
-var insert = 0;
-var retrieve = 0;
-
-var summary = 0;
-var JOIN_UNION_DELETE = 0;
 var pos = 0;
 var totalAnswer = 0;
 var attempts = 0;
-var JOIN_UNION_DELETE = 0;
-var JOIN_UPDATE_DELETE = 0;
-
-//var data = [create, insert, retrieve, summary, join, update, DeleteQuestion]; 
 
 $(init);
+
+var questionSet = [
+    {
+        icon: 'img/parkKeeper_icon.png',
+        description: 'Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment automatically when new rows are added.',
+        pieces: [
+            'CREATE', 'TABLE', 'Playgrounds', '(', 'Playground_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+        ],
+        mask: 'XXXX_X__X',
+        herrings: [],
+        group: 'CREATE'
+    },
+    {
+        icon: 'img/principle_icon.png',
+        description: 'Principal Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you.',
+        pieces: [
+            'INSERT', 'INTO', 'SCHOOL_TYPE', 'VALUES', '(', 'SchoolType', 'SchoolDefinition', ')'
+        ],
+        mask: '____X__X',
+        herrings: [],
+        group: 'INSERT'
+    },
+    {
+        icon: 'img/winnie_icon.png',
+        description: 'Winnie wants to see all the robberies that occurred between May and August. Help her write the query.',
+        pieces: [
+            'SELECT', 'CrimeType', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'', 'BETWEEN', '\'2016/05/01\' AND \'2016/08/31\''
+        ],
+        mask: '_XX_X___',
+        herrings: [],
+        group: 'RETRIEVE'
+    }
+];
+var commandSets = {
+    'CREATE': ['CREATE', 'TABLE', 'VARCHAR', 'PRIMARY KEY', 'FOREIGN KEY', 'IDENTITY', 'INT', 'DECIMAL', 'NULL', 'NOT NULL', 'REFERENCES'],
+    'INSERT': ['INSERT', 'INTO', 'VALUES', 'SELECT', 'FROM', 'WHERE', 'BETWEEN'],
+    'RETRIEVE': ['SELECT', 'FROM', 'WHERE', 'ORDER BY', 'AND', 'OR', 'LIKE', 'DATEDIFF', 'DATEADD', 'LEFT', 'RIGHT', 'WHERE', 'BETWEEN'],
+    'SUMMARY': ['SELECT', 'MIN', 'MAX', 'COUNT', 'SUM', 'ORDER BY', 'HAVING', 'GROUP BY', 'FROM', 'WHERE'],
+    'JOIN_UPDATE_DELETE': ['UPDATE', 'SET', 'WHERE', 'REPLACE', 'DELETE', 'FROM', 'SELECT', 'UNION'],
+    //'JOIN_UNION_DELETE': ['UNION', 'SELECT', 'AS', 'FROM', 'WHERE', 'JOIN', 'ON', 'SET', 'REPLACE', 'DELETE', 'UPDATE']
+};
 
 var questions = [
     [
@@ -101,7 +138,7 @@ var questions = [
         ["img/peter_icon.png", "Peter wants to know the number of the different types of crimes in the dataset and the number of each crimes", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT COUNT", "(CrimeType) AS CrimeNo, ", "SUM", "(CrimeType) AS TOTAL", "FROM", "Crimes"], "SUMMARY", "BLANKS"],
         ["img/peter_icon.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", [" ", " ", " ", " ", " ", " "], ["UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'"], "JOIN_UPDATE_DELETE", "BLANKS"],
         ["img/peter_icon.png", "Peter wants to remove crimes that are classified as case closed. Help him complete the query", [" ", "Crimes", "CaseClosed='true'"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-        ["img/peter_icon.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him complete the query", ["", "Playgrounds", "PlayCapacity<10"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
+        ["img/peter_icon.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him complete the query", ["", "Playgrounds", "PlayCapacity<10"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"]
         //["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["", "", "", "", "", ""], ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "BLANKS"],
         //["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
     ],
@@ -125,7 +162,7 @@ var questions = [
         // ["img/peter_icon.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", ["Schools", "SchoolPopulation=SchoolPopulation*1.05", "Postcode='BT15'"], ["UPDATE", "SET", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
         ["img/peter_icon.png", "Peter wants to remove crimes that are classified as case closed. Help him query the data", ["DELETE FROM", "WHERE"], ["Crimes", "CaseClosed='true'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
         ["img/peter_icon.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him query the data", ["DELETE", "FROM", "WHERE"], ["", "Playgrounds", "PlayCapacity<10"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-        ["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["UPDATE", "SET", "REPLACE"], ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
+        ["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["UPDATE", "SET", "REPLACE"], ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "INTERROGATE"]
         //["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
 
     ], [
@@ -148,7 +185,7 @@ var questions = [
         //["img/peter_icon.png", "Peter wants to remove crimes that are classified as case closed. Help him write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["DELETE", "Crimes", "FROM", "WHERE", "CaseClosed='true'"], "JOIN_UPDATE_DELETE", "BLANKS"],
         ["img/peter_icon.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him write the query", [" ", " ", " ", " ", " "], ["DELETE", "FROM", "Playgrounds", "WHERE", "PlayCapacity<10"], "JOIN_UPDATE_DELETE", "BLANKS"],
         ["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], ["UPDATE", "SET", "REPLACE"], "JOIN_UPDATE_DELETE", "SQL"],
-        ["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], ["SELECT", "UNION", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
+        ["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], ["SELECT", "UNION", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"]
 
     ]];
 
@@ -186,117 +223,51 @@ var definitions = {
 };
 
 function init() {
-    var random = Math.floor((Math.random() * 2) + 0);
-    console.log("random variable " + random);
-
-    if (pos >= questions[random].length) {
-        // document.getElementById('scoreOverall').innerHTML = overallMedal();
-        //here I will be placing all the data drill down stuff and overall score eventually in the form of a method??
-        //pos=0; 
+    if ( pos >= questionSet.length ) {
         addScores();
         scoreOverall();
-    } else {
-        console.log(questions[random][pos]);
-        document.getElementById('premise').innerHTML = questions[random][pos][1];
-        document.getElementById('image').src = questions[random][pos][0];
-        document.getElementById('questionDescription').innerHTML = "Move the command to the right box to complete the query";
-
-        // Hide the success message and correct message
-        $('#successMessage').hide();
-        $('#correctMessage').hide();
-
-        // Reset the game
+    }
+    else {
+        // Reset the game playfield
         correctCards = 0;
         attempts = 0;
-        $('#cardPile').html('');
-        $('#cardSlots').html('');
+        $('#cardPile').children().remove();
+        $('#cardSlots').children().remove();
+        
+        // Setup the question blanks and answers
+        var retrievalCommands = [].concat(commandSets[questionSet[pos].group]);
+        var pieces = questionSet[pos].pieces;
+        var mask = questionSet[pos].mask;
+        $('#premise').text(questionSet[pos].description);
+        $('#image').attr('src', questionSet[pos].icon);
+        $('#questionDescription').text("Move the command to the right box to complete the query");
 
-
-        var retrievalwords = questions[random][pos][3];
-        var retrievalQuestions = questions[random][pos][2];
-        var questionTypeKey = questions[random][pos][5];
-        console.log("Check question type " + questionTypeKey);
-        if ( questionTypeKey === "SQL" || questionTypeKey === "BLANKS" ) {
-            for (var i = 0; i < retrievalwords.length; i++) {
-                //$('<div class="cardSlot">' + retrievalwords[i] + '</div>')
+        for ( var i = 0, ln = pieces.length; i < ln; i++ ) {
+            if ( i > mask.length || mask.charAt(i) === 'X' ) {
+                $('<div class="cardQuestions">' + pieces[i] + '</div>')
+                        .data('fill', pieces[i])
+                        .appendTo('#cardSlots');
+            }
+            else {
                 $('<div class="cardSlot"></div>')
-                        .data('expected-option', retrievalwords[i])
+                        .data('expected-option', pieces[i])
                         .appendTo('#cardSlots')
                         .droppable({
                             accept: '.cardOption',
                             hoverClass: 'hovered',
                             drop: handleCardDrop
                         });
-                $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>')
-                        .data('fill', retrievalQuestions[i])
-                        .appendTo('#cardSlots');
+                if ( retrievalCommands.indexOf(pieces[i]) < 0 ) {
+                    // Append the statement segment to the list of available commands
+                    retrievalCommands.push(pieces[i]);
+                }
             }
         }
-        else {
-            for (var i = 0; i < retrievalwords.length; i++) {
-                $('<div class="cardQuestions">' + retrievalQuestions[i] + '</div>')
-                        .data('fill', retrievalQuestions[i])
-                        .appendTo('#cardSlots');
-                //$('<div class="cardSlot">' + retrievalwords[i] + '</div>')
-                $('<div class="cardSlot"></div>')
-                        .data('expected-option', retrievalwords[i])
-                        .appendTo('#cardSlots')
-                        .droppable({
-                            accept: '.cardOption',
-                            hoverClass: 'hovered',
-                            drop: handleCardDrop
-                        });
-            }
-        }
-
-
-
-
-        var retrievalCommands = [];
-
-        if (questions[random][pos][4] == "CREATE") {
-
-            console.log("Retrieval Commands " + retrievalCommands)
-            if (questions[random][pos][5] == "SQL") {
-
-                var retrievalCommands = ["CREATE", "CREATE TABLE", "VARCHAR", "PRIMARY KEY", "FOREIGN KEY", "IDENTITY", "INT", "DECIMAL", "NULL", "NOT NULL", "REFERENCES"];
-                console.log("Retrieval Commands SQL " + retrievalCommands)
-            } else if (questions[random][pos][5] == "INTERROGATE") {
-
-                var retrievalCommands = ["TABLE",
-                    "Schools",
-                    "Crime",
-                    "CrimeType",
-                    "SchoolType", "Playground", "Postcode", "Playgrounds ( Playground ID", "Playgrounds ( Name", "CREATE TABLE", "NOT NULL", ")", "Schools ( School ID"]
-            } else
-                var retrievalCommands = ["CREATE", "CREATE TABLE", "VARCHAR", "PRIMARY KEY", "FOREIGN KEY", "IDENTITY", "INT", "DECIMAL", "NULL", "NOT NULL", "REFERENCES", "TABLE", "CREATE table Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY", "Schools", "Crime", "CrimeType", "SchoolType", "Playground", "Postcode", "Playgrounds ( Playground ID", "Playgrounds ( Name", "Playground ID, INT", "NOT NULL IDENTITY", "CREATE TABLE Playgrounds", "Schools ( School ID", "CREATE TABLE Schools", "School ID, INT"]
-        } else if (questions[random][pos][4] == "INSERT") {
-
-            if (questions[random][pos][5] == "SQL") {
-                var retrievalCommands = ["INSERT","CrimeDefinition", "INSERT INTO", "CRIME_TYPE", "VALUES","PlaygroundType", "NAME", "Area", "VALUES", "(", "Location", " Postcode)", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE", "BETWEEN", "SchoolDefinition"];
-            } else if (questions[random][pos][5] == "INTERROGATE") {
-
-                var retrievalCommands = ["TABLE", "Schools","CrimeDefinition", "Area", "VALUES","CRIME_TYPE", "(", "Location", " Postcode)", "Crime","PlaygroundType", "CrimeType", "Area","SchoolType", "Playground", "Postcode", "Crime", " (CrimeType, Latitude, Longitude", " Date)", "SchoolDefinition"]
-            } else
-                var retrievalCommands = ["INSERT","CrimeDefinition", "BETWEEN", "INSERT INTO", "VALUES", "NAME","Area", "VALUES", "(", "Location", " Postcode)", "ADDRESS", "DATE", "LOCATION", "POSTCODE", "CRIMETYPE", "SCHOOLTYPE", "SELECT", "FROM", "WHERE", "INSERT INTO", "Crime", "Values", "latitude, longitude", "location, Date", "CrimeType", "Values","CRIME_TYPE", "SCHOOL_TYPE", "VALUES", "(SchoolType,", "SchoolDefinition", ")", "Playgrounds","PlaygroundType", "(Name, Address, Postcode, Playground ID, Latitude, Longitude", " PlayCapacity)"];
-
-        } else if (questions[random][pos][4] == "RETRIEVE") {
-            var retrievalCommands = ["SELECT", "FROM", "WHERE", "ORDER BY", "AND", "OR", "LIKE", "DATEDIFF", "DATEADD", "DATENAME", "LEFT", "RIGHT", "SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'", "SELECT", "CrimeType FROM Crime", " WHERE CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date", "CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'"];
-
-        } else if (questions[random][pos][4] == "SUMMARY") {
-            var retrievalCommands = ["SELECT", "MIN", "MAX", "COUNT", "SUM", "ORDER BY", "HAVING", "GROUP BY", "FROM", "WHERE", "SELECT COUNT", "(SchoolType) AS SchoolNo, ", "SUM", "(SchoolType) AS TOTAL", "FROM", "Schools"];
-
-        } else if (questions[random][pos][4] == "JOIN_UNION_DELETE") {
-            var retrievalCommands = ["UNION", "SELECT", "AS", "FROM", "WHERE", "JOIN", "ON", "SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'", "UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')", "DELETE", "Crimes", "FROM", "WHERE", "CaseClosed='true'", "UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'"];
-        } else {
-            var retrievalCommands = ["UPDATE", "SET", "WHERE", "REPLACE", "DELETE", "DELETE FROM", "FROM", "SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'", "UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')", "DELETE", "Crimes", "FROM", "WHERE", "CaseClosed='true'", "Playgrounds", "WHERE", "PlayCapacity<10", "UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'", "PlaygroundCapacity"];
-        }
-        ;
-
+        
         var el;
         // Create the cards for the retrieval of data questions 
         for (var i = 0; i < retrievalCommands.length; i++) {
-            console.log(retrievalCommands[1]);
+            console.log(retrievalCommands[i]);
             el = $('<div class="cardOption">' + retrievalCommands[i] + '</div>')
                     .data('option', retrievalCommands[i])
                     .attr('id', 'card' + retrievalCommands[i].replace(idReplaceChars, '_'))
@@ -312,14 +283,10 @@ function init() {
                         .attr('data-title', definitions[retrievalCommands[i]]);
             }
         }
-
-
+        
         test = document.getElementById("test").addEventListener("click", checkAnswer, false);
         document.getElementById('test').innerHTML = "Next";
         document.getElementById('showData').innerHTML = "Show Data";
-        //test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
-        handleCardDrop();
-        //checkAnswer();
     }
 
     function handleCardDrop(event, ui) {
@@ -350,48 +317,16 @@ function init() {
             correctCards++;
             console.log(correctCards);
         }
-
-        if (correctCards == retrievalwords.length)
-        {
-            if (questions[random][pos][4] == "CREATE")
-            {
-                create++;
-                console.log("Create questions count " + create);
-            } else if (questions[random][pos][4] == "INSERT") {
-                insert++;
-                console.log("Insert questions count " + insert);
-
-            } else if (questions[random][pos][4] == "RETRIEVE") {
-                retrieve++;
-                console.log("Retrieve questions count " + retrieve);
-
-            } else if (questions[random][pos][4] == "SUMMARY") {
-
-                summary++;
-                console.log("Summary questions count " + summary);
-
-            } else {
-
-                JOIN_UNION_DELETE++;
-
-            }
-            totalAnswer++;
-
-
-            console.log("Total right answer " + totalAnswer);
-            console.log("Attempts " + attempts);
-            console.log("Create questions count " + create);
-            console.log("Insert questions count " + insert);
-            console.log("Retrieve questions count " + retrieve);
-            console.log("Summary questions count " + summary);
-            console.log("Join / Union / Delete questions count " + JOIN_UNION_DELETE);
-
-
-        }
     }
 }
 
 function checkAnswer() {
+    // If the number of correct card placements is equal to the number of total 
+    //  card slots, then award a point for a fully correct answer
+    if ( $('.cardOption.correct').length === $('.cardSlot').length ) {
+        scores[questionSet[pos].group.toLowerCase()]++;
+    }
+    totalAnswer++;
     pos++;
     console.log("position variable " + pos);
     init();
@@ -399,7 +334,7 @@ function checkAnswer() {
 
 
 function addScores() {
-    var dataThis = {"create": create, "insert": insert, "retrieve": retrieve, "summary": summary, "join": JOIN_UNION_DELETE, "total": totalAnswer};
+    var dataThis = {"create": scores.create, "insert": scores.insert, "retrieve": scores.retrieve, "summary": scores.summary, "join": scores.join_update_delete, "total": totalAnswer};
 //localStorage.setItem('data', JSON.stringify(data));
     console.log(dataThis);
 }
@@ -443,11 +378,11 @@ function dataView() {
 function drillDown() {
 
     var data = [
-        {name: "create", score: create},
-        {name: "insert", score: insert},
-        {name: "retrieve", score: retrieve},
-        {name: "summary", score: summary},
-        {name: "join", score: JOIN_UPDATE_DELETE},
+        {name: "create", score: scores.create},
+        {name: "insert", score: scores.insert},
+        {name: "retrieve", score: scores.retrieve},
+        {name: "summary", score: scores.summary},
+        {name: "join", score: scores.join_update_delete}
     ];
 
     var width = 1200,
