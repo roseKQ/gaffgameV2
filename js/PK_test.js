@@ -730,9 +730,9 @@ function init() {
             }
         }
 
-        test = document.getElementById("test").addEventListener("click", checkAnswer, false);
-        document.getElementById('test').innerHTML = "Next";
-        document.getElementById('showData').innerHTML = "Show Data";
+        $('#test').on('click', checkAnswer)
+                .text('Next');
+        $('#showData').text('Show Data');
     }
 
     function handleCardDrop( event, ui ) {
@@ -774,29 +774,32 @@ function checkAnswer() {
 function scoreOverall() {
     var total = correctAnswers;
 
-    document.getElementById('premise').innerHTML = "You got " + correctAnswers + " out of " + pos + " this time. Check out the drill down to see how you performed in each area";
-    document.getElementById('questionDescription').innerHTML = "";
+    $('#premise').text("You got " + correctAnswers + " out of " + pos + " this time. Check out the drill down to see how you performed in each area");
+    $('#questionDescription').text('');
     $('#cardPile').html('');
     $('#cardSlots').html('');
-    document.getElementById('test').innerHTML = "refresh";
-    document.getElementById("test").addEventListener("click", restart, false);
-    viewData = document.getElementById("showData").addEventListener("click", dataView, false);
-    document.getElementById('showData').innerHTML = "Data Visualization";
-    document.getElementById('image').style.display = 'none';
+    $('#test').text("Refresh")
+            .off('click')
+            .on('click', restart);
+    $("#showData").text('Data Visualization')
+            .off('click')
+            .on('click', dataView);
+    $('image').hide();
     if ( total <= (pos - 3) ) {
-        document.getElementById('medal').src = "img/bronze_big.png";
+        $('#medal').attr('src', "img/bronze_big.png");
     }
     else if ( total <= (pos - 2) ) {
-        document.getElementById('medal').src = "img/silver_big.png";
+        $('#medal').attr('src', "img/silver_big.png");
     }
     else if ( total <= (pos - 1) ) {
-        document.getElementById('medal').src = "img/gold_big.png";
+        $('#medal').attr('src', "img/gold_big.png");
     }
-    else if ( total == pos ) {
-        document.getElementById('medal').src = "img/platinum_big.png";
+    else if ( total === pos ) {
+        $('#medal').attr('src', "img/platinum_big.png");
     }
-    else
-        document.getElementById('medal').src = "";
+    else {
+        $('#medal').attr('src', "");
+    }
     drillDown();
 }
 
@@ -916,29 +919,4 @@ function drillDown() {
             .attr("y", barHeight / 10)
             .attr("width", barHeight)
             .attr("height", barHeight);
-}
-
-function shuffle( array ) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while ( 0 !== currentIndex ) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-function random() {
-
-    random = Math.floor((Math.random() * 3) + 0);
-    return random;
 }
