@@ -543,7 +543,7 @@ var questionSet = [
         {
             icon: 'img/sergeant_icon.png',
             description: 'Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you',
-            pieces: ["INSERT", "INTO", "Crime", "VALUES", "(", "CrimeType", "Latitude", "Longitude", "Crime ID ", "Date", "CaseClosed?", "Location", ")"],
+            pieces: ["INSERT", "INTO", "Crime", "VALUES", "(", "CrimeType", "Latitude", "Longitude", "Crime ID ", "Date", "CaseClosed", "Location", ")"],
             mask: '_XX_X_XXX___X',
             herrings: [],
             group: 'INSERT'
