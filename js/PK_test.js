@@ -76,6 +76,7 @@ var scores = {
 
 var pos = 0;
 var totalAnswer = 0;
+var correctAnswer = 0;
 var attempts = 0;
 var setNo;
 
@@ -765,6 +766,8 @@ function init() {
             ui.draggable.addClass('correct');
             correctCards++;
         }
+
+
     }
 }
 
@@ -773,6 +776,7 @@ function checkAnswer() {
     //  card slots, then award a point for a fully correct answer
     if ( $('.cardOption.correct').length === $('.cardSlot').length ) {
         scores[questionSet[setNo][pos].group.toLowerCase()]++;
+      correctAnswer++;  
     }
     totalAnswer++;
     pos++;
