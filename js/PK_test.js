@@ -62,7 +62,7 @@ $(document).ready(function () {
     $('.hidden').hide().removeClass('hidden');
 });
 
-var idReplaceChars = /[ \\\/(*-,'"=<>]/g;
+var idReplaceChars = /[ \\\/(*-,'"=<>?]/g;
 var correctCards = 0;
 var attempts = 0;
 var scores = {
@@ -77,184 +77,568 @@ var scores = {
 var pos = 0;
 var totalAnswer = 0;
 var attempts = 0;
+var setNo;
 
 $(init);
 
 var questionSet = [
+    [
+        {
+            icon: 'img/gaff_icon.png',
+            description: "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
+            pieces: [
+                "STRUCTURED", "QUERY", "LANGUAGE"
+            ],
+            mask: '___',
+            herrings: ["STRONG", "QUESTIONS"],
+            group: 'SIMPLE'
+        },
+        {
+            icon: 'img/gaff_icon.png',
+            description: 'Select everything from the Crime Table',
+            pieces: [
+                "SELECT", "*", "FROM", "Crime"
+            ],
+            mask: '____',
+            herrings: [],
+            group: 'SIMPLE'
+        },
+        {
+            icon: 'img/gaff_icon.png',
+            description: 'How would you make a table in a database?',
+            pieces: [
+                "CREATE", "TABLE"],
+            mask: '__',
+            herrings: [],
+            group: 'SIMPLE'
+        },
+        {
 
-    {
-        icon: 'img/gaff_icon.png',
-        description: "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
-        pieces: [
-            "STRUCTURED", "QUERY", "LANGUAGE"
-        ],
-        mask: '___',
-        herrings: ["STRONG", "QUESTIONS"],
-        group: 'SIMPLE'
-    },
+            icon: 'img/gaff_icon.png',
+            description: 'How would you put values into a table?',
+            pieces: [
+                "INSERT", "INTO"],
+            mask: '__',
+            herrings: [],
+            group: 'SIMPLE'
 
-    {
-        icon: 'img/gaff_icon.png',
-        description: 'Select everything from the Crime Table',
-        pieces: [
-            "SELECT", "*", "FROM", "Crime"
-        ],
-        mask: '____',
-        herrings: [],
-        group: 'SIMPLE'
-    },
+        },
+        {
+            icon: 'img/parkKeeper_icon.png',
+            description: 'Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment automatically when new rows are added.',
+            pieces: [
+                'CREATE', 'TABLE', 'Playgrounds', '(', 'Playground_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+            ],
+            mask: 'XXXX_X__X',
+            herrings: [],
+            group: 'CREATE'
+        },
+        {
+            icon: 'img/principle_icon.png',
+            description: 'Principal Parker is creating the schools table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment automatically when new rows are added.',
+            pieces: [
+                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+            ],
+            mask: 'XX_X_X_XX',
+            herrings: [],
+            group: 'CREATE'
+        },
+        {
+            icon: 'img/principle_icon.png',
+            description: 'Principal Parker is creating the Schools table. Build the query to define the primary key. Use the schema to help you',
+            pieces: [
+                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+            ],
+            mask: '__XXX_X_X',
+            herrings: [],
+            group: 'CREATE'
+        },
+        {
+            icon: 'img/principle_icon.png',
+            description: 'Principal Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you.',
+            pieces: [
+                'INSERT', 'INTO', 'SCHOOL_TYPE', 'VALUES', '(', 'SchoolType', 'SchoolDefinition', ')'
+            ],
+            mask: '____X__X',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/parkKeeper_icon.png',
+            description: 'Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you',
+            pieces: [
+                'INSERT', 'INTO', 'Playgrounds', 'VALUES', '(', 'Name,', 'Address,', 'Postcode,', 'Playgound_ID,', 'Latitude,', 'Longitude,', 'PlaygroundType,', 'PlayCapacity', ')'
+            ],
+            mask: 'XX_XX___X___XX',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/sergeant_icon.png',
+            description: 'Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you',
+            pieces: [
+                'INSERT', 'INTO', 'CRIME_TYPE', 'VALUES', '(', 'CrimeType', 'CrimeDefinition', ')'
+            ],
+            mask: '__X_XX_X',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie wants to see all the robberies that occurred between May and August. Help her write the query.',
+            pieces: [
+                'SELECT', 'CrimeType', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'', 'BETWEEN', '\'2016/05/01\' AND \'2016/08/31\''
+            ],
+            mask: '_XX_X___',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her complete the query',
+            pieces: [
+                'SELECT', 'CrimeType', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Burglary\'', 'OR', 'CrimeType = \'Bike Theft\'', 'ORDER BY', 'Date'
+            ],
+            mask: 'XX__X_X_X_',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie wants to know about schools that are nurseries and grammar schools and order them by SchoolPopulation. Help her complete the query',
+            pieces: [
+                'SELECT', 'SchoolType', 'FROM', 'Schools', 'WHERE', 'SchoolType = \'Nursery\'', 'OR', 'SchoolType = \'Grammar\'', 'ORDER BY', 'SchoolPopulation'
+            ],
+            mask: 'X_X_X_X_X_',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of schools in the dataset and the number of each school',
+            pieces: [
+                'SELECT', 'COUNT', '(SchoolType) AS SchoolNo, ', 'SUM', '(SchoolType) AS Total', 'FROM', 'Schools'
+            ],
+            mask: '__X_X_X',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of crimes in the dataset and the number of each crimes',
+            pieces: [
+                'SELECT', 'COUNT', '(CrimeType) AS CrimeNo, ', 'SUM', '(CrimeType) AS Total', 'FROM', 'Crimes'
+            ],
+            mask: '__X_X_X',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of crimes in the dataset and the number of each crimes',
+            pieces: [
+                'SELECT', 'COUNT', '(CrimeType) AS CrimeNo, ', 'SUM', '(CrimeType) AS Total', 'FROM', 'Crimes'
+            ],
+            mask: '_______',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population',
+            pieces: [
+                'UPDATE', 'Schools', 'SET', 'SchoolPopulation = SchoolPopulation * 1.05', 'WHERE', 'Postcode = \'BT15\''
+            ],
+            mask: '____XX',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to remove crimes that are classified as case closed. Help him complete the query',
+            pieces: [
+                'DELETE', 'FROM', 'Crimes', 'WHERE', 'CaseClosed = \'true\''
+            ],
+            mask: 'XX_X_',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him complete the query',
+            pieces: [
+                'DELETE', 'FROM', 'Playgrounds', 'WHERE', 'PlayCapacity < 10'
+            ],
+            mask: 'XX_X_',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        }
+    ],
+    [
+{
+            icon: 'img/gaff_icon.png',
+            description: "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
+            pieces: [
+                "STRUCTURED", "QUERY", "LANGUAGE"
+            ],
+            mask: '___',
+            herrings: ["STRONG", "QUESTIONS"],
+            group: 'SIMPLE'
+        },
+        {
+            icon: 'img/gaff_icon.png',
+            description: 'Select everything from the Crime Table',
+            pieces: [
+                "SELECT", "*", "FROM", "Crime"
+            ],
+            mask: '____',
+            herrings: [],
+            group: 'SIMPLE'
+        },
+        {
+            icon: 'img/gaff_icon.png',
+            description: 'How would you make a table in a database?',
+            pieces: [
+                "CREATE", "TABLE"],
+            mask: '__',
+            herrings: [],
+            group: 'SIMPLE'
+        },
+        {
 
-    {
-        icon: 'img/gaff_icon.png',
-        description: 'How would you make a table in a database?',
-        pieces: [
-            "CREATE", "TABLE"],
-        mask: '__',
-        herrings: [],
-        group: 'SIMPLE'
-    },
+            icon: 'img/gaff_icon.png',
+            description: 'How would you put values into a table?',
+            pieces: [
+                "INSERT", "INTO"],
+            mask: '__',
+            herrings: [],
+            group: 'SIMPLE'
 
-    {
+        },
+        {
+            icon: 'img/parkKeeper_icon.png',
+            description: 'Park Keeper Norris is creating the playground table. Build the query to define the primary key. Use the schema to help you',
+            pieces: [
+                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+            ],
+            mask: '__XXX_X_X',
+            herrings: [],
+            group: 'CREATE'
+        },
+        {
+            icon: 'img/principle_icon.png',
+            description: 'Principal Parker is creating the Schools table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment',
+            pieces: [
+                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+            ],
+            mask: 'XX_X_X_XX',
+            herrings: [],
+            group: 'CREATE'
+        },
+        {
+            icon: 'img/principle_icon.png',
+            description: 'Principal Parker is creating the Schools table. Build the whole query to define the primary key',
+            pieces: [
+                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+            ],
+            mask: '___X____X',
+            herrings: [],
+            group: 'CREATE'
+        },
+        {
+            icon: 'img/sergeant_icon.png',
+            description: 'Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you',
+            pieces: [
+                'INSERT', 'INTO', 'CRIME_TYPE', 'VALUES', '(', 'CrimeType', 'CrimeDefinition', ')'
+            ],
+            mask: 'XX_XX__X',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie is inserting values into the Area table. Help her complete the query. Use the schema to help you',
+            pieces: [
+                'INSERT', 'INTO', 'Area', 'VALUES', '(', 'Location, ', 'Postcode', ')'
+            ],
+            mask: '__X_X_XX',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/sergeant_icon.png',
+            description: 'Sergeant Bloom is inserting values into the Crime table. Build the whole query to define the primary key',
+            pieces: [
+                'INSERT', 'INTO', 'Crime', 'VALUES', '(', 'CrimeType, ', 'latitude, ', 'longitude, ', 'location, ', 'Date', ')'
+            ],
+            mask: '____X_____X',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie wants to see all the robberies between May and August. Help her complete the query',
+            pieces: [
+                'SELECT', 'CrimeType', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'', 'BETWEEN', '\'2016/05/01\' AND \'2016/08/31\''
+            ],
+            mask: 'X_X_X_X_',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her query the data',
+            pieces: [
+                'SELECT', 'CrimeType', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Burglary\'', 'OR', 'CrimeType = \'Bike Theft\'', 'ORDER BY', 'Date'
+            ],
+            mask: '_XXXXX___X',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie wants to know about schools that are nurseries and grammar schools and order them by SchoolPopulation. Help her write the query',
+            pieces: [
+                'SELECT', 'SchoolType', 'FROM', 'Schools', 'WHERE', 'SchoolType = \'Nursery\'', 'OR', 'SchoolType = \'Grammar\'', 'ORDER BY', 'SchoolPopulation'
+            ],
+            mask: '____XX__X_',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of schools in the dataset and the number of each school',
+            pieces: [
+                'SELECT', 'COUNT', '(SchoolType) AS SchoolNo, ', 'SUM', '(SchoolType) AS Total', 'FROM', 'Schools'
+            ],
+            mask: '__X____',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of crimes in the dataset and the number of each crime',
+            pieces: [
+                'SELECT', 'COUNT', '(CrimeType) AS CrimeNo, ', 'SUM', '(CrimeType) AS Total', 'FROM', 'Crimes'
+            ],
+            mask: 'XX_X_X_',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of crimes in the dataset and the number of each crimes',
+            pieces: [
+                'SELECT', 'COUNT', '(CrimeType) AS CrimeNo, ', 'SUM', '(CrimeType) AS Total', 'FROM', 'Crimes'
+            ],
+            mask: '_____XX',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to remove crimes that are classified as case closed. Help him query the data',
+            pieces: [
+                'DELETE', 'FROM', 'Crimes', 'WHERE', 'CaseClosed = \'true\''
+            ],
+            mask: '__X_X',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him query the data',
+            pieces: [
+                'DELETE', 'FROM', 'Playgrounds', 'WHERE', 'PlayCapacity < 10'
+            ],
+            mask: '__X_X',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Someone has mispelt playground as \'palyground\' in the dataset. Replace the incorrect spelling',
+            pieces: [
+                'UPDATE', 'Playgrounds', 'SET', 'Name =', 'REPLACE', '(Name, \'Palyground\', \'Playground\')'
+            ],
+            mask: '_X_X_X',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        }
+    ],
+    [
+{
+            icon: 'img/gaff_icon.png',
+            description: "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
+            pieces: [
+                "STRUCTURED", "QUERY", "LANGUAGE"
+            ],
+            mask: '___',
+            herrings: ["STRONG", "QUESTIONS"],
+            group: 'SIMPLE'
+        },
+        {
+            icon: 'img/gaff_icon.png',
+            description: 'Select everything from the Crime Table',
+            pieces: [
+                "SELECT", "*", "FROM", "Crime"
+            ],
+            mask: '____',
+            herrings: [],
+            group: 'SIMPLE'
+        },
+        {
+            icon: 'img/gaff_icon.png',
+            description: 'How would you make a table in a database?',
+            pieces: [
+                "CREATE", "TABLE"],
+            mask: '__',
+            herrings: [],
+            group: 'SIMPLE'
+        },
+        {
 
-        icon: 'img/gaff_icon.png',
-        description: 'How would you put values into a table?',
-        pieces: [
-            "INSERT", "INTO"],
-        mask: '__',
-        herrings: [],
-        group: 'SIMPLE'
+            icon: 'img/gaff_icon.png',
+            description: 'How would you put values into a table?',
+            pieces: [
+                "INSERT", "INTO"],
+            mask: '__',
+            herrings: [],
+            group: 'SIMPLE'
 
-    },
-    {
-        icon: 'img/parkKeeper_icon.png',
-        description: 'Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment automatically when new rows are added.',
-        pieces: [
-            'CREATE', 'TABLE', 'Playgrounds', '(', 'Playground_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
-        ],
-        mask: 'XXXX_X__X',
-        herrings: [],
-        group: 'CREATE'
-    },
-    {
-        icon: 'img/principle_icon.png',
-        description: 'Principal Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you.',
-        pieces: [
-            'INSERT', 'INTO', 'SCHOOL_TYPE', 'VALUES', '(', 'SchoolType', 'SchoolDefinition', ')'
-        ],
-        mask: '____X__X',
-        herrings: [],
-        group: 'INSERT'
-    },
-    {
-        icon: 'img/winnie_icon.png',
-        description: 'Winnie wants to see all the robberies that occurred between May and August. Help her write the query.',
-        pieces: [
-            'SELECT', 'CrimeType', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'', 'BETWEEN', '\'2016/05/01\' AND \'2016/08/31\''
-        ],
-        mask: '_XX_X___',
-        herrings: [],
-        group: 'RETRIEVE'
-    }
+        },
+        {
+            icon: 'img/parkKeeper_icon.png',
+            description: 'Park Keeper Norris is creating the playground table. Build the whole query to define the primary key',
+            pieces: ["CREATE", "TABLE", "Playgrounds", "Playground ID, INT", "NOT NULL", "IDENTITY"],
+            mask: '_______',
+            herrings: [],
+            group: 'CREATE'
+        },
+
+        {
+            icon: 'img/principle_icon.png',
+            description: 'Principal Parker is creating the Schools table. Build the query to define the primary key. Use the schema to help you',
+            pieces: ["CREATE", "TABLE", "Schools", "(", "School ID", "INT", "IDENTITY", "NOT NULL", ")"],
+            mask: 'X_X___X__',
+            herrings: [],
+            group: 'CREATE'
+        },
+        {
+            icon: 'img/sergeant_icon.png',
+            description: 'Sergeant Bloom is creating the Crime table. Build the query to define the primary key. Use the schema to help you',
+            pieces: ["CREATE", "TABLE", "Crime", "(", "Crime ID", "INT", "IDENTITY", "NOT NULL", ")"],
+            mask: '___X____X',
+            herrings: [],
+            group: 'CREATE'
+        },
+        {
+            icon: 'img/parkKeeper_icon.png',
+            description: 'Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you',
+            pieces: ["INSERT", "INTO", "Playgrounds", "VALUES", "(", "Name", "Address", "Postcode", "Playground ID", "Latitude", "Longitude", "PlaygroundType", " PlayCapacity)"],
+            mask: 'X_X_____X____',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/sergeant_icon.png',
+            description: 'Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you',
+            pieces: ["INSERT", "INTO", "Crime", "VALUES", "(", "CrimeType", "Latitude", "Longitude", "Crime ID ", "Date", "CaseClosed", "Location", ")"],
+            mask: '_XX_X_XXX___X',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/principle_icon.png',
+            description: 'Principle Parker is inserting values into the School table. Help him complete the query. Use the schema to help you',
+            pieces: ["INSERT", "INTO", "Schools", "VALUES", "(", "Name", "Address", "Postcode", "School ID", "Latitude", "Longitude", "SchoolType", "SchoolPopulation", ")"],
+            mask: 'X_X__X__X__X__',
+            herrings: [],
+            group: 'INSERT'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie wants to see all the robberies between May and August. Help her query the data',
+            pieces: ["SELECT", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'"],
+            mask: '__XX_X_',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her write the query',
+            pieces: ["SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date"],
+            mask: 'X_X__XX_X_',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: 'Winnie wants to know about schools that are nurseries and grammar schools and order them by SchoolPopulation. Help her query the data',
+            pieces: ["SELECT", "SchoolType", "FROM", "Schools", "WHERE", "SchoolType='nursery'", "OR", "SchoolType='grammar'", "ORDER BY", "SchoolPopulation"],
+            mask: 'X_X__XX_X_',
+            herrings: [],
+            group: 'RETRIEVE'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of schools in the dataset and the number of each school',
+            pieces: ["SELECT", "COUNT", "(SchoolType) AS SchoolNo", "SUM", "(SchoolType) AS TOTAL", "FROM", "Schools"],
+            mask: 'X__X_XX',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of crimes in the dataset and the number of each crime',
+            pieces: ["SELECT", "COUNT", "(CrimeType) AS CrimeNo", "SUM", "(CrimeType) AS TOTAL", "FROM", "Crime"],
+            mask: 'X__X_XX',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to know the number of the different types of crimes in the dataset and the number of each crime',
+            pieces: ["SELECT", "COUNT", "(CrimeType) AS CrimeNo", "SUM", "(CrimeType) AS TOTAL", "FROM", "Crime"],
+            mask: '_XX_X__',
+            herrings: [],
+            group: 'SUMMARY'
+        },
+        {
+            icon: 'img/peter_icon.png',
+            description: 'Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him write the query',
+            pieces: ["DELETE", "FROM", "Playgrounds", "WHERE", "PlayCapacity<10"],
+            mask: '_____',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling",
+            pieces: ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(", "Name,", "'Palyground'", "'Playground'", ")"],
+            mask: '_X_X_XXXXXX',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        },
+        {
+            icon: 'img/winnie_icon.png',
+            description: "Join the Playgrounds and Schools data where postcode = 'BT7'",
+            pieces: ["SELECT", "Name, Location", "FROM", "Playgrounds where Postcode='BT7'", "UNION", "SELECT", "Name, Location", "FROM", "Schools", "WHERE", "POSTCODE='BT7'"],
+            mask: '___________',
+            herrings: [],
+            group: 'JOIN_UPDATE_DELETE'
+        }
+    ]
 ];
+
 var commandSets = {
     'SIMPLE': [ "LANGUAGE","SELECT", "PUT", "FROM", "Crime"],
     'CREATE': ['CREATE', 'TABLE', 'VARCHAR', 'PRIMARY KEY', 'FOREIGN KEY', 'IDENTITY', 'INT', 'DECIMAL', 'NULL', 'NOT NULL', 'REFERENCES'],
     'INSERT': ['INSERT', 'INTO', 'VALUES', 'SELECT', 'FROM', 'WHERE', 'BETWEEN'],
     'RETRIEVE': ['SELECT', 'FROM', 'WHERE', 'ORDER BY', 'AND', 'OR', 'LIKE', 'DATEDIFF', 'DATEADD', 'LEFT', 'RIGHT', 'WHERE', 'BETWEEN'],
     'SUMMARY': ['SELECT', 'MIN', 'MAX', 'COUNT', 'SUM', 'ORDER BY', 'HAVING', 'GROUP BY', 'FROM', 'WHERE'],
-    'JOIN_UPDATE_DELETE': ['UPDATE', 'SET', 'WHERE', 'REPLACE', 'DELETE', 'FROM', 'SELECT', 'UNION'],
-    //'JOIN_UNION_DELETE': ['UNION', 'SELECT', 'AS', 'FROM', 'WHERE', 'JOIN', 'ON', 'SET', 'REPLACE', 'DELETE', 'UPDATE']
+    'JOIN_UPDATE_DELETE': ['UPDATE', 'SET', 'WHERE', 'REPLACE', 'DELETE', 'FROM', 'SELECT', 'UNION']
 };
-
-var questions = [
-    [
-        [
-            "img/gaff_icon.png",
-            "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
-            [" ", " ", " "],
-            ["STRUCTURED", "QUERY", "LANGUAGE"],
-            "SIMPLE",
-            "SQL"],
-        ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
-        ["img/principle_icon.png", "Principal Parker is creating the Schools table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Schools ( School ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
-        ["img/principle_icon.png", "Principal Parker is creating the Schools table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Schools ( School ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
-        ["img/parkKeeper_icon.png", "Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you", ["Playgrounds", "(Name, Address, Postcode, Playground ID, Latitude, Longitude", " PlayCapacity)"], ["INSERT INTO", "VALUES", "PlaygroundType"], "INSERT", "SQL"],
-        ["img/principle_icon.png", "Principal Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["INSERT INTO", "SCHOOL_TYPE", "VALUES", "(SchoolType,", "SchoolDefinition", ")"], "INSERT", "BLANKS"],
-        ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "CrimeDefinition"], ["CRIME_TYPE", "(CrimeType,", " )"], "INSERT", "INTERROGATE"],
-        // ["img/winnie_icon.png", "Winnie is inserting values into the Area table. Help her complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["INSERT INTO", "Area", "VALUES", "(", "Location", " Postcode)"], "INSERT", "BLANKS"],
-        // ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Crime", " (CrimeType, Latitude, Longitude", " Date)"], "INSERT", "INTERROGATE"],
-        ["img/winnie_icon.png", "Winnie wants to see all the robberies between May and August. Help her write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "BLANKS"],
-        ["img/winnie_icon.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her complete the query", ["CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'", "Date"], ["SELECT", "OR", "ORDER BY"], "RETRIEVE", "SQL"],
-        ["img/winnie_icon.png", "Winnie wants to know about schools that are nurseries and grammar schools and order them by SchoolPopulation. Help her complete the query", ["SchoolType FROM Schools WHERE SchoolType='nursery'", "SchoolType='grammar'", "SchoolPopulation"], ["SELECT", "OR", "ORDER BY"], "RETRIEVE", "SQL"],
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", ["SELECT COUNT", "SUM", "FROM"], ["(SchoolType) AS SchoolNo, ", "(SchoolType) AS TOTAL", "Schools"], "SUMMARY", "INTERROGATE"],
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of crimes in the dataset and the number of each crimes", ["SELECT COUNT", "SUM", "FROM"], ["(CrimeType) AS CrimeNo, ", "(CrimeType) AS TOTAL", "Crimes"], "SUMMARY", "INTERROGATE"],
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of crimes in the dataset and the number of each crimes", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT COUNT", "(CrimeType) AS CrimeNo, ", "SUM", "(CrimeType) AS TOTAL", "FROM", "Crimes"], "SUMMARY", "BLANKS"],
-        ["img/peter_icon.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", [" ", " ", " ", " ", " ", " "], ["UPDATE", "Schools", "SET", "SchoolPopulation=SchoolPopulation*1.05", "WHERE", "Postcode='BT15'"], "JOIN_UPDATE_DELETE", "BLANKS"],
-        ["img/peter_icon.png", "Peter wants to remove crimes that are classified as case closed. Help him complete the query", [" ", "Crimes", "CaseClosed='true'"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-        ["img/peter_icon.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him complete the query", ["", "Playgrounds", "PlayCapacity<10"], ["DELETE", "FROM", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"]
-        //["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["", "", "", "", "", ""], ["UPDATE", "Playgrounds", "SET", "Name =", "REPLACE", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "BLANKS"],
-        //["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-    ],
-    [
-                [
-            "img/gaff_icon.png",
-            "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
-            [" ", " ", " "],
-            ["STRUCTURED", "QUERY", "LANGUAGE"],
-            "SIMPLE",
-            "SQL"],
-        ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
-        // ["img/parkKeeper_icon.png", "Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "PlaygroundType"], ["Playgrounds,(Name, Address, Postcode, Playground ID, Latitude, Longitude", " PlayCapacity)"], "INSERT", "INTERROGATE"],
-        ["img/principle_icon.png", "Principal Parker is creating the Schools table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Schools ( School ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
-        ["img/principle_icon.png", "Principal Parker is creating the Schools table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Schools", "School ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],
-        ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you", ["CRIME_TYPE", "(CrimeType,", " )"], ["INSERT INTO", "VALUES", "CrimeDefinition"], "INSERT", "SQL"],
-         ["img/winnie_icon.png", "Winnie is inserting values into the Area table. Help her complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "Location"], ["Area", "(", " Postcode)"], "INSERT", "INTERROGATE"],
-        ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the Crime table. Build the whole query to define the primary key", ["", " ( ", " ", " ", " ", "", ")"], ["INSERT INTO", "Crime", "Values", "CrimeType", "latitude, longitude", "location, Date"], "INSERT", "BLANKS"],
-        ["img/winnie_icon.png", "Winnie wants to see all the robberies between May and August. Help her complete the query", ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], ["SELECT", "FROM", "WHERE", "BETWEEN"], "RETRIEVE", "SQL"],
-        ["img/winnie_icon.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her query the data", ["SELECT", "OR", "ORDER BY"], ["CrimeType FROM Crime WHERE CrimeType='burglary'", "CrimeType='bike theft'", "Date"], "RETRIEVE", "INTERROGATE"],
-        ["img/winnie_icon.png", "Winnie wants to know about schools that are nurseries and grammar schools and order them by SchoolPopulation. Help her write the query", [" ", " ", " ", " ", " ", " ", ""], ["SELECT", "SchoolType FROM Schools", " WHERE SchoolType='nursery'", "OR", "SchoolType='grammar'", "ORDER BY", "SchoolPopulation"], "RETRIEVE", "BLANKS"],
-
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT COUNT", "(SchoolType) AS SchoolNo, ", "SUM", "(SchoolType) AS TOTAL", "FROM", "Schools"], "SUMMARY", "BLANKS"],
-
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of crimes in the dataset and the number of each crime", ["(CrimeType) AS CrimeNo, ", "(CrimeType) AS TOTAL", "Crimes"], ["SELECT COUNT", "SUM", "FROM"], "SUMMARY", "SQL"],
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of crimes in the dataset and the number of each crimes", [" ", " ", " ", " ", " ", " ", " ", " "], ["SELECT COUNT", "(CrimeType) AS CrimeNo, ", "SUM", "(CrimeType) AS TOTAL", "FROM", "Crimes"], "SUMMARY", "BLANKS"],
-
-        // ["img/peter_icon.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", ["Schools", "SchoolPopulation=SchoolPopulation*1.05", "Postcode='BT15'"], ["UPDATE", "SET", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"],
-        ["img/peter_icon.png", "Peter wants to remove crimes that are classified as case closed. Help him query the data", ["DELETE FROM", "WHERE"], ["Crimes", "CaseClosed='true'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-        ["img/peter_icon.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him query the data", ["DELETE", "FROM", "WHERE"], ["", "Playgrounds", "PlayCapacity<10"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-        ["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["UPDATE", "SET", "REPLACE"], ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], "JOIN_UPDATE_DELETE", "INTERROGATE"]
-        //["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
-
-    ], [
-                [
-            "img/gaff_icon.png",
-            "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
-            [" ", " ", " "],
-            ["STRUCTURED", "QUERY", "LANGUAGE"],
-            "SIMPLE",
-            "SQL"],
-        ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"], ,
-        ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
-        //["img/parkKeeper_icon.png", "Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["Playgrounds", "INSERT INTO", "VALUES", "(Name, Address, Postcode, Playground ID, Latitude, Longitude", "PlaygroundType", " PlayCapacity)"], "INSERT", "BLANKS"],
-        ["img/principle_icon.png", "Principal Parker is creating the Schools table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Schools ( School ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
-        ["img/principle_icon.png", "Principal Parker is creating the Schools table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Schools", "School ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"],
-        ["img/principle_icon.png", "Principal Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you", ["SCHOOL_TYPE", "(SchoolType,", " )"], ["INSERT INTO", "VALUES", "SchoolDefinition"], "INSERT", "SQL"],
-        ["img/winnie_icon.png", "Winnie is inserting values into the Area table. Help her complete the query. Use the schema to help you", ["Area", "(", " Postcode)"], ["INSERT INTO", "VALUES", "Location"], "INSERT", "SQL"],
-        // ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["INSERT INTO", "CRIME_TYPE", "VALUES", "(CrimeType,", "CrimeDefinition", ")"], "INSERT", "BLANKS"],
-        //["img/principle_icon.png", "Principle Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "CrimeDefinition"], ["CRIME_TYPE", "(CrimeType,", " )"], "INSERT", "INTERROGATE"],
-        ["img/winnie_icon.png", "Winnie wants to see all the robberies between May and August. Help her query the data", ["SELECT", "FROM", "WHERE", "BETWEEN"], ["CrimeType", "Crime", "CrimeType = 'Robberies'", "'2016/05/01' AND '2016/08/31'"], "RETRIEVE", "INTERROGATE"],
-        ["img/winnie_icon.png", "Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her write the query", [" ", " ", " ", " ", " ", " ", ""], ["SELECT", "CrimeType FROM Crime", " WHERE CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date"], "RETRIEVE", "BLANKS"],
-        ["img/winnie_icon.png", "Winnie wants to know about schools that are nurseries and grammar schools and order them by SchoolPopulation. Help her query the data", ["SELECT", "OR", "ORDER BY"], ["SchoolType FROM Schools WHERE SchoolType='nursery'", "SchoolType='grammar'", "SchoolPopulation"], "RETRIEVE", "INTERROGATE"],
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of schools in the dataset and the number of each school", ["(SchoolType) AS SchoolNo, ", "(SchoolType) AS TOTAL", "Schools"], ["SELECT COUNT", "SUM", "FROM"], "SUMMARY", "SQL"],
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of crimes in the dataset and the number of each crime", ["(CrimeType) AS CrimeNo, ", "(CrimeType) AS TOTAL", "Crimes"], ["SELECT COUNT", "SUM", "FROM"], "SUMMARY", "SQL"],
-        ["img/peter_icon.png", "Peter wants to know the number of the different types of crimes in the dataset and the number of each crimes", ["SELECT COUNT", "SUM", "FROM"], ["(CrimeType) AS CrimeNo, ", "(CrimeType) AS TOTAL", "Crimes"], "SUMMARY", "INTERROGATE"],
-        //["img/peter_icon.png", "Peter wants to see what a 5% rise in the school population would look like. Help him by adding 5% to the schools population", ["UPDATE", "SET", "WHERE"], ["Schools", "SchoolPopulation=SchoolPopulation*1.05", "Postcode='BT15'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
-        //["img/peter_icon.png", "Peter wants to remove crimes that are classified as case closed. Help him write the query", [" ", " ", " ", " ", " ", " ", " ", " "], ["DELETE", "Crimes", "FROM", "WHERE", "CaseClosed='true'"], "JOIN_UPDATE_DELETE", "BLANKS"],
-        ["img/peter_icon.png", "Peter wants to remove any playgrounds that have capacity for less that 10 children. Help him write the query", [" ", " ", " ", " ", " "], ["DELETE", "FROM", "Playgrounds", "WHERE", "PlayCapacity<10"], "JOIN_UPDATE_DELETE", "BLANKS"],
-        ["img/winnie_icon.png", "Someone has mispelt playground as 'palyground' in the dataset. Replace the incorrect spelling", ["Playgrounds", "Name =", "(Name, 'Palyground', 'Playground')"], ["UPDATE", "SET", "REPLACE"], "JOIN_UPDATE_DELETE", "SQL"],
-        ["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], ["SELECT", "UNION", "WHERE"], "JOIN_UPDATE_DELETE", "SQL"]
-
-    ]];
 
 // https://msdn.microsoft.com/en-us/library/ms165911.aspx
 // http://www.sqlstrings.com/Database-Glossary.htm
@@ -290,7 +674,9 @@ var definitions = {
 };
 
 function init() {
-    if ( pos >= questionSet.length ) {
+    setNo = Math.floor(Math.random() * questionSet.length);
+
+    if ( pos >= questionSet[setNo].length ) {
         addScores();
         scoreOverall();
     }
@@ -302,11 +688,11 @@ function init() {
         $('#cardSlots').children().remove();
         
         // Setup the question blanks and answers
-        var retrievalCommands = [].concat(commandSets[questionSet[pos].group]);
-        var pieces = questionSet[pos].pieces;
-        var mask = questionSet[pos].mask;
-        $('#premise').text(questionSet[pos].description);
-        $('#image').attr('src', questionSet[pos].icon);
+        var retrievalCommands = [].concat(commandSets[questionSet[setNo][pos].group]);
+        var pieces = questionSet[setNo][pos].pieces;
+        var mask = questionSet[setNo][pos].mask;
+        $('#premise').text(questionSet[setNo][pos].description);
+        $('#image').attr('src', questionSet[setNo][pos].icon);
         $('#questionDescription').text("Move the command to the right box to complete the query");
 
         for ( var i = 0, ln = pieces.length; i < ln; i++ ) {
@@ -334,7 +720,6 @@ function init() {
         var el;
         // Create the cards for the retrieval of data questions 
         for (var i = 0; i < retrievalCommands.length; i++) {
-            console.log(retrievalCommands[i]);
             el = $('<div class="cardOption">' + retrievalCommands[i] + '</div>')
                     .data('option', retrievalCommands[i])
                     .attr('id', 'card' + retrievalCommands[i].replace(idReplaceChars, '_'))
@@ -359,9 +744,7 @@ function init() {
     function handleCardDrop(event, ui) {
         var slot = $(this);
         var slotNumber = slot.data('expected-option');
-        console.log(slotNumber);
         var cardNumber = ui.draggable.data('option');
-        console.log(ui.draggable.data('option'));
 
         // Move the card into the slot, disabling the drop target of the slot
         //  as well as the dragging of the card
@@ -377,12 +760,10 @@ function init() {
         if ( slotNumber !== cardNumber ) {
             ui.draggable.addClass('incorrect');
             $('#card' + slotNumber.replace(idReplaceChars, '_')).addClass('correct');
-            console.log(correctCards);
         }
         else {
             ui.draggable.addClass('correct');
             correctCards++;
-            console.log(correctCards);
         }
     }
 }
@@ -391,11 +772,10 @@ function checkAnswer() {
     // If the number of correct card placements is equal to the number of total 
     //  card slots, then award a point for a fully correct answer
     if ( $('.cardOption.correct').length === $('.cardSlot').length ) {
-        scores[questionSet[pos].group.toLowerCase()]++;
+        scores[questionSet[setNo][pos].group.toLowerCase()]++;
     }
     totalAnswer++;
     pos++;
-    console.log("position variable " + pos);
     init();
 }
 
@@ -403,7 +783,6 @@ function checkAnswer() {
 function addScores() {
     var dataThis = {"simple":scores.simple, "create": scores.create, "insert": scores.insert, "retrieve": scores.retrieve, "summary": scores.summary, "join": scores.join_update_delete, "total": totalAnswer};
 //localStorage.setItem('data', JSON.stringify(data));
-    console.log(dataThis);
 }
 
 
@@ -411,7 +790,6 @@ function scoreOverall(totalAnswer) {
 
     var total = this.totalAnswer;
 
-    console.log("Is the method working? " + total);
     document.getElementById('premise').innerHTML = "You got " + total + " out of " + pos + " this time. Check out the drill down to see how you performed in each area";
     document.getElementById('questionDescription').innerHTML = "";
     $('#cardPile').html('');
@@ -568,6 +946,5 @@ function shuffle(array) {
 function random() {
 
     random = Math.floor((Math.random() * 3) + 0);
-    console.log(random);
     return random;
 }
