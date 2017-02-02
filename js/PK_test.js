@@ -74,6 +74,7 @@ var scores = {
 };
 
 var pos = 0;
+var correctAnswers = 0;
 var setNo;
 
 $(init);
@@ -673,7 +674,6 @@ function init() {
     setNo = Math.floor(Math.random() * questionSet.length);
 
     if ( pos >= questionSet[setNo].length ) {
-        addScores();
         scoreOverall();
     }
     else {
@@ -765,23 +765,16 @@ function checkAnswer() {
     //  card slots, then award a point for a fully correct answer
     if ( $('.cardOption.correct').length === $('.cardSlot').length ) {
         scores[questionSet[setNo][pos].group.toLowerCase()]++;
+        correctAnswers++;
     }
     pos++;
     init();
 }
 
-
-function addScores() {
-    var dataThis = {"simple": scores.simple, "create": scores.create, "insert": scores.insert, "retrieve": scores.retrieve, "summary": scores.summary, "join": scores.join_update_delete, "total": totalAnswer};
-//localStorage.setItem('data', JSON.stringify(data));
-}
-
-
 function scoreOverall() {
+    var total = correctAnswers;
 
-    var total = this.totalAnswer;
-
-    document.getElementById('premise').innerHTML = "You got " + total + " out of " + pos + " this time. Check out the drill down to see how you performed in each area";
+    document.getElementById('premise').innerHTML = "You got " + correctAnswers + " out of " + pos + " this time. Check out the drill down to see how you performed in each area";
     document.getElementById('questionDescription').innerHTML = "";
     $('#cardPile').html('');
     $('#cardSlots').html('');
