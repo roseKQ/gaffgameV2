@@ -798,17 +798,17 @@ function scoreOverall(totalAnswer) {
     document.getElementById("test").addEventListener("click", restart, false);
     viewData = document.getElementById("showData").addEventListener("click", dataView, false);
     document.getElementById('showData').innerHTML = "Data Visualization";
-
+    document.getElementById('image').style.display = 'none'; 
     if (total <= (pos - 3)) {
-        document.getElementById('image').src = "img/bronze_big.png";
+        document.getElementById('medal').src = "img/bronze_big.png";
     } else if (total <= (pos - 2)) {
-        document.getElementById('image').src = "img/silver_big.png";
+        document.getElementById('medal').src = "img/silver_big.png";
     } else if (total <= (pos - 1)) {
-        document.getElementById('image').src = "img/gold_big.png";
+        document.getElementById('medal').src = "img/gold_big.png";
     } else if (total == pos) {
-        document.getElementById('image').src = "img/platinum_big.png";
+        document.getElementById('medal').src = "img/platinum_big.png";
     } else
-        document.getElementById('image').src = "";
+        document.getElementById('medal').src = "";
     drillDown();
 }
 
