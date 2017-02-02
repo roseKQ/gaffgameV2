@@ -66,6 +66,7 @@ var idReplaceChars = /[ \\\/(*-,'"=<>]/g;
 var correctCards = 0;
 var attempts = 0;
 var scores = {
+    simple: 0,
     create: 0,
     insert: 0,
     retrieve: 0,
@@ -82,6 +83,46 @@ $(init);
 
 var questionSet = [
     [
+        {
+            icon: 'img/gaff_icon.png',
+            description: "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
+            pieces: [
+                "STRUCTURED", "QUERY", "LANGUAGE"
+            ],
+            mask: '___',
+            herrings: ["STRONG", "QUESTIONS"],
+            group: 'SIMPLE'
+        },
+        {
+            icon: 'img/gaff_icon.png',
+            description: 'Select everything from the Crime Table',
+            pieces: [
+                "SELECT", "*", "FROM", "Crime"
+            ],
+            mask: '____',
+            herrings: [],
+            group: 'SIMPLE'
+        },
+        {
+            icon: 'img/gaff_icon.png',
+            description: 'How would you make a table in a database?',
+            pieces: [
+                "CREATE", "TABLE"],
+            mask: '__',
+            herrings: [],
+            group: 'SIMPLE'
+        },
+        {
+
+            icon: 'img/gaff_icon.png',
+            description: 'How would you put values into a table?',
+            pieces: [
+                "INSERT", "INTO"],
+            mask: '__',
+            herrings: [],
+            group: 'SIMPLE'
+
+        },
         {
             icon: 'img/parkKeeper_icon.png',
             description: 'Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment automatically when new rows are added.',
@@ -235,6 +276,7 @@ var questionSet = [
     ]
 ];
 var commandSets = {
+    'SIMPLE': [ "LANGUAGE","SELECT", "PUT", "FROM", "Crime"],
     'CREATE': ['CREATE', 'TABLE', 'VARCHAR', 'PRIMARY KEY', 'FOREIGN KEY', 'IDENTITY', 'INT', 'DECIMAL', 'NULL', 'NOT NULL', 'REFERENCES'],
     'INSERT': ['INSERT', 'INTO', 'VALUES', 'SELECT', 'FROM', 'WHERE', 'BETWEEN'],
     'RETRIEVE': ['SELECT', 'FROM', 'WHERE', 'ORDER BY', 'AND', 'OR', 'LIKE', 'DATEDIFF', 'DATEADD', 'LEFT', 'RIGHT', 'WHERE', 'BETWEEN'],
@@ -480,7 +522,7 @@ function checkAnswer() {
 
 
 function addScores() {
-    var dataThis = {"create": scores.create, "insert": scores.insert, "retrieve": scores.retrieve, "summary": scores.summary, "join": scores.join_update_delete, "total": totalAnswer};
+    var dataThis = {"simple":scores.simple, "create": scores.create, "insert": scores.insert, "retrieve": scores.retrieve, "summary": scores.summary, "join": scores.join_update_delete, "total": totalAnswer};
 //localStorage.setItem('data', JSON.stringify(data));
     console.log(dataThis);
 }
@@ -524,6 +566,7 @@ function dataView() {
 function drillDown() {
 
     var data = [
+        {name: "simple", score: scores.simple},
         {name: "create", score: scores.create},
         {name: "insert", score: scores.insert},
         {name: "retrieve", score: scores.retrieve},
@@ -555,12 +598,12 @@ function drillDown() {
             .data(data)
             .enter().append("g")
             .attr("transform", function (d, i) {
-                return "translate(0," + i * barHeight + ")";
+                return "translate(200," + i * barHeight + ")";
             });
 
     bar.append("rect")
             .attr("width", function (d) {
-                return x(d.score) * 30;
+                return x(d.score+1) * 30;
             })
             .attr("height", barHeight - 1)
             .attr("rx", 20)
@@ -586,7 +629,7 @@ function drillDown() {
     bar.append("text")
             .style({'fill': '#ffffff', 'font-size': 35})
             .attr("x", function (d) {
-                return x(d.score) * 10;
+                return x(d.score+1) * 10;
             })
             .attr("y", barHeight / 2)
             .attr("dy", ".35em")
@@ -595,8 +638,8 @@ function drillDown() {
             });
 
     bar.append("text")
-            .style({"fill": "#ffffff", "font-size": 30})
-            .attr("x", - 30)
+            .style({"fill": "#888889", "font-size": 30})
+            .attr("x", - 120)
             .attr("y", barHeight / 2)
             .text(function (d) {
                 return d.name;
@@ -617,7 +660,7 @@ function drillDown() {
                 ;
             })
             .attr("x", function (d) {
-                return x(d.score) * 30;
+                return x((d.score+1) * 30)-30;
             })
             .attr("y", barHeight / 10)
             .attr("width", barHeight)
