@@ -85,6 +85,13 @@ $(init);
 
 var questions = [
     [
+        [
+            "img/gaff_icon.png",
+            "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
+            [" ", " ", " "],
+            ["STRUCTURED", "QUERY", "LANGUAGE"],
+            "SIMPLE",
+            "SQL"],
         ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Playgrounds ( Playground ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
         ["img/principle_icon.png", "Principal Parker is creating the Schools table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Schools ( School ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
         ["img/principle_icon.png", "Principal Parker is creating the Schools table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Schools ( School ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
@@ -106,6 +113,13 @@ var questions = [
         //["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["SELECT", "UNION", "WHERE"], ["Name, Location FROM Playgrounds where Postcode='BT7'", "SELECT Name, Location FROM Schools", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "INTERROGATE"],
     ],
     [
+                [
+            "img/gaff_icon.png",
+            "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
+            [" ", " ", " "],
+            ["STRUCTURED", "QUERY", "LANGUAGE"],
+            "SIMPLE",
+            "SQL"],
         ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Build the query to define the primary key. Use the schema to help you", ["CREATE TABLE", "INT", "IDENTITY"], ["Playgrounds ( Playground ID", "NOT NULL", ")"], "CREATE", "INTERROGATE"],
         // ["img/parkKeeper_icon.png", "Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you", ["INSERT INTO", "VALUES", "PlaygroundType"], ["Playgrounds,(Name, Address, Postcode, Playground ID, Latitude, Longitude", " PlayCapacity)"], "INSERT", "INTERROGATE"],
         ["img/principle_icon.png", "Principal Parker is creating the Schools table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment", [" Schools ( School ID ", " NOT NULL ", " )"], ["CREATE TABLE", "INT", "IDENTITY"], "CREATE", "SQL"],
@@ -129,6 +143,13 @@ var questions = [
         //["img/winnie_icon.png", "Join the Playgrounds and Schools data where postcode = 'BT7'", ["", "", "", "", "", "", ""], ["SELECT", "Name, Location FROM Playgrounds where Postcode='BT7'", "UNION", "SELECT Name, Location FROM Schools", "WHERE", "POSTCODE='BT7'"], "JOIN_UPDATE_DELETE", "BLANKS"]
 
     ], [
+                [
+            "img/gaff_icon.png",
+            "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
+            [" ", " ", " "],
+            ["STRUCTURED", "QUERY", "LANGUAGE"],
+            "SIMPLE",
+            "SQL"],
         ["img/parkKeeper_icon.png", "Park Keeper Norris is creating the playground table. Build the whole query to define the primary key", ["(", " ", ")"], ["CREATE TABLE Playgrounds", "Playground ID, INT", "NOT NULL IDENTITY"], "CREATE", "BLANKS"], ,
         ["img/sergeant_icon.png", "Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you", ["Crime", " (CrimeType, Latitude, Longitude ", " Date)"], ["INSERT INTO", "VALUES", "LOCATION"], "INSERT", "SQL"],
         //["img/parkKeeper_icon.png", "Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you", ["", "", "", "", "", ""], ["Playgrounds", "INSERT INTO", "VALUES", "(Name, Address, Postcode, Playground ID, Latitude, Longitude", "PlaygroundType", " PlayCapacity)"], "INSERT", "BLANKS"],
@@ -251,10 +272,14 @@ function init() {
 
 
 
-
+// This is where the bank of answers that are required to answer the specific question are
         var retrievalCommands = [];
 
-        if (questions[random][pos][4] == "CREATE") {
+      if(questions[random][pos][4]=="SIMPLE") {
+
+var retrievalCommands = ["STRONG", "QUESTION", "SELECT", "*", "QUERY", "LANGUAGE", "STRUCTURED", "FROM", "DISTINCT"];
+
+      }else if (questions[random][pos][4] == "CREATE") {
 
             console.log("Retrieval Commands " + retrievalCommands)
             if (questions[random][pos][5] == "SQL") {
