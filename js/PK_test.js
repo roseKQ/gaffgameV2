@@ -673,9 +673,11 @@ var definitions = {
 };
 
 function init() {
+    // Choose a question set at random
     setNo = Math.floor(Math.random() * questionSet.length);
 
     if ( pos >= questionSet[setNo].length ) {
+        // We're at the end of the question set - time for the score!
         scoreOverall();
     }
     else {
@@ -691,13 +693,18 @@ function init() {
         $('#image').attr('src', questionSet[setNo][pos].icon);
         $('#questionDescription').text("Move the command to the right box to complete the query");
 
+        // Loop through the question pieces, placing the static pieces and the 
+        //  answer slots based on the mask given
         for ( var i = 0, ln = pieces.length; i < ln; i++ ) {
             if ( i > mask.length || mask.charAt(i) === 'X' ) {
+                // Either we've overrun the mask length, or mask is explicitly
+                //  stating a static position
                 $('<div class="cardQuestions">' + pieces[i] + '</div>')
                         .data('fill', pieces[i])
                         .appendTo('#cardSlots');
             }
             else {
+                // Answer slot here
                 $('<div class="cardSlot"></div>')
                         .data('expected-option', pieces[i])
                         .appendTo('#cardSlots')
@@ -726,6 +733,7 @@ function init() {
                         cursor: 'move',
                         revert: true
                     });
+            // If there's a corresponding definition, enable the tooltip
             if ( definitions[retrievalCommands[i]] ) {
                 el.attr('data-toggle', 'tooltip')
                         .attr('data-title', definitions[retrievalCommands[i]]);
@@ -733,6 +741,7 @@ function init() {
         }
     }
 
+    // Handle a card being placed on the answer slot
     function handleCardDrop( event, ui ) {
         var slot = $(this);
         var slotNumber = slot.data('expected-option');
@@ -765,6 +774,7 @@ function checkAnswer() {
         scores[questionSet[setNo][pos].group.toLowerCase()]++;
         correctAnswers++;
     }
+    // Either way, we go to the next question
     pos++;
     init();
 }
@@ -772,17 +782,20 @@ function checkAnswer() {
 function scoreOverall() {
     var total = correctAnswers;
 
+    // Change text and click handlers as needed
     $('#premise').text("You got " + correctAnswers + " out of " + pos + " this time. Check out the drill down to see how you performed in each area");
     $('#questionDescription').text('');
     $('#cardPile').html('');
     $('#cardSlots').html('');
     $('#test').text("Refresh")
-            .off('click')
+            .off('click')       // Prevent firing previously placed handlers
             .on('click', restart);
     $("#showData").text('Data Visualization')
-            .off('click')
+            .off('click')       // Prevent firing previously placed handlers
             .on('click', dataView);
     $('image').hide();
+
+    // Determine which medal to "award" the player with, based on their score
     if ( total <= (pos - 3) ) {
         $('#medal').attr('src', "img/bronze_big.png");
     }
@@ -798,13 +811,16 @@ function scoreOverall() {
     else {
         $('#medal').attr('src', "");
     }
+    // Provide a breakdown of how the player did on each type of question
     drillDown();
 }
 
+// Restart the game (reloads the page)
 function restart() {
     window.location.href = 'PK_test.html';
 }
 
+// Go to the Data Visualization page
 function dataView() {
     window.location.href = 'DataDashboard.html';
 }
