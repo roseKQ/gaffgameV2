@@ -5,6 +5,8 @@ $(document).ready(function() {
      */
     var definitionsEnabled = false;
 
+    // Check for a correct answer when the "Next" button is clicked
+    $('#test').on('click', checkAnswer);
     // Toggle display of additional buttons when "Show Data" is clicked
     $('#showData').click(function() {
         $('#dataButtons').toggle('slow', function() {
@@ -729,10 +731,6 @@ function init() {
                         .attr('data-title', definitions[retrievalCommands[i]]);
             }
         }
-
-        $('#test').on('click', checkAnswer)
-                .text('Next');
-        $('#showData').text('Show Data');
     }
 
     function handleCardDrop( event, ui ) {
