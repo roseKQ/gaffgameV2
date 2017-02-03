@@ -76,10 +76,7 @@ var scores = {
 };
 
 var pos = 0;
-
-var totalAnswer = 0;
 var correctAnswer = 0;
-var attempts = 0;
 var setNo;
 
 $(init);
@@ -783,10 +780,10 @@ function checkAnswer() {
 }
 
 function scoreOverall() {
-    var total = correctAnswers;
+    var total = correctAnswer;
 
     // Change text and click handlers as needed
-    $('#premise').text("You got " + correctAnswers + " out of " + pos + " this time. Check out the drill down to see how you performed in each area");
+    $('#premise').text("You got " + total + " out of " + pos + " this time. Check out the drill down to see how you performed in each area");
     $('#questionDescription').text('');
     $('#cardPile').html('');
     $('#cardSlots').html('');
