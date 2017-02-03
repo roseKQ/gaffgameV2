@@ -1,22 +1,24 @@
-$(document).ready(function () {
+$(document).ready(function() {
     /**
      * Variable to toggle display of definitions
      * @type Boolean
      */
     var definitionsEnabled = false;
 
+    // Check for a correct answer when the "Next" button is clicked
+    $('#test').on('click', checkAnswer);
     // Toggle display of additional buttons when "Show Data" is clicked
-    $('#showData').click(function () {
-        $('#dataButtons').toggle('slow', function () {
+    $('#showData').click(function() {
+        $('#dataButtons').toggle('slow', function() {
             // Animation complete.
         });
     });
     // Toggle display of schema mockup when "Show Schema" is clicked
-    $('#showSchema').click(function () {
-        $('#schema').toggle('slow', function () {});
+    $('#showSchema').click(function() {
+        $('#schema').toggle('slow', function() {});
     });
-    $('#showTables').click(function () {
-        $('#tables').toggle('slow', function () {});
+    $('#showTables').click(function() {
+        $('#tables').toggle('slow', function() {});
     });
 
     // Toggle display of definition tooltips when "Show Definitions" is clicked
@@ -30,7 +32,7 @@ $(document).ready(function () {
         }
     });
     // Handle displaying the tooltip based on whether definitions are enabled or not
-    $('body').on('mouseover focus', '.cardOption[data-toggle=tooltip]', function(e) {
+    $('body').on('mouseover focus', '.cardOption[data-toggle=tooltip]', function( e ) {
         var target;
         if ( definitionsEnabled ) {
             target = $(e.currentTarget || e.target);
@@ -50,10 +52,11 @@ $(document).ready(function () {
         }
     });
     // Handle hiding the tooltip
-    $('body').on('mouseout blur', '.cardOption[data-toggle=tooltip]', function(e) {
+    $('body').on('mouseout blur', '.cardOption[data-toggle=tooltip]', function( e ) {
         try {
             $(e.currentTarget || e.target).tooltip('hide');
-        } catch (e) {
+        }
+        catch ( e ) {
             // Tooltips may not be enabled, so ignore any exceptions thrown
         }
     });
@@ -63,8 +66,6 @@ $(document).ready(function () {
 });
 
 var idReplaceChars = /[ \\\/(*-,'"=<>?]/g;
-var correctCards = 0;
-var attempts = 0;
 var scores = {
     simple: 0,
     create: 0,
@@ -75,9 +76,13 @@ var scores = {
 };
 
 var pos = 0;
+<<<<<<< HEAD
+var correctAnswers = 0;
+=======
 var totalAnswer = 0;
 var correctAnswer = 0;
 var attempts = 0;
+>>>>>>> master
 var setNo;
 
 $(init);
@@ -276,7 +281,7 @@ var questionSet = [
         }
     ],
     [
-{
+        {
             icon: 'img/gaff_icon.png',
             description: "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
             pieces: [
@@ -468,7 +473,7 @@ var questionSet = [
         }
     ],
     [
-{
+        {
             icon: 'img/gaff_icon.png',
             description: "Gaff wants to help you learn SQL. Let's start with some easier questions. What does SQL stand for?",
             pieces: [
@@ -516,7 +521,6 @@ var questionSet = [
             herrings: [],
             group: 'CREATE'
         },
-
         {
             icon: 'img/principle_icon.png',
             description: 'Principal Parker is creating the Schools table. Build the query to define the primary key. Use the schema to help you',
@@ -633,7 +637,7 @@ var questionSet = [
 ];
 
 var commandSets = {
-    'SIMPLE': [ "LANGUAGE","SELECT", "PUT", "FROM", "Crime"],
+    'SIMPLE': ["LANGUAGE", "SELECT", "PUT", "FROM", "Crime"],
     'CREATE': ['CREATE', 'TABLE', 'VARCHAR', 'PRIMARY KEY', 'FOREIGN KEY', 'IDENTITY', 'INT', 'DECIMAL', 'NULL', 'NOT NULL', 'REFERENCES'],
     'INSERT': ['INSERT', 'INTO', 'VALUES', 'SELECT', 'FROM', 'WHERE', 'BETWEEN'],
     'RETRIEVE': ['SELECT', 'FROM', 'WHERE', 'ORDER BY', 'AND', 'OR', 'LIKE', 'DATEDIFF', 'DATEADD', 'LEFT', 'RIGHT', 'WHERE', 'BETWEEN'],
@@ -675,19 +679,18 @@ var definitions = {
 };
 
 function init() {
+    // Choose a question set at random
     setNo = Math.floor(Math.random() * questionSet.length);
 
     if ( pos >= questionSet[setNo].length ) {
-        addScores();
+        // We're at the end of the question set - time for the score!
         scoreOverall();
     }
     else {
         // Reset the game playfield
-        correctCards = 0;
-        attempts = 0;
         $('#cardPile').children().remove();
         $('#cardSlots').children().remove();
-        
+
         // Setup the question blanks and answers
         var retrievalCommands = [].concat(commandSets[questionSet[setNo][pos].group]);
         var pieces = questionSet[setNo][pos].pieces;
@@ -696,13 +699,18 @@ function init() {
         $('#image').attr('src', questionSet[setNo][pos].icon);
         $('#questionDescription').text("Move the command to the right box to complete the query");
 
+        // Loop through the question pieces, placing the static pieces and the 
+        //  answer slots based on the mask given
         for ( var i = 0, ln = pieces.length; i < ln; i++ ) {
             if ( i > mask.length || mask.charAt(i) === 'X' ) {
+                // Either we've overrun the mask length, or mask is explicitly
+                //  stating a static position
                 $('<div class="cardQuestions">' + pieces[i] + '</div>')
                         .data('fill', pieces[i])
                         .appendTo('#cardSlots');
             }
             else {
+                // Answer slot here
                 $('<div class="cardSlot"></div>')
                         .data('expected-option', pieces[i])
                         .appendTo('#cardSlots')
@@ -717,10 +725,10 @@ function init() {
                 }
             }
         }
-        
+
         var el;
         // Create the cards for the retrieval of data questions 
-        for (var i = 0; i < retrievalCommands.length; i++) {
+        for ( var i = 0; i < retrievalCommands.length; i++ ) {
             el = $('<div class="cardOption">' + retrievalCommands[i] + '</div>')
                     .data('option', retrievalCommands[i])
                     .attr('id', 'card' + retrievalCommands[i].replace(idReplaceChars, '_'))
@@ -731,18 +739,16 @@ function init() {
                         cursor: 'move',
                         revert: true
                     });
+            // If there's a corresponding definition, enable the tooltip
             if ( definitions[retrievalCommands[i]] ) {
                 el.attr('data-toggle', 'tooltip')
                         .attr('data-title', definitions[retrievalCommands[i]]);
             }
         }
-        
-        test = document.getElementById("test").addEventListener("click", checkAnswer, false);
-        document.getElementById('test').innerHTML = "Next";
-        document.getElementById('showData').innerHTML = "Show Data";
     }
 
-    function handleCardDrop(event, ui) {
+    // Handle a card being placed on the answer slot
+    function handleCardDrop( event, ui ) {
         var slot = $(this);
         var slotNumber = slot.data('expected-option');
         var cardNumber = ui.draggable.data('option');
@@ -755,8 +761,7 @@ function init() {
         ui.draggable.draggable('disable')
                 .draggable('option', 'revertDuration', 0)
                 .position({within: slot, my: 'left top', at: 'left top'});
-        attempts++;
-        
+
         // Mark the card correct or incorrect
         if ( slotNumber !== cardNumber ) {
             ui.draggable.addClass('incorrect');
@@ -764,7 +769,6 @@ function init() {
         }
         else {
             ui.draggable.addClass('correct');
-            correctCards++;
         }
 
 
@@ -776,50 +780,59 @@ function checkAnswer() {
     //  card slots, then award a point for a fully correct answer
     if ( $('.cardOption.correct').length === $('.cardSlot').length ) {
         scores[questionSet[setNo][pos].group.toLowerCase()]++;
+<<<<<<< HEAD
+        correctAnswers++;
+=======
       correctAnswer++;  
+>>>>>>> master
     }
-    totalAnswer++;
+    // Either way, we go to the next question
     pos++;
     init();
 }
 
+function scoreOverall() {
+    var total = correctAnswers;
 
-function addScores() {
-    var dataThis = {"simple":scores.simple, "create": scores.create, "insert": scores.insert, "retrieve": scores.retrieve, "summary": scores.summary, "join": scores.join_update_delete, "total": totalAnswer};
-//localStorage.setItem('data', JSON.stringify(data));
-}
-
-
-function scoreOverall(totalAnswer) {
-
-    var total = this.totalAnswer;
-
-    document.getElementById('premise').innerHTML = "You got " + total + " out of " + pos + " this time. Check out the drill down to see how you performed in each area";
-    document.getElementById('questionDescription').innerHTML = "";
+    // Change text and click handlers as needed
+    $('#premise').text("You got " + correctAnswers + " out of " + pos + " this time. Check out the drill down to see how you performed in each area");
+    $('#questionDescription').text('');
     $('#cardPile').html('');
     $('#cardSlots').html('');
-    document.getElementById('test').innerHTML = "refresh";
-    document.getElementById("test").addEventListener("click", restart, false);
-    viewData = document.getElementById("showData").addEventListener("click", dataView, false);
-    document.getElementById('showData').innerHTML = "Data Visualization";
-    document.getElementById('image').style.display = 'none'; 
-    if (total <= (pos - 3)) {
-        document.getElementById('medal').src = "img/bronze_big.png";
-    } else if (total <= (pos - 2)) {
-        document.getElementById('medal').src = "img/silver_big.png";
-    } else if (total <= (pos - 1)) {
-        document.getElementById('medal').src = "img/gold_big.png";
-    } else if (total == pos) {
-        document.getElementById('medal').src = "img/platinum_big.png";
-    } else
-        document.getElementById('medal').src = "";
+    $('#test').text("Refresh")
+            .off('click')       // Prevent firing previously placed handlers
+            .on('click', restart);
+    $("#showData").text('Data Visualization')
+            .off('click')       // Prevent firing previously placed handlers
+            .on('click', dataView);
+    $('image').hide();
+
+    // Determine which medal to "award" the player with, based on their score
+    if ( total <= (pos - 3) ) {
+        $('#medal').attr('src', "img/bronze_big.png");
+    }
+    else if ( total <= (pos - 2) ) {
+        $('#medal').attr('src', "img/silver_big.png");
+    }
+    else if ( total <= (pos - 1) ) {
+        $('#medal').attr('src', "img/gold_big.png");
+    }
+    else if ( total === pos ) {
+        $('#medal').attr('src', "img/platinum_big.png");
+    }
+    else {
+        $('#medal').attr('src', "");
+    }
+    // Provide a breakdown of how the player did on each type of question
     drillDown();
 }
 
+// Restart the game (reloads the page)
 function restart() {
     window.location.href = 'PK_test.html';
 }
 
+// Go to the Data Visualization page
 function dataView() {
     window.location.href = 'DataDashboard.html';
 }
@@ -849,7 +862,7 @@ function drillDown() {
 
     var chart = svg.append("g").attr("width", width);
 
-    x.domain([0, d3.max(data, function (d) {
+    x.domain([0, d3.max(data, function( d ) {
             return +d.score + 200;
         })])
 
@@ -858,27 +871,30 @@ function drillDown() {
     var bar = chart.selectAll("g")
             .data(data)
             .enter().append("g")
-            .attr("transform", function (d, i) {
+            .attr("transform", function( d, i ) {
                 return "translate(200," + i * barHeight + ")";
             });
 
     bar.append("rect")
-            .attr("width", function (d) {
-                return x(d.score+1) * 30;
+            .attr("width", function( d ) {
+                return x(d.score + 1) * 30;
             })
             .attr("height", barHeight - 1)
             .attr("rx", 20)
             .attr("ry", 20)
             .style({
-                'fill': function (d) {
+                'fill': function( d ) {
 
-                    if (d.score <= 0) {
+                    if ( d.score <= 0 ) {
                         return '#CD7F32';
-                    } else if (d.score == 1) {
+                    }
+                    else if ( d.score == 1 ) {
                         return '#c0c0c0';
-                    } else if (d.score == 2) {
+                    }
+                    else if ( d.score == 2 ) {
                         return '#FFD700';
-                    } else {
+                    }
+                    else {
                         return '#E5E4E2';
                     }
                     ;
@@ -889,66 +905,44 @@ function drillDown() {
 
     bar.append("text")
             .style({'fill': '#ffffff', 'font-size': 35})
-            .attr("x", function (d) {
-                return x(d.score+1) * 10;
+            .attr("x", function( d ) {
+                return x(d.score + 1) * 10;
             })
             .attr("y", barHeight / 2)
             .attr("dy", ".35em")
-            .text(function (d) {
+            .text(function( d ) {
                 return d.score;
             });
 
     bar.append("text")
             .style({"fill": "#888889", "font-size": 30})
-            .attr("x", - 120)
+            .attr("x", -120)
             .attr("y", barHeight / 2)
-            .text(function (d) {
+            .text(function( d ) {
                 return d.name;
             });
 
     bar.append("image")
-            .attr("xlink:href", function (d) {
+            .attr("xlink:href", function( d ) {
 
-                if (d.score <= 0) {
+                if ( d.score <= 0 ) {
                     return 'img/bronze_small_medal.png';
-                } else if (d.score == 1) {
+                }
+                else if ( d.score == 1 ) {
                     return 'img/silver_small_medal.png';
-                } else if (d.score == 2) {
+                }
+                else if ( d.score == 2 ) {
                     return 'img/gold_small_medal.png';
-                } else {
+                }
+                else {
                     return 'img/platinum_small_medal.png';
                 }
                 ;
             })
-            .attr("x", function (d) {
-                return x((d.score+1) * 30)-30;
+            .attr("x", function( d ) {
+                return x((d.score + 1) * 30) - 30;
             })
             .attr("y", barHeight / 10)
             .attr("width", barHeight)
             .attr("height", barHeight);
-}
-
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-function random() {
-
-    random = Math.floor((Math.random() * 3) + 0);
-    return random;
 }
