@@ -8,6 +8,10 @@
 
 /* Theme overrides (mostly colours) */
 
+html > body {
+    height: auto;
+    min-height: 100%;
+}
 a, a:hover, a:focus {
     color: #6b9aff;
 }
