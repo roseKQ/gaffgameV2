@@ -76,13 +76,10 @@ var scores = {
 };
 
 var pos = 0;
-<<<<<<< HEAD
-var correctAnswers = 0;
-=======
+
 var totalAnswer = 0;
 var correctAnswer = 0;
 var attempts = 0;
->>>>>>> master
 var setNo;
 
 $(init);
@@ -770,8 +767,6 @@ function init() {
         else {
             ui.draggable.addClass('correct');
         }
-
-
     }
 }
 
@@ -780,11 +775,7 @@ function checkAnswer() {
     //  card slots, then award a point for a fully correct answer
     if ( $('.cardOption.correct').length === $('.cardSlot').length ) {
         scores[questionSet[setNo][pos].group.toLowerCase()]++;
-<<<<<<< HEAD
-        correctAnswers++;
-=======
       correctAnswer++;  
->>>>>>> master
     }
     // Either way, we go to the next question
     pos++;
