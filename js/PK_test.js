@@ -829,46 +829,54 @@ function drillDown() {
     var parentEl = $('#drillDown');
 
     var data = [
-        {name: "simple", score: scores.simple},
-        {name: "create", score: scores.create},
-        {name: "insert", score: scores.insert},
-        {name: "retrieve", score: scores.retrieve},
-        {name: "summary", score: scores.summary},
-        {name: "join", score: scores.join_update_delete}
+        {name: "Simple", score: scores.simple},
+        {name: "Create", score: scores.create},
+        {name: "Insert", score: scores.insert},
+        {name: "Retrieve", score: scores.retrieve},
+        {name: "Summary", score: scores.summary},
+        {name: "Join", score: scores.join_update_delete}
     ];
 
+    // Miscellaneous variables we need for the graph
     var width = parentEl.width(),
-            barHeight = 70,
-            height = barHeight * data.length;
+            legendWidth = 120,
+            barHeight = 60,
+            paddingY = 5,
+            lineHeight = barHeight + ( 2 * paddingY ),
+            height = lineHeight * data.length;
 
-    var x = d3.scale.linear()
-            .range([0, width]);
-
-
+    // Set the image height and width
     var svg = d3.select("#drillDown").append("svg")
             .attr("width", width)
             .attr("height", height);
-
+    // Same with the chart group
     var chart = svg.append("g")
             .attr("width", width)
             .attr('height', height);
-
-    x.domain([0, d3.max(data, function( d ) {
-            return +d.score + 200;
-        })]);
+    // Create a scale that we'll use to determine the length of a bar, based
+    //  on the score acheived
+    var barX = d3.scale.linear()
+            .range([0, width - legendWidth - (barHeight / 2)])
+            .domain([-1, d3.max(data, function( d ) {
+                    return d.score;
+                })
+            ]);
 
     var bar = chart.selectAll("g")
             .data(data)
             .enter().append("g")
             .attr("transform", function( d, i ) {
-                return "translate(200," + i * barHeight + ")";
+                return "translate(0," + i * lineHeight + ")";
             });
 
+    // Create the bar parts of the chart
     bar.append("rect")
+            .attr('x', legendWidth)
+            .attr('y', paddingY)
             .attr("width", function( d ) {
-                return x(d.score + 1) * 30;
+                return barX(d.score);
             })
-            .attr("height", barHeight - 1)
+            .attr("height", barHeight)
             .attr("rx", 20)
             .attr("ry", 20)
             .style({
@@ -887,51 +895,53 @@ function drillDown() {
                         return '#E5E4E2';
                     }
                     ;
-                },
-                'stroke': '#ffffff',
-                'stroke-width': '10'
+                }
             });
 
+    // Add the text score
     bar.append("text")
+            // TODO: Improve readability - different colour, text shadow?
             .style({'fill': '#ffffff', 'font-size': 35})
             .attr("x", function( d ) {
-                return x(d.score + 1) * 10;
+                // Display the text in the middle of the bar, lengthwise
+                return barX(d.score) / 2 + legendWidth;
             })
-            .attr("y", barHeight / 2)
+            .attr("y", barHeight / 2 + paddingY)
             .attr("dy", ".35em")
             .text(function( d ) {
                 return d.score;
             });
 
+    // Add the legend text
     bar.append("text")
-            .style({"fill": "#888889", "font-size": 30})
-            .attr("x", -120)
-            .attr("y", barHeight / 2)
+            .style({"fill": "#888889", "font-size": 40})
+            .attr("x", 0)
+            .attr("y", barHeight / 2 + paddingY)
+            .attr("dy", ".35em")
             .text(function( d ) {
                 return d.name;
             });
 
+    // Add the medal image for the score
     bar.append("image")
             .attr("xlink:href", function( d ) {
-
                 if ( d.score <= 0 ) {
                     return 'img/bronze_small_medal.png';
                 }
-                else if ( d.score == 1 ) {
+                else if ( d.score === 1 ) {
                     return 'img/silver_small_medal.png';
                 }
-                else if ( d.score == 2 ) {
+                else if ( d.score === 2 ) {
                     return 'img/gold_small_medal.png';
                 }
                 else {
                     return 'img/platinum_small_medal.png';
                 }
-                ;
             })
             .attr("x", function( d ) {
-                return x((d.score + 1) * 30) - 30;
+                return barX(d.score) + legendWidth - (barHeight / 2);
             })
-            .attr("y", barHeight / 10)
+            .attr("y", paddingY)
             .attr("width", barHeight)
             .attr("height", barHeight);
 }
