@@ -793,7 +793,7 @@ function scoreOverall() {
     $("#showData").text('Data Visualization')
             .off('click')       // Prevent firing previously placed handlers
             .on('click', dataView);
-    $('image').hide();
+    $('#image').hide();
 
     // Determine which medal to "award" the player with, based on their score
     if ( total <= (pos - 3) ) {
@@ -826,6 +826,7 @@ function dataView() {
 }
 
 function drillDown() {
+    var parentEl = $('#drillDown');
 
     var data = [
         {name: "simple", score: scores.simple},
@@ -836,9 +837,9 @@ function drillDown() {
         {name: "join", score: scores.join_update_delete}
     ];
 
-    var width = 1200,
-            height = 600,
-            barHeight = 70;
+    var width = parentEl.width(),
+            barHeight = 70,
+            height = barHeight * data.length;
 
     var x = d3.scale.linear()
             .range([0, width]);
@@ -848,13 +849,13 @@ function drillDown() {
             .attr("width", width)
             .attr("height", height);
 
-    var chart = svg.append("g").attr("width", width);
+    var chart = svg.append("g")
+            .attr("width", width)
+            .attr('height', height);
 
     x.domain([0, d3.max(data, function( d ) {
             return +d.score + 200;
-        })])
-
-    chart.attr("height", barHeight * data.length * 10);
+        })]);
 
     var bar = chart.selectAll("g")
             .data(data)
