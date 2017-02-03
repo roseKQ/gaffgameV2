@@ -61,6 +61,12 @@ section.features .feature-item i {
 section.cta {
     background-image: url("../img/startup-photos.jpg");
 }
+
+.tooltip{
+
+    font-size:16px;
+}
+
 .bg-primary {
     background: url("../theme/img/bg-pattern.png"), #00ddec;
     background: url("../theme/img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
@@ -143,7 +149,7 @@ section#about {
     max-width:100%;
 }
 
-/*Eamonn's styling stuff for querySQL page*/
+
 
 /* Main content area */
 
