@@ -1,130 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
 
-        <title>gaff game </title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <!-- Bootstrap Core CSS -->
-        <link href="theme/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>gaff game </title>
 
-        <!-- Custom Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="theme/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Plugin CSS -->
-        <link rel="stylesheet" href="theme/vendor/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="theme/vendor/simple-line-icons/css/simple-line-icons.css">
-        <link rel="stylesheet" href="theme/vendor/device-mockups/device-mockups.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/codemirror.css">
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
-        <!-- Theme CSS -->
-        <link href="theme/css/new-age.min.css" rel="stylesheet">
-        <link href="css/new-age-plus.css" rel="stylesheet">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="theme/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="theme/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="theme/vendor/device-mockups/device-mockups.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/codemirror.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+    <!-- Theme CSS -->
+    <link href="theme/css/new-age.min.css" rel="stylesheet">
+    <link href="css/new-age-plus.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-    </head>
+</head>
 
-    <body id="page-top" class="bg-primary">
+<body id="page-top" class="bg-primary">
 
-        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand page-scroll" href="/#page-top">Gaff Game</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a class="page-scroll" href="/#download">About</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="/#features">Features</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="/#contact">Play</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+                <a class="navbar-brand page-scroll" href="/#page-top">Gaff Game</a>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
 
-        <main class="text-center">
-            <div class="container">
-                <div class="chartSQL">
-                    <h1>SQL Practice</h1>
-                    <p>Enter your SQL here:</p>
-                    <div class="text-left">
-                        <textarea id="userInput"></textarea>
-                    </div>
-                    <div>
-                        <button id="execute" class="btn btn-default">
-                            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-                            Execute
-                        </button>
-                    </div>
-
-                    <p>Results:</p>
-                    <pre id="errorResult" style="display: none"></pre>
-                    <div id="queryResult"></div>
-                    <div class="btn-container">
-                        <a href="PK_test.html" class="btn btn-outline btn-xl">Back</a>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <div class="container">
-                <p>&copy; 2016 Gaff Game. All Rights Reserved.</p>
-                <ul class="list-inline">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">Privacy</a>
+                        <a class="page-scroll" href="/#download">About</a>
                     </li>
                     <li>
-                        <a href="#">Terms</a>
+                        <a class="page-scroll" href="/#features">Features</a>
                     </li>
                     <li>
-                        <a href="#">FAQ</a>
+                        <a class="page-scroll" href="/#contact">Play</a>
                     </li>
                 </ul>
             </div>
-        </footer>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
-        <!-- jQuery -->
-        <script src="theme/vendor/jquery/jquery.min.js"></script>
+    <main class="text-center">
+        <div class="container">
+            <div class="chartSQL">
+                <h1>SQL Practice</h1>
+                <p>Gaff has prewritten some SQL to create the Schools table.<br> Execute this SQL to see what it outputs then practice writing your own queries</p><br>
+                <p>Enter your SQL here:</p>
+                <div class="text-left">
+                    <textarea id="userInput">
+DROP TABLE IF EXISTS Schools;
+CREATE TABLE Schools(Name VARCHAR(30), Address VARCHAR(30), Postcode VARCHAR(7), SchoolID INTEGER PRIMARY KEY AUTOINCREMENT, Latitude DECIMAL(1,4), Longitude DECIMAL(2,3), SchoolType VARCHAR(30), SchoolPopulation INT);
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="theme/vendor/bootstrap/js/bootstrap.min.js"></script>
+INSERT INTO Schools (Name, Address, Postcode, Latitude, Longitude, SchoolType, SchoolPopulation) VALUES ('Glengormley Primary', '166 Church Rd', 'BT366HJ', -5.9558, 54.670, 'Controlled Integrated Primary', 180);
+INSERT INTO Schools (Name, Address, Postcode, Latitude, Longitude, SchoolType, SchoolPopulation) VALUES ('St. Brides Primary', '36 Derryvolgie Avenue', 'BT96FP', -5.9437, 54.579, 'Catholic Maintained Primary', 250);
+INSERT INTO Schools (Name, Address, Postcode, Latitude, Longitude, SchoolType, SchoolPopulation) VALUES ('Royal Belfast Academical Institution', 'College Square East', 'BT16DL', -5.9364, 54.597, 'Grammar', 1200);
+INSERT INTO Schools (Name, Address, Postcode, Latitude, Longitude, SchoolType, SchoolPopulation) VALUES ('Bunscoil Mhic Reachtain', '10A Lancaster Street', 'BT151EZ', -5.9286, 54.605, 'Irish Medium Primary', 85);
+INSERT INTO Schools (Name, Address, Postcode, Latitude, Longitude, SchoolType, SchoolPopulation) VALUES ('Belfast High School', '740 Shore Road', 'BT370PX', -5.8764, 54.686, 'Controlled Secondary', 960);
 
-        <!-- Plugin JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <!-- REDUNDANT <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/codemirror.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/mode/sql/sql.js"></script>
-        <script src="vendor/sql.js/worker.sql.js"></script>
+SELECT * FROM Schools;
+                        </textarea>
+                </div>
+                <div>
+                    <button id="execute" class="btn btn-default">
+                            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                            Execute
+                        </button>
+                </div>
 
-        <!-- Theme JavaScript -->
-        <script src="theme/js/new-age.min.js"></script>
+                <p>Results:</p>
+                <pre id="errorResult" style="display: none"></pre>
+                <div id="queryResult"></div>
+                <div class="btn-container">
+                    <a href="PK_test.html" class="btn btn-outline btn-xl">Back</a>
+                </div>
+            </div>
+        </div>
+    </main>
 
-        <script src="js/sql_practice.js"></script>
-    </body>
+    <footer>
+        <div class="container">
+            <p>&copy; 2016 Gaff Game. All Rights Reserved.</p>
+            <ul class="list-inline">
+                <li>
+                    <a href="#">Privacy</a>
+                </li>
+                <li>
+                    <a href="#">Terms</a>
+                </li>
+                <li>
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="theme/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="theme/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <!-- REDUNDANT <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.6.0/mode/sql/sql.js"></script>
+    <script src="vendor/sql.js/worker.sql.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="theme/js/new-age.min.js"></script>
+
+    <script src="js/sql_practice.js"></script>
+</body>
+
 </html>
