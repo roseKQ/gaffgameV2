@@ -825,6 +825,14 @@ function dataView() {
     window.location.href = 'DataDashboard.html';
 }
 
+function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+}
+
 function drillDown() {
 
     var data = [
@@ -934,3 +942,5 @@ function drillDown() {
             .attr("width", barHeight)
             .attr("height", barHeight);
 }
+
+

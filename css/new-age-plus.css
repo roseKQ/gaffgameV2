@@ -79,6 +79,60 @@ section.cta {
     background-color: #888889;
     border-color: #ffffff;
 }
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(89, 127, 165);
+    background-color: rgba(89, 127, 165, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+   
+}
+
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    
+    text-align: center;
+    padding: 15px 32px;
+    width: 180px;
+    margin: auto;
+    top: 50%;
+    right: 50%;
+    font-size: 30px;
+    display: block;
+    color: rgb(89, 127, 165);
+    background-color: #ffffff;
+
+        
+}
+
 /* End of theme overrides */
 
 main {
