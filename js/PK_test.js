@@ -836,13 +836,16 @@ function drillDown() {
         {name: "Summary", score: scores.summary},
         {name: "Join", score: scores.join_update_delete}
     ];
+    var maxScore = d3.max(data, function( d ) {
+        return d.score;
+    });
 
     // Miscellaneous variables we need for the graph
-    var width = parentEl.width(),
-            legendWidth = 120,
+    var legendWidth = 120,
             barHeight = 60,
             paddingY = 5,
-            lineHeight = barHeight + ( 2 * paddingY ),
+            lineHeight = barHeight + ( 2 * paddingY );
+    var width = Math.max(parentEl.width(), 2 * legendWidth),
             height = lineHeight * data.length;
 
     // Set the image height and width
@@ -857,10 +860,7 @@ function drillDown() {
     //  on the score acheived
     var barX = d3.scale.linear()
             .range([0, width - legendWidth - (barHeight / 2)])
-            .domain([-1, d3.max(data, function( d ) {
-                    return d.score;
-                })
-            ]);
+            .domain([-1, maxScore]);
 
     var bar = chart.selectAll("g")
             .data(data)
@@ -871,6 +871,7 @@ function drillDown() {
 
     // Create the bar parts of the chart
     bar.append("rect")
+            .attr('class', 'result')
             .attr('x', legendWidth)
             .attr('y', paddingY)
             .attr("width", function( d ) {
@@ -900,6 +901,7 @@ function drillDown() {
 
     // Add the text score
     bar.append("text")
+            .attr('class', 'score')
             // TODO: Improve readability - different colour, text shadow?
             .style({'fill': '#ffffff', 'font-size': 35})
             .attr("x", function( d ) {
@@ -924,6 +926,7 @@ function drillDown() {
 
     // Add the medal image for the score
     bar.append("image")
+            .attr('class', 'medal-img')
             .attr("xlink:href", function( d ) {
                 if ( d.score <= 0 ) {
                     return 'img/bronze_small_medal.png';
@@ -944,4 +947,33 @@ function drillDown() {
             .attr("y", paddingY)
             .attr("width", barHeight)
             .attr("height", barHeight);
+
+    var resizeChart = function() {
+        var newWidth = Math.max(parentEl.width(), 2 * legendWidth);
+        var newBarX = d3.scale.linear()
+                .range([0, newWidth - legendWidth - (barHeight / 2)])
+                .domain([-1, maxScore]);
+
+        // Resize the overall svg and chart groups
+        parentEl.find('svg')
+                .attr('width', newWidth);
+        chart.attr('width', newWidth);
+
+        // Select and resize the bars
+        chart.selectAll('rect.result')
+                .attr('width', function( d ) {
+                    return newBarX(d.score);
+                });
+        
+        // Select and reposition the score text and medal images
+        chart.selectAll('text.score')
+                .attr('x', function( d ) {
+                    return newBarX(d.score) / 2 + legendWidth;
+                });
+        chart.selectAll('image.medal-img')
+                .attr('x', function( d ) {
+                    return newBarX(d.score) + legendWidth - (barHeight / 2);
+                });
+    };
+    $(window).on('resize', resizeChart);
 }
