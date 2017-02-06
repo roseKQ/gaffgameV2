@@ -36,6 +36,19 @@
 
     <body id="page-top" class="bg-primary">
 
+<div id="myNav" class="overlay">
+  
+  <div class="overlay-content">
+    <p>Drag and drop the commands to build the query</p>
+    <p>Use the 'Show Data' button to see the schema and tables</p>
+    <p>Click on 'Show Definition' and hover over commands to help you</p>
+    <p>Click on 'Practice' to write your own SQL and test it</p>
+      <p>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">GOT IT</a></p>
+  </div>
+
+</div>
+
         <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -76,7 +89,7 @@
                     <p id="questionDescription"></p>
                     <div id="cardSlots" class="clearfix"></div>
                     <div id="cardPile" class="clearfix"></div>
-                    <div class="drillDown" id = "drillDown" style="float:left;"></div>
+                    <div class="drillDown" id="drillDown"></div>
                     <div id="dataTest" class="dataTest hidden">
                         <img src="img/PK_table-01.png" alt="table" width="700">
                     </div>
