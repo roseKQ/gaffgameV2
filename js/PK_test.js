@@ -732,7 +732,8 @@ function init() {
                         stack: '#cardPile div',
                         cursor: 'move',
                         revert: true
-                    });
+                    })
+                    .on('click', handleCardClick);
             // If there's a corresponding definition, enable the tooltip
             if ( definitions[retrievalCommands[i]] ) {
                 el.attr('data-toggle', 'tooltip')
@@ -743,26 +744,50 @@ function init() {
 
     // Handle a card being placed on the answer slot
     function handleCardDrop( event, ui ) {
-        var slot = $(this);
+        checkCardMatch(this, ui.draggable);
+    }
+
+    // Handle an option card being clicked (mobile users cannot click and drag)
+    function handleCardClick( event ) {
+        // First, we must find the first empty card slot
+        var cardSlots = $('.cardSlot');
+        var slot;
+        for ( var x = 0, ln = cardSlots.length; x < ln; x++ ) {
+            if ( !$(cardSlots[x]).hasClass('filled') ) {
+                slot = cardSlots[x];
+                break;
+            }
+        }
+        // The slot variable is empty if there are no empty slots - don't bother
+        //  looking for a match on the clicked card, as there's nowhere to put it
+        if ( slot ) {
+            // Do the magic
+            checkCardMatch(slot, this);
+        }
+    }
+
+    function checkCardMatch( slot, card ) {
+        slot = $(slot);
+        card = $(card);
         var slotNumber = slot.data('expected-option');
-        var cardNumber = ui.draggable.data('option');
+        var cardNumber = card.data('option');
 
         // Move the card into the slot, disabling the drop target of the slot
         //  as well as the dragging of the card
-        slot.append(ui.draggable)
+        slot.append(card)
                 .droppable('disable')
                 .addClass('filled');
-        ui.draggable.draggable('disable')
+        card.draggable('disable')
                 .draggable('option', 'revertDuration', 0)
                 .position({within: slot, my: 'left top', at: 'left top'});
 
         // Mark the card correct or incorrect
         if ( slotNumber !== cardNumber ) {
-            ui.draggable.addClass('incorrect');
+            card.addClass('incorrect');
             $('#card' + slotNumber.replace(idReplaceChars, '_')).addClass('correct');
         }
         else {
-            ui.draggable.addClass('correct');
+            card.addClass('correct');
         }
     }
 }
