@@ -65,7 +65,7 @@ $(document).ready(function() {
     $('.hidden').hide().removeClass('hidden');
 });
 
-var idReplaceChars = /[ \\\/(*-,'"=<>?]/g;
+var idReplaceChars = /[ \\\/(*-,'"=<>?])/g;
 var scores = {
     simple: 0,
     create: 0,
