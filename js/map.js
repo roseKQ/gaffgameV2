@@ -1,3 +1,4 @@
+/* global L */
 $(document).ready(function() {
     // Initial map setup
     var accessToken = 'pk.eyJ1Ijoicm9zZWtxIiwiYSI6ImNpdmNhb3JrNzAwNWwyenBmMDN1a2g0NXAifQ.Cx7hjZVb009fCALAGxO6ng';
@@ -10,6 +11,7 @@ $(document).ready(function() {
     var map = L.map('map')
             .addLayer(mapboxTiles)
             .setView([54.5733, -5.9340], 15);
+    var familyMarker;
     var controlLayers = L.control.layers().addTo(map);
 
     // Handler for playground marker setup
@@ -65,6 +67,7 @@ $(document).ready(function() {
 
     // Add the geoJSON layer for each dataset
     // These datasets are all specified by 'data/{setname}.json'
+    /*
     var playgroundLayer = L.geoJson(playgrounds, {
         onEachFeature: doPlaygroundMarker
     }).addTo(map);
@@ -79,5 +82,39 @@ $(document).ready(function() {
     controlLayers.addOverlay(playgroundLayer, 'Children Playgrounds');
     controlLayers.addOverlay(schoolLayer, 'Schools');
     controlLayers.addOverlay(crimeLayer, 'Crime');
+    */
+    
+    // Add listener to postcode form and search button
+    $('.address-form').on('submit', function(e) {
+        var postcode = $(this).find('#postcode').val();
+        $.ajax({
+            url: 'https://api.postcodes.io/postcodes/' + encodeURI(postcode),
+            success: function callback(response, status, jqXHR) {
+                var pos = L.latLng(response.result.latitude, response.result.longitude);
+                if ( familyMarker ) {
+                    familyMarker.setLatLng(pos);
+                }
+                else {
+                    familyMarker = L.marker(pos, {draggable: true}).addTo(map);
+                    familyMarker.on('move', handleMarkerMove);
+                    displayLocalFeatures(pos);
+                }
+                map.panTo(pos);
+            },
+            error: function() {
+                console.log('error occured');
+            }
+        });
+        
+        e.preventDefault();
+    });
 
+    function handleMarkerMove( newLatLng ) {
+        console.log('I moved!', arguments);
+        displayLocalFeatures(newLatLng);
+    };
+
+    function displayLocalFeatures( position ) {
+        // TODO: Filter schools, playgrounds, and crime by 1 mile radius to display on map
+    };
 });

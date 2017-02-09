@@ -189,9 +189,21 @@ section#about {
     box-shadow: 10px 10px 5px #888888;
 }
 
+.map-container {
+    position: relative;
+}
+
+.map-controls {
+    left: 1em;
+    position: absolute;
+    top: 1em;
+    z-index: 50;
+}
+
 #map {
     margin-bottom: 20px;
     min-height: 80vh;
+    z-index: 1;
 }
 
 .inline-img {
