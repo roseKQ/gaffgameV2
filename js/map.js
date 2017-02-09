@@ -79,5 +79,4 @@ $(document).ready(function() {
     controlLayers.addOverlay(playgroundLayer, 'Children Playgrounds');
     controlLayers.addOverlay(schoolLayer, 'Schools');
     controlLayers.addOverlay(crimeLayer, 'Crime');
-
 });
