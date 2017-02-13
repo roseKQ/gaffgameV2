@@ -1,22 +1,67 @@
 /* global L */
+/* global schools, playgrounds */
 $(document).ready(function() {
     // Initial map setup
-    var accessToken = 'pk.eyJ1Ijoicm9zZWtxIiwiYSI6ImNpdmNhb3JrNzAwNWwyenBmMDN1a2g0NXAifQ.Cx7hjZVb009fCALAGxO6ng';
-    var mapboxTiles = L.tileLayer(
-        'https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + accessToken,
-        {
-            attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }
-    );
-    var map = L.map('map')
-            .addLayer(mapboxTiles)
-            .setView([54.5733, -5.9340], 15);
     var featureRadius = 2200;   // Radius, in metres, to display features
     var familyMarker, playgroundLayer, schoolLayer, crimeLayer;
-    var controlLayers = L.control.layers().addTo(map);
+    var map, controlLayers;
 
-    // Handler for playground marker setup
-    var doPlaygroundMarker = function(feature, layer) {
+    function init() {
+        var initialLatLng = L.latLng(54.5733, -5.9340);
+        var accessToken = 'pk.eyJ1Ijoicm9zZWtxIiwiYSI6ImNpdmNhb3JrNzAwNWwyenBmMDN1a2g0NXAifQ.Cx7hjZVb009fCALAGxO6ng';
+        var mapboxTiles = L.tileLayer(
+            'https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + accessToken,
+            {
+                attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }
+        );
+        map = L.map('map')
+                .addLayer(mapboxTiles)
+                .setView(initialLatLng, 15);
+        map.zoomControl.setPosition('bottomleft');
+        controlLayers = L.control.layers().addTo(map);
+        
+        // Add the geoJSON layer for each dataset
+        // These datasets are all specified by 'data/{setname}.json'
+        playgroundLayer = L.geoJson(false, { onEachFeature: doPlaygroundMarker }).addTo(map);
+        schoolLayer = L.geoJson(false, { onEachFeature: doSchoolsMarker }).addTo(map);
+        crimeLayer = L.featureGroup().addTo(map);
+        
+        // Add a control overlay to enable filtering
+        controlLayers.addOverlay(playgroundLayer, 'Children Playgrounds');
+        controlLayers.addOverlay(schoolLayer, 'Schools');
+        controlLayers.addOverlay(crimeLayer, 'Crime');
+        
+        // Add listener to postcode form and search button
+        $('.address-form').on('submit', function(e) {
+            var postcode = $(this).find('#postcode').val();
+            $('#postcode-error').hide();
+            $.ajax({
+                url: 'https://api.postcodes.io/postcodes/' + encodeURI(postcode),
+                success: handlePostcodeResponse,
+                error: handlePostcodeError
+            });
+            
+            e.preventDefault();
+        });
+
+        // Hide any elements with the "hidden" class attached
+        $('.hidden').hide().removeClass('hidden');
+
+        // Instantiate the family marker, place it on the map, and add listeners
+        //  for moving/dragging.
+        familyMarker = L.marker(initialLatLng, {draggable: true}).addTo(map);
+        familyMarker.on('move movestart moveend', handleMarkerMove);
+        displayLocalFeatures(initialLatLng);
+    };
+
+    /**
+     * Handler for playground marker setup
+     * 
+     * @param {object} feature
+     * @param {L.marker} layer
+     */
+    function doPlaygroundMarker( feature, layer ) {
         var popupOptions = {width: 200};
         var popupContent = 'Playground';
         if ( feature.properties && feature.properties.NAME ) {
@@ -32,8 +77,13 @@ $(document).ready(function() {
         layer.setIcon(icon);
     };
 
-    // Handler for school marker setup
-    var doSchoolsMarker = function(feature, layer) {
+    /**
+     * Handler for school marker setup
+     * 
+     * @param {object} feature
+     * @param {L.marker} layer
+     */
+    function doSchoolsMarker( feature, layer ) {
         var popupOptions = {width: 200};
         var popupContent = 'School';
         if ( feature.properties && feature.properties.CENTRE_NAME ) {
@@ -48,65 +98,54 @@ $(document).ready(function() {
         layer.bindPopup(popupContent, popupOptions);
         layer.setIcon(icon);
     };
-
-    // Handler for crime marker setup
-    var doCrimeMarker = function(feature, layer) {
-        var popupOptions = {width: 200};
-        var popupContent = 'Crime';
-        if ( feature.properties && feature.properties['Crime type'] ) {
-            popupContent = feature.properties['Crime type'];
-        }
-        var icon = new L.icon({
-            iconUrl: 'lib/leaflet/images/crime_icon.png',
-            iconSize: [54, 67],
-            popupAnchor: [0, -30]
-        });
-
-        layer.bindPopup(popupContent, popupOptions);
-        layer.setIcon(icon);
+    
+    /**
+     * Handle the response returned by the post code geolocation service.
+     * 
+     * @param {object} response
+     * @param {string} status
+     * @param {object} jqXHR
+     */
+    function handlePostcodeResponse( response, status, jqXHR ) {
+        var pos = L.latLng(response.result.latitude, response.result.longitude);
+        // Marker already exists, so we just move it to the new location
+        familyMarker.setLatLng(pos);
+        map.panTo(pos);
     };
 
-    // Add the geoJSON layer for each dataset
-    // These datasets are all specified by 'data/{setname}.json'
-    playgroundLayer = L.geoJson(false, { onEachFeature: doPlaygroundMarker }).addTo(map);
-    schoolLayer = L.geoJson(false, { onEachFeature: doSchoolsMarker }).addTo(map);
-    crimeLayer = L.featureGroup().addTo(map);
-    
-    // Add a control overlay to enable filtering
-    controlLayers.addOverlay(playgroundLayer, 'Children Playgrounds');
-    controlLayers.addOverlay(schoolLayer, 'Schools');
-    controlLayers.addOverlay(crimeLayer, 'Crime');
-    
-    // Add listener to postcode form and search button
-    $('.address-form').on('submit', function(e) {
-        var postcode = $(this).find('#postcode').val();
-        $.ajax({
-            url: 'https://api.postcodes.io/postcodes/' + encodeURI(postcode),
-            success: function callback(response, status, jqXHR) {
-                var pos = L.latLng(response.result.latitude, response.result.longitude);
-                if ( familyMarker ) {
-                    familyMarker.setLatLng(pos);
-                }
-                else {
-                    familyMarker = L.marker(pos, {draggable: true}).addTo(map);
-                    familyMarker.on('move', handleMarkerMove);
-                    displayLocalFeatures(pos);
-                }
-                map.panTo(pos);
-            },
-            error: function() {
-                console.log('error occured');
-            }
-        });
-        
-        e.preventDefault();
-    });
+    /**
+     * Display an error message when the postcode API cannot find the post code,
+     *  or another error occurs.
+     * 
+     */
+    function handlePostcodeError() {
+        $('#postcode-error').text('The given postcode could not be found.').show();
+    };
 
+    /**
+     * Handle the user moving/dragging the marker.
+     * 
+     * @param {Event} e
+     */
     function handleMarkerMove( e ) {
-        //console.log('I moved!', arguments);
-        displayLocalFeatures(e.latlng);
+        if ( e.type === 'movestart' ) {
+            e.target.isDragging = true;
+        }
+        else if ( e.type === 'moveend' ) {
+            e.target.isDragging = false;
+            displayLocalFeatures(e.target.getLatLng());
+        }
+        else if ( e.type === 'move' && !e.target.isDragging ) {
+            displayLocalFeatures(e.latlng);
+        }
     };
 
+    /**
+     * Place markers on the map for features within a defined radius, including
+     *  crimes, which we need to make an API call to retrieve.
+     * 
+     * @param {L.latLng} position
+     */
     function displayLocalFeatures( position ) {
         // TODO: Filter schools, playgrounds, and crime by 1 mile radius to display on map
         var filteredSchools = filterGeoJSONFeatures(schools, position);
@@ -129,6 +168,14 @@ $(document).ready(function() {
         });
     };
 
+    /**
+     * Filter a set of GeoJSON features (playgrounds, schools) and return only 
+     *  those within the defined radius around the given point.
+     * 
+     * @param {array} data
+     * @param {L.latLng} pos
+     * @returns {array}
+     */
     function filterGeoJSONFeatures( data, pos ) {
         var filtered = {
             "type": "FeatureCollection",
@@ -149,6 +196,13 @@ $(document).ready(function() {
         return filtered;
     };
 
+    /**
+     * Handle the response from the Crime API
+     * 
+     * @param {array} crimes
+     * @param {string} status
+     * @param {object} jqXHR
+     */
     function handleCrimeAPIResponse( crimes, status, jqXHR ) {
         var icon = new L.icon({
             iconUrl: 'lib/leaflet/images/crime_icon.png',
@@ -156,14 +210,13 @@ $(document).ready(function() {
             popupAnchor: [0, -30]
         });
         var popupOptions = {width: 200};
-        var popupContent = 'Crime';
-        /* TODO: Crime categories need "translation"
-        if ( feature.properties && feature.properties['Crime type'] ) {
-            popupContent = feature.properties['Crime type'];
-        }*/
-        var marker, position;
+        var popupContent, marker, position;
 
         for ( var x = 0, ln = crimes.length; x < ln; x++ ) {
+            popupContent = 'Crime';
+            if ( crimes[x].category ) {
+                popupContent = capitaliseString(crimes[x].category.replace('-', ' '));
+            }
             // Create a marker for each crime event within the area
             position = crimes[x].location;
             marker = L.marker([position.latitude, position.longitude], {
@@ -173,4 +226,26 @@ $(document).ready(function() {
             crimeLayer.addLayer(marker);
         }
     };
+
+    /**
+     * Capitalise the beginning of each word in a sentance.
+     * 
+     * @param {string} str
+     * @returns {string}
+     */
+    function capitaliseString( str ) {
+        var parts;
+        if ( ( !str.split || !str.length) ) {
+            throw "First argument must be a string.";
+        }
+
+        parts = str.split(' ');
+        for ( var x = 0, ln = parts.length; x < ln; x++ ) {
+            parts[x] = parts[x].substr(0, 1).toUpperCase() + parts[x].substr(1).toLowerCase();
+        }
+
+        return parts.join(' ');
+    };
+
+    init();
 });
