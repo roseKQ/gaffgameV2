@@ -780,6 +780,7 @@ function init() {
         card.draggable('disable')
                 .draggable('option', 'revertDuration', 0)
                 .position({within: slot, my: 'left top', at: 'left top'});
+        card.off('click', handleCardClick);
 
         // Mark the card correct or incorrect
         if ( slotNumber !== cardNumber ) {
