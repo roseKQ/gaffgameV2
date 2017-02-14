@@ -215,7 +215,7 @@ $(document).ready(function() {
         for ( var x = 0, ln = crimes.length; x < ln; x++ ) {
             popupContent = 'Crime';
             if ( crimes[x].category ) {
-                popupContent = capitaliseString(crimes[x].category.replace('-', ' '));
+                popupContent = naturalizeCategoryString(crimes[x].category);
             }
             // Create a marker for each crime event within the area
             position = crimes[x].location;
@@ -263,18 +263,19 @@ $(document).ready(function() {
     }
 
     /**
-     * Capitalise the beginning of each word in a sentance.
+     * Crime categories are strings such as "anti-social-behaviour". This function
+     *  replaces the '-' characters with spaces, and capitalises each word.
      * 
      * @param {string} str
      * @returns {string}
      */
-    function capitaliseString( str ) {
+    function naturalizeCategoryString( str ) {
         var parts;
         if ( ( !str.split || !str.length) ) {
             throw "First argument must be a string.";
         }
 
-        parts = str.split(' ');
+        parts = str.split('-');
         for ( var x = 0, ln = parts.length; x < ln; x++ ) {
             parts[x] = parts[x].substr(0, 1).toUpperCase() + parts[x].substr(1).toLowerCase();
         }
