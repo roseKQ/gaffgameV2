@@ -189,9 +189,33 @@ section#about {
     box-shadow: 10px 10px 5px #888888;
 }
 
+.map-container {
+    position: relative;
+}
+
+.map-controls {
+    left: 1em;
+    position: absolute;
+    top: 0;
+    z-index: 50;
+}
+
+#postcode {
+    box-shadow: 4px 4px 5px #444444;
+    margin-top: 1em;
+    padding: 6px 12px;
+}
+
+#postcode-error {
+    background-color: #ffffff;
+    box-shadow: 4px 4px 5px #444444;
+    padding: 6px 12px;
+}
+
 #map {
     margin-bottom: 20px;
     min-height: 80vh;
+    z-index: 1;
 }
 
 .inline-img {
