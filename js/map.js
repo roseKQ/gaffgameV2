@@ -225,8 +225,42 @@ $(document).ready(function() {
             marker.bindPopup(popupContent, popupOptions);
             crimeLayer.addLayer(marker);
         }
+        
+        createPieChart(crimes);
+
     };
 
+    function createPieChart(crimes) {
+
+        var crimes = crimes;
+
+        console.log(crimes);
+
+        var crimeSummary = d3.nest().key(function (d) { return d.category; }).rollup(function (v) { return v.length; }).entries(crimes);
+
+        console.log(JSON.stringify(crimeSummary));
+
+        var width = 300;
+        var height = 300;
+        var radius = Math.min(width, height) / 2;
+
+        var arc = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius);
+
+        var canvas = d3.select("#crime-piechart")
+            .append("canvas")
+            .attr("width", width)
+            .attr("height", height)
+            .append('g').attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+
+
+
+
+
+        //do everything inside this function including d3 nest & pie chart
+
+    }
 
     /**
      * Capitalise the beginning of each word in a sentance.
