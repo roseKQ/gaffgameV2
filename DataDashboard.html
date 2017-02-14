@@ -84,7 +84,17 @@
                         <img src="lib/leaflet/images/school_icon.png" class="inline-img" alt="School icon" data-toggle="tooltip" title="This is the schools icon">
                         <img src="lib/leaflet/images/slide.png" class="inline-img" alt="Playground icon" data-toggle="tooltip" title="This is the playground icon">
                     </div> 
-                    <div id="map"></div>
+                    <div class="map-container">
+                        <div class="map-controls">
+                            <form class="address-form" role="form">
+                                <label class="sr-only" for="postcode">Postcode</label>
+                                <input type="text" id="postcode" name="postcode" placeholder="Enter a Postcode">
+                                <button type="submit" id="search-button" class="btn btn-outline">Search</button>
+                            </form>
+                            <div id="postcode-error" class="hidden"></div>
+                        </div>
+                        <div id="map"></div>
+                    </div>
                     <div class="text-center">                                        
                         <a href="/" class="btn btn-outline btn-xl">Play again</a>
                     </div>
