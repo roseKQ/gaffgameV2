@@ -127,7 +127,7 @@ var questionSet = [
             icon: 'img/parkKeeper_icon.png',
             description: 'Park Keeper Norris is creating the playground table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment automatically when new rows are added.',
             pieces: [
-                'CREATE', 'TABLE', 'Playgrounds', '(', 'Playground_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+                'CREATE', 'TABLE', 'Playgrounds', '(', 'Playground_ID', 'INT', 'NOT NULL', 'PRIMARY KEY', ')'
             ],
             mask: 'XXXX_X__X',
             herrings: [],
@@ -135,9 +135,9 @@ var questionSet = [
         },
         {
             icon: 'img/principle_icon.png',
-            description: 'Principal Parker is creating the schools table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment automatically when new rows are added.',
+            description: 'Principal Parker is creating the SCHOOLS table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment automatically when new rows are added.',
             pieces: [
-                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+                'CREATE', 'TABLE', 'SCHOOLS', '(', 'School_ID', 'INT', 'NOT NULL', 'PRIMARY KEY', ')'
             ],
             mask: 'XX_X_X_XX',
             herrings: [],
@@ -145,9 +145,9 @@ var questionSet = [
         },
         {
             icon: 'img/principle_icon.png',
-            description: 'Principal Parker is creating the Schools table. Build the query to define the primary key. Use the schema to help you',
+            description: 'Principal Parker is creating the SCHOOLS table. Build the query to define the primary key. Use the schema to help you',
             pieces: [
-                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+                'CREATE', 'TABLE', 'SCHOOLS', '(', 'School_ID', 'INT', 'NOT NULL', 'PRIMARY KEY', ')'
             ],
             mask: '__XXX_X_X',
             herrings: [],
@@ -157,7 +157,7 @@ var questionSet = [
             icon: 'img/principle_icon.png',
             description: 'Principal Parker is inserting values into the SCHOOL_TYPE table. Help her complete the query. Use the schema to help you.',
             pieces: [
-                'INSERT', 'INTO', 'SCHOOL_TYPE', 'VALUES', '(', 'SchoolType', 'SchoolDefinition', ')'
+                'INSERT', 'INTO', 'SCHOOL_TYPE', 'VALUES', '(', 'SchoolType,', 'SchoolDefinition', ')'
             ],
             mask: '____X__X',
             herrings: [],
@@ -165,9 +165,9 @@ var questionSet = [
         },
         {
             icon: 'img/parkKeeper_icon.png',
-            description: 'Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you',
+            description: 'Park Keeper Norris is inserting values into the PLAYGROUNDS table. Help him complete the query. Use the schema to help you',
             pieces: [
-                'INSERT', 'INTO', 'Playgrounds', 'VALUES', '(', 'Name,', 'Address,', 'Postcode,', 'Playgound_ID,', 'Latitude,', 'Longitude,', 'PlaygroundType,', 'PlayCapacity', ')'
+                'INSERT', 'INTO', 'PLAYGROUNDS', 'VALUES', '(', 'Name,', 'Address,', 'Postcode,', 'Playgound_ID,', 'Latitude,', 'Longitude,', 'PlaygroundType,', 'PlayCapacity', ')'
             ],
             mask: 'XX_XX___X___XX',
             herrings: [],
@@ -177,7 +177,7 @@ var questionSet = [
             icon: 'img/sergeant_icon.png',
             description: 'Sergeant Bloom is inserting values into the CRIME_TYPE table. Help him complete the query. Use the schema to help you',
             pieces: [
-                'INSERT', 'INTO', 'CRIME_TYPE', 'VALUES', '(', 'CrimeType', 'CrimeDefinition', ')'
+                'INSERT', 'INTO', 'CRIME_TYPE', 'VALUES', '(', 'CrimeType,', 'CrimeDefinition', ')'
             ],
             mask: '__X_XX_X',
             herrings: [],
@@ -187,7 +187,7 @@ var questionSet = [
             icon: 'img/winnie_icon.png',
             description: 'Winnie wants to see all the robberies that occurred between May and August. Help her write the query.',
             pieces: [
-                'SELECT', 'CrimeType', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'', 'BETWEEN', '\'2016/05/01\' AND \'2016/08/31\''
+                'SELECT', '*', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'','AND', '\'2016/05/01\'', 'BETWEEN', '\'2016/08/31\''
             ],
             mask: '_XX_X___',
             herrings: [],
@@ -319,7 +319,7 @@ var questionSet = [
             icon: 'img/parkKeeper_icon.png',
             description: 'Park Keeper Norris is creating the playground table. Build the query to define the primary key. Use the schema to help you',
             pieces: [
-                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'PRIMARY KEY', ')'
             ],
             mask: '__XXX_X_X',
             herrings: [],
@@ -329,7 +329,7 @@ var questionSet = [
             icon: 'img/principle_icon.png',
             description: 'Principal Parker is creating the Schools table. Define the primary key with the appropriate datatype. Primary keys cannot be null. The primary key should increment',
             pieces: [
-                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'PRIMARY KEY', ')'
             ],
             mask: 'XX_X_X_XX',
             herrings: [],
@@ -339,7 +339,7 @@ var questionSet = [
             icon: 'img/principle_icon.png',
             description: 'Principal Parker is creating the Schools table. Build the whole query to define the primary key',
             pieces: [
-                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'IDENTITY', ')'
+                'CREATE', 'TABLE', 'Schools', '(', 'School_ID', 'INT', 'NOT NULL', 'PRIMARY KEY', ')'
             ],
             mask: '___X____X',
             herrings: [],
@@ -379,7 +379,7 @@ var questionSet = [
             icon: 'img/winnie_icon.png',
             description: 'Winnie wants to see all the robberies between May and August. Help her complete the query',
             pieces: [
-                'SELECT', 'CrimeType', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'', 'BETWEEN', '\'2016/05/01\' AND \'2016/08/31\''
+                'SELECT', '*', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'','AND', '\'2016/05/01\'', 'BETWEEN', '\'2016/08/31\''
             ],
             mask: 'X_X_X_X_',
             herrings: [],
@@ -439,7 +439,7 @@ var questionSet = [
             icon: 'img/peter_icon.png',
             description: 'Peter wants to remove crimes that are classified as case closed. Help him query the data',
             pieces: [
-                'DELETE', 'FROM', 'Crimes', 'WHERE', 'CaseClosed = \'true\''
+                'DELETE', 'FROM', 'Crimes', 'WHERE', 'CaseClosed = \'TRUE\''
             ],
             mask: '__X_X',
             herrings: [],
@@ -509,39 +509,39 @@ var questionSet = [
         },
         {
             icon: 'img/parkKeeper_icon.png',
-            description: 'Park Keeper Norris is creating the playground table. Build the whole query to define the primary key',
-            pieces: ["CREATE", "TABLE", "Playgrounds", "Playground ID, INT", "NOT NULL", "IDENTITY"],
+            description: 'Park Keeper Norris is creating the PLAYGROUNDS table. Build the whole query to define the primary key',
+            pieces: ["CREATE", "TABLE", "PLAYGROUNDS", "Playground ID, INT", "NOT NULL", "PRIMARY KEY"],
             mask: '_______',
             herrings: [],
             group: 'CREATE'
         },
         {
             icon: 'img/principle_icon.png',
-            description: 'Principal Parker is creating the Schools table. Build the query to define the primary key. Use the schema to help you',
-            pieces: ["CREATE", "TABLE", "Schools", "(", "School ID", "INT", "IDENTITY", "NOT NULL", ")"],
+            description: 'Principal Parker is creating the SCHOOLS table. Build the query to define the primary key. Use the schema to help you',
+            pieces: ["CREATE", "TABLE", "SCHOOLS", "(", "School ID", "INT", "NOT NULL", "PRIMARY KEY", ")"],
             mask: 'X_X___X__',
             herrings: [],
             group: 'CREATE'
         },
         {
             icon: 'img/sergeant_icon.png',
-            description: 'Sergeant Bloom is creating the Crime table. Build the query to define the primary key. Use the schema to help you',
-            pieces: ["CREATE", "TABLE", "Crime", "(", "Crime ID", "INT", "IDENTITY", "NOT NULL", ")"],
+            description: 'Sergeant Bloom is creating the CRIME table. Build the query to define the primary key. Use the schema to help you',
+            pieces: ["CREATE", "TABLE", "CRIME", "(", "Crime ID", "INT", "NOT NULL", "PRIMARY KEY", ")"],
             mask: '___X____X',
             herrings: [],
             group: 'CREATE'
         },
         {
             icon: 'img/parkKeeper_icon.png',
-            description: 'Park Keeper Norris is inserting values into the playground table. Help him complete the query. Use the schema to help you',
-            pieces: ["INSERT", "INTO", "Playgrounds", "VALUES", "(", "Name", "Address", "Postcode", "Playground ID", "Latitude", "Longitude", "PlaygroundType", " PlayCapacity)"],
+            description: 'Park Keeper Norris is inserting values into the PLAYGROUNDS table. Help him complete the query. Use the schema to help you',
+            pieces: ["INSERT", "INTO", "PLAYGROUNDS", "VALUES", "(", "Name,", "Address,", "Postcode,", "Playground ID,", "Latitude,", "Longitude,", "PlaygroundType,", " PlayCapacity)"],
             mask: 'X_X_____X____',
             herrings: [],
             group: 'INSERT'
         },
         {
             icon: 'img/sergeant_icon.png',
-            description: 'Sergeant Bloom is inserting values into the Crime table. Help him complete this query. Use the schema to help you',
+            description: 'Sergeant Bloom is inserting values into the CRIME table. Help him complete this query. Use the schema to help you',
             pieces: ["INSERT", "INTO", "Crime", "VALUES", "(", "CrimeType", "Latitude", "Longitude", "Crime ID ", "Date", "CaseClosed", "Location", ")"],
             mask: '_XX_X_XXX___X',
             herrings: [],
@@ -549,7 +549,7 @@ var questionSet = [
         },
         {
             icon: 'img/principle_icon.png',
-            description: 'Principle Parker is inserting values into the School table. Help him complete the query. Use the schema to help you',
+            description: 'Principle Parker is inserting values into the SCHOOLS table. Help him complete the query. Use the schema to help you',
             pieces: ["INSERT", "INTO", "Schools", "VALUES", "(", "Name", "Address", "Postcode", "School ID", "Latitude", "Longitude", "SchoolType", "SchoolPopulation", ")"],
             mask: 'X_X__X__X__X__',
             herrings: [],
@@ -558,22 +558,22 @@ var questionSet = [
         {
             icon: 'img/winnie_icon.png',
             description: 'Winnie wants to see all the robberies between May and August. Help her query the data',
-            pieces: ["SELECT", "FROM", "Crime", "WHERE", "CrimeType = 'Robberies'", "BETWEEN", "'2016/05/01' AND '2016/08/31'"],
-            mask: '__XX_X_',
+            pieces: ['SELECT', '*', 'FROM', 'Crime', 'WHERE', 'CrimeType = \'Robberies\'','AND', '\'2016/05/01\'', 'BETWEEN', '\'2016/08/31\''],
+            mask: '__XX_X_X_X',
             herrings: [],
             group: 'RETRIEVE'
         },
         {
             icon: 'img/winnie_icon.png',
             description: 'Winnie is worried about burglaries and bike theft and wants to order the data by date. Help her write the query',
-            pieces: ["SELECT", "CrimeType", "FROM", "Crime", "WHERE", "CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date"],
+            pieces: ["SELECT", "*", "FROM", "Crime", "WHERE", "CrimeType='burglary'", "OR", "CrimeType='bike theft'", "ORDER BY", "Date"],
             mask: 'X_X__XX_X_',
             herrings: [],
             group: 'RETRIEVE'
         },
         {
             icon: 'img/winnie_icon.png',
-            description: 'Winnie wants to know about schools that are nurseries and grammar schools and order them by SchoolPopulation. Help her query the data',
+            description: 'Winnie wants to know about the type of schools that are nurseries and grammar and order them by SchoolPopulation. Help her query the data',
             pieces: ["SELECT", "SchoolType", "FROM", "Schools", "WHERE", "SchoolType='nursery'", "OR", "SchoolType='grammar'", "ORDER BY", "SchoolPopulation"],
             mask: 'X_X__XX_X_',
             herrings: [],
