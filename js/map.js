@@ -240,27 +240,54 @@ $(document).ready(function() {
 
         console.log(JSON.stringify(crimeSummary));
 
-        var width = 300;
-        var height = 300;
-        var radius = Math.min(width, height) / 2;
+        //crime-piechart is the id of the div
+
+        var width = 300,
+            height = 300,
+            radius = Math.min(width, height) / 2;
+
+        var color = d3.scaleOrdinal()
+            .range(["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A"]);
+
+        var pie = d3.pie()
+            .value(function (d) { return d.value; })(crimeSummary);
 
         var arc = d3.arc()
-            .innerRadius(0)
-            .outerRadius(radius);
+            .outerRadius(radius - 10)
+            .innerRadius(15);
 
-        var canvas = d3.select("#crime-piechart")
-            .append("canvas")
+        var labelArc = d3.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 40);
+
+$('#crime-piechart').empty();
+
+        var svg = d3.select("#crime-piechart")
+            .append("svg")
             .attr("width", width)
             .attr("height", height)
-            .append('g').attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")"); // Moving the center point. 1/2 the width and 1/2 the height
 
+        var g = svg.selectAll("arc")
+            .data(pie)
+            .enter().append("g")
+            .attr("class", "arc");
 
+        g.append("path")
+            .attr("d", arc)
+            .style("fill", function (d) { return color(d.data.value); });
 
+        g.append("text")
+            .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
+            .text(function (d) { return d.data.key; })
+            .style("fill", "#fff");
 
-
-        //do everything inside this function including d3 nest & pie chart
+        svg.exit();
+        g.exit();
 
     }
+
 
     /**
      * Crime categories are strings such as "anti-social-behaviour". This function
@@ -285,64 +312,8 @@ $(document).ready(function() {
 
     init();
 
-});
+}); 
 
-var lat = -5.884378; 
-var long = 54.602357; 
-var date = '2016-12';
-var policeURLrequest = 'https://data.police.uk/api/crimes-street/all-crime?lat='+lat+'&lng='+long+'&date='+date;
-
-
-//Pie chart showing the crime breakdown that interacts with the 
-/*function d3Leaflet(){
-var CrimeJson = d3.request(policeURLrequest)
-    .mimeType("application/json")
-    .response(function(xhr) { return JSON.parse(xhr.responseText); })
-    .get(callback);
-
-var width = 960,
-    height = 500,
-    radius = Math.min(width, height) / 2;
-
-var color = d3.scale.ordinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-var arc = d3.svg.arc()
-    .outerRadius(radius - 10)
-    .innerRadius(0);
-
-var labelArc = d3.svg.arc()
-    .outerRadius(radius - 40)
-    .innerRadius(radius - 40);
-
-var pie = d3.layout.pie()
-    .sort(null)
-    .value(function(d) { return d.population; });
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-  .append("g")
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-d3.json(CrimeJson, type, function(error, data) {
-  if (error) throw error;
-
-  var g = svg.selectAll(".arc")
-      .data(pie(data))
-    .enter().append("g")
-    .size()
-    .attr("class", "arc");
-
-  g.append("path")
-      .attr("d", arc)
-      .style("fill", function(d) { return color(d.data.age); });
-
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.; });
-});*/
 
 
 
