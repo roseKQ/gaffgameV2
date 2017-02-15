@@ -247,7 +247,7 @@ $(document).ready(function() {
             radius = Math.min(width, height) / 2;
 
         var color = d3.scaleOrdinal()
-            .range(["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A"]);
+            .range(["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A", "#5F4842"]);
 
         var pie = d3.pie()
             .value(function (d) { return d.value; })(crimeSummary);
@@ -292,7 +292,7 @@ $('#legend').empty();
         var legendWidth = 175;
         var legendHeight = 320;
 
-        var legendColor = ["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A"];
+        var legendColor = ["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A", "#5F4842"];
 
         var legendSVG = d3.select("#legend")
             .append('svg')
@@ -317,7 +317,7 @@ $('#legend').empty();
             .attr("x", 35)
             .attr("y", 15)
             .attr("font-size", "12px")
-            .text(function (d) { return d.key; });
+            .text(function (d) { return naturalizeCategoryString(d.key); });
 
 
 
