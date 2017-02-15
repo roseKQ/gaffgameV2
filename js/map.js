@@ -242,8 +242,8 @@ $(document).ready(function() {
 
         //crime-piechart is the id of the div
 
-        var width = 300,
-            height = 300,
+        var width = 270,
+            height = 270,
             radius = Math.min(width, height) / 2;
 
         var color = d3.scaleOrdinal()
@@ -254,11 +254,13 @@ $(document).ready(function() {
 
         var arc = d3.arc()
             .outerRadius(radius - 10)
-            .innerRadius(15);
+            .innerRadius(50);
 
         var labelArc = d3.arc()
             .outerRadius(radius - 40)
             .innerRadius(radius - 40);
+
+        
 
 $('#crime-piechart').empty();
 
@@ -278,13 +280,46 @@ $('#crime-piechart').empty();
             .attr("d", arc)
             .style("fill", function (d) { return color(d.data.value); });
 
-        g.append("text")
-            .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
-            .text(function (d) { return d.data.key; })
-            .style("fill", "#fff");
+        /* g.append("text")
+             .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
+             .text(function (d) { return d.data.key; })
+             .style("fill", "#fff");*/
 
-        svg.exit();
-        g.exit();
+        g.exit().remove();
+
+$('#legend').empty();
+
+        var legendWidth = 175;
+        var legendHeight = 320;
+
+        var legendColor = ["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A"];
+
+        var legendSVG = d3.select("#legend")
+            .append('svg')
+            .attr("width", legendWidth)
+            .attr("height", legendHeight)
+            .append('g');
+
+        var legend = legendSVG.selectAll('g')
+            .data(crimeSummary)
+            .enter()
+            .append('g')
+            .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")" });
+
+        legend.append('circle')
+            .attr("class", "dot")
+            .attr("r", 6)
+            .attr("cx", 10)
+            .attr("cy", 10)
+            .style("fill", function (d, i) { return legendColor[i]; });
+
+        legend.append("text")
+            .attr("x", 35)
+            .attr("y", 15)
+            .attr("font-size", "12px")
+            .text(function (d) { return d.key; });
+
+
 
     }
 
@@ -296,9 +331,9 @@ $('#crime-piechart').empty();
      * @param {string} str
      * @returns {string}
      */
-    function naturalizeCategoryString( str ) {
+    function naturalizeCategoryString(str) {
         var parts;
-        if ( ( !str.split || !str.length) ) {
+        if ((!str.split || !str.length)) {
             throw "First argument must be a string.";
         }
 
