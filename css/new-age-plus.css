@@ -221,10 +221,25 @@ background-color: #ffffff;
 width:175px;
 height:280px;
 bottom: 10px;
-right: 280px;
+right: 285px;
 box-shadow: 0px 4px 5px #444444;
 
 }
+
+.tooltip {
+        background: #eee;
+        box-shadow: 0 0 5px #999999;
+        color: #333;
+        display: none;
+        font-size: 12px;
+        left: 130px;
+        padding: 10px;
+        position: absolute;
+        text-align: center;
+        top: 95px;
+        width: 80px;
+        z-index: 60;
+      }
 
 #postcode {
     box-shadow: 4px 4px 5px #444444;

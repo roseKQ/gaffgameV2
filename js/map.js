@@ -230,21 +230,32 @@ $(document).ready(function() {
 
     };
 
+/**
+ * Method to create the pie chart and legend using d3. Takes the json returned by the API call and summarises using the 
+ * d3 Nest function. Then uses this new data for the pie chart data. 
+ */
+   
     function createPieChart(crimes) {
 
         var crimes = crimes;
 
         console.log(crimes);
 
+        //d3 nest function to count the instances of each category of crime
+
         var crimeSummary = d3.nest().key(function (d) { return d.category; }).rollup(function (v) { return v.length; }).entries(crimes);
 
         console.log(JSON.stringify(crimeSummary));
 
-        //crime-piechart is the id of the div
+        //#crime-piechart is the id of the div showing the piechart
+        //#legend is the id of the div showing the legend
 
         var width = 270,
             height = 270,
             radius = Math.min(width, height) / 2;
+
+        var tooltipWidth;
+        var tooltipHeight;
 
         var color = d3.scaleOrdinal()
             .range(["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A", "#5F4842"]);
@@ -278,14 +289,31 @@ $('#crime-piechart').empty();
 
         g.append("path")
             .attr("d", arc)
-            .style("fill", function (d) { return color(d.data.value); });
+            .style("fill", function (d) { return color(d.data.value); })
 
-        /* g.append("text")
+       /*  g.append("text")
              .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
              .text(function (d) { return d.data.key; })
-             .style("fill", "#fff");*/
+             .style("fill", "#fff");*/ 
+
+        g.on('mouseover', function(d) { 
+            tooltip.select('.tooltip').html(d.key);
+            tooltip.style('display', 'block');
+  
+         });
+         g.on('mouseout', function (){
+             tooltip.style("display", 'none');
+         });
+
 
         g.exit().remove();
+
+/* Tooltips */
+        
+        var tooltipSVG = d3.select("#crime-piechart")
+        .append("div")
+        .attr('class', 'tooltip');
+
 
 $('#legend').empty();
 
@@ -304,7 +332,7 @@ $('#legend').empty();
             .data(crimeSummary)
             .enter()
             .append('g')
-            .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")" });
+            .attr("transform", function (d, i) { return "translate(0," + i * 18 + ")" });
 
         legend.append('circle')
             .attr("class", "dot")
@@ -318,6 +346,8 @@ $('#legend').empty();
             .attr("y", 15)
             .attr("font-size", "12px")
             .text(function (d) { return naturalizeCategoryString(d.key); });
+
+
 
 
 
