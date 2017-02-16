@@ -61,12 +61,9 @@ section.features .feature-item i {
 section.cta {
     background-image: url("../img/startup-photos.jpg");
 }
-
 .tooltip{
-
     font-size:16px;
 }
-
 .bg-primary {
     background: url("../theme/img/bg-pattern.png"), #00ddec;
     background: url("../theme/img/bg-pattern.png"), -webkit-linear-gradient(to left, #00ddec, #6b9aff);
@@ -91,19 +88,14 @@ section.cta {
     background-color: rgba(89, 127, 165, 0.9);
     overflow-y: hidden;
     transition: 0.5s;
-   
 }
-
-
 .overlay-content {
     position: relative;
     top: 25%;
     width: 100%;
     text-align: center;
     margin-top: 30px;
-    
 }
-
 .overlay a {
     padding: 8px;
     text-decoration: none;
@@ -112,13 +104,10 @@ section.cta {
     display: block;
     transition: 0.3s;
 }
-
 .overlay a:hover, .overlay a:focus {
     color: #f1f1f1;
 }
-
 .overlay .closebtn {
-    
     text-align: center;
     padding: 15px 32px;
     width: 180px;
@@ -129,8 +118,7 @@ section.cta {
     display: block;
     color: rgb(89, 127, 165);
     background-color: #ffffff;
-border-radius: 25px;
-        
+    border-radius: 25px;
 }
 
 /* End of theme overrides */
@@ -201,45 +189,41 @@ section#about {
 }
 
 #crime-piechart {
-
-position: absolute;
-background-color: #ffffff;
-box-shadow: 4px 4px 5px #444444;
-width: 270px;
-height: 280px;
-bottom: 10px;
-right:10px;
-z-index:55;
-
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 4px 4px 5px #444444;
+    width: 270px;
+    height: 280px;
+    bottom: 10px;
+    right:10px;
+    z-index:55;
 }
 
 #legend {
-
-z-index:55;
-position: absolute;
-background-color: #ffffff;
-width:175px;
-height:280px;
-bottom: 10px;
-right: 285px;
-box-shadow: 0px 4px 5px #444444;
-
+    z-index:55;
+    position: absolute;
+    background-color: #ffffff;
+    width:175px;
+    height:280px;
+    bottom: 10px;
+    right: 285px;
+    box-shadow: 0px 4px 5px #444444;
 }
 
 .tooltip {
-        background: #eee;
-        box-shadow: 0 0 5px #999999;
-        color: #333;
-        display: none;
-        font-size: 12px;
-        left: 130px;
-        padding: 10px;
-        position: absolute;
-        text-align: center;
-        top: 95px;
-        width: 80px;
-        z-index: 60;
-      }
+    background: #eee;
+    box-shadow: 0 0 5px #999999;
+    color: #333;
+    display: none;
+    font-size: 12px;
+    left: 130px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top: 95px;
+    width: 80px;
+    z-index: 60;
+}
 
 #postcode {
     box-shadow: 4px 4px 5px #444444;
