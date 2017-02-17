@@ -77,6 +77,13 @@ section.cta {
     border-color: #ffffff;
 }
 
+/* End of theme overrides */
+
+main {
+    min-height: calc(100vh - 50px - 2.7em);
+    padding: 100px 0;
+}
+
 .overlay {
     height: 100%;
     width: 100%;
@@ -119,13 +126,6 @@ section.cta {
     color: rgb(89, 127, 165);
     background-color: #ffffff;
     border-radius: 25px;
-}
-
-/* End of theme overrides */
-
-main {
-    min-height: calc(100vh - 50px - 2.7em);
-    padding: 100px 0;
 }
 
 abbr[data-original-title], abbr[title] {
@@ -188,41 +188,31 @@ section#about {
     z-index: 50;
 }
 
-#crime-piechart {
+#crime-chart-wrapper {
+    background: transparent;
+    bottom: 1.5em;
     position: absolute;
+    right: 1em;
+    z-index:55;
+}
+
+#crime-piechart {
     background-color: #ffffff;
     box-shadow: 4px 4px 5px #444444;
+    display: inline-block;
+    height: 270px;
+    overflow: hidden;
+    position: relative;
     width: 270px;
-    height: 280px;
-    bottom: 10px;
-    right:10px;
-    z-index:55;
 }
 
 #legend {
-    z-index:55;
-    position: absolute;
     background-color: #ffffff;
-    width:175px;
-    height:280px;
-    bottom: 10px;
-    right: 285px;
     box-shadow: 0px 4px 5px #444444;
-}
-
-.tooltip {
-    background: #eee;
-    box-shadow: 0 0 5px #999999;
-    color: #333;
-    display: none;
-    font-size: 12px;
-    left: 130px;
-    padding: 10px;
-    position: absolute;
-    text-align: center;
-    top: 95px;
-    width: 80px;
-    z-index: 60;
+    display: inline-block;
+    margin-right: 1em;
+    height: 270px;
+    width: 175px;
 }
 
 #postcode {
