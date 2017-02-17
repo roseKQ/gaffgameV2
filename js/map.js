@@ -1,4 +1,5 @@
 /* global L */
+/* global d3 */
 /* global schools, playgrounds */
 $(document).ready(function() {
     // Initial map setup
@@ -54,7 +55,6 @@ $(document).ready(function() {
         familyMarker.on('move movestart moveend', handleMarkerMove);
         displayLocalFeatures(initialLatLng);
     }
-    ;
 
     /**
      * Handler for playground marker setup
@@ -77,7 +77,6 @@ $(document).ready(function() {
         layer.bindPopup(popupContent, popupOptions);
         layer.setIcon(icon);
     }
-    ;
 
     /**
      * Handler for school marker setup
@@ -100,7 +99,6 @@ $(document).ready(function() {
         layer.bindPopup(popupContent, popupOptions);
         layer.setIcon(icon);
     }
-    ;
 
     /**
      * Handle the response returned by the post code geolocation service.
@@ -115,7 +113,6 @@ $(document).ready(function() {
         familyMarker.setLatLng(pos);
         map.panTo(pos);
     }
-    ;
 
     /**
      * Display an error message when the postcode API cannot find the post code,
@@ -125,7 +122,6 @@ $(document).ready(function() {
     function handlePostcodeError() {
         $('#postcode-error').text('The given postcode could not be found.').show();
     }
-    ;
 
     /**
      * Handle the user moving/dragging the marker.
@@ -144,7 +140,6 @@ $(document).ready(function() {
             displayLocalFeatures(e.latlng);
         }
     }
-    ;
 
     /**
      * Place markers on the map for features within a defined radius, including
@@ -173,7 +168,6 @@ $(document).ready(function() {
             }
         });
     }
-    ;
 
     /**
      * Filter a set of GeoJSON features (playgrounds, schools) and return only 
@@ -202,7 +196,6 @@ $(document).ready(function() {
 
         return filtered;
     }
-    ;
 
     /**
      * Handle the response from the Crime API
@@ -237,59 +230,50 @@ $(document).ready(function() {
         createPieChart(crimes);
 
     }
-    ;
 
     /**
      * Method to create the pie chart and legend using d3. Takes the json returned by the API call and summarises using the 
-     * d3 Nest function. Then uses this new data for the pie chart data. 
+     * d3 Nest function. Then uses this new data for the pie chart data.
+     * 
+     * @param {array} crimes
      */
-
     function createPieChart( crimes ) {
-
-        var crimes = crimes;
-
         console.log(crimes);
 
         //d3 nest function to count the instances of each category of crime
 
-        var crimeSummary = d3.nest().key(function( d ) {
-            return d.category;
-        }).rollup(function( v ) {
-            return v.length;
-        }).entries(crimes);
+        var crimeSummary = d3.nest()
+                .key(function( d ) {
+                    return naturalizeCategoryString(d.category);
+                })
+                .rollup(function( v ) {
+                    return v.length;
+                })
+                .entries(crimes);
 
         console.log(JSON.stringify(crimeSummary));
 
         //#crime-piechart is the id of the div showing the piechart
         //#legend is the id of the div showing the legend
 
-        var width = 270,
-                height = 270,
+        var width = $('#crime-piechart').width() - 10,
+                height = $('#crime-piechart').height() - 10,
                 radius = Math.min(width, height) / 2;
-
-        var tooltipWidth;
-        var tooltipHeight;
-
         var color = d3.scaleOrdinal()
                 .range(["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A", "#5F4842"]);
 
+        // Create the pie chart and associated arcs
         var pie = d3.pie()
                 .value(function( d ) {
                     return d.value;
                 })(crimeSummary);
-
         var arc = d3.arc()
                 .outerRadius(radius - 10)
                 .innerRadius(50);
 
-        var labelArc = d3.arc()
-                .outerRadius(radius - 40)
-                .innerRadius(radius - 40);
-
-
-
+        // Empty out the pie chart element (clearing any existing chart)
         $('#crime-piechart').empty();
-
+        // Create the chart SVG element
         var svg = d3.select("#crime-piechart")
                 .append("svg")
                 .attr("width", width)
@@ -297,45 +281,59 @@ $(document).ready(function() {
                 .append("g")
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")"); // Moving the center point. 1/2 the width and 1/2 the height
 
+        // Create each pie segment
         var g = svg.selectAll("arc")
                 .data(pie)
                 .enter().append("g")
-                .attr("class", "arc");
-
+                    .attr("class", "arc");
         g.append("path")
                 .attr("d", arc)
                 .style("fill", function( d ) {
                     return color(d.data.value);
-                })
-
-        /*  g.append("text")
-         .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
-         .text(function (d) { return d.data.key; })
-         .style("fill", "#fff");*/
-
+                });
+        
+        /* Tooltips */
+        if ( !$('#d3-tooltip').length ) {
+            // Tooltip element doesn't exist, so we need to create it
+            d3.select('body')
+                    .append('div')
+                    .attr('id', 'd3-tooltip')
+                    .attr('class', 'tooltip fade')
+                    .append('div')
+                        .attr('class', 'tooltip-inner');
+            $('#d3-tooltip').hide();
+        }
+        // Event handlers for displaying the tooltips
         g.on('mouseover', function( d ) {
-            tooltip.select('.tooltip').html(d.key);
-            tooltip.style('display', 'block');
-
+            // Update the tooltip text
+            // TODO: Display a percentage?
+            $('#d3-tooltip .tooltip-inner')
+                    .text(d.data.key);
+            
+            // Display and position the tooltip
+            var tooltip = $('#d3-tooltip');
+            tooltip.addClass('fade in')
+                    .css('left', (d3.event.pageX - (tooltip.width() / 2)) + 'px')
+                    .css('top', (d3.event.pageY - tooltip.height() - 4) + 'px')
+                    .show();
         });
-        g.on('mouseout', function() {
-            tooltip.style("display", 'none');
+        g.on('mousemove', function() {
+            // Re-position the tooltip as the mouse is moved
+            var tooltip = $('#d3-tooltip');
+            tooltip.css('left', (d3.event.pageX - (tooltip.width() / 2)) + 'px')
+                    .css('top', (d3.event.pageY - tooltip.height() - 4) + 'px');
         });
-
+        svg.on('mouseout', function() {
+            $('#d3-tooltip').hide();
+        });
 
         g.exit().remove();
 
-        /* Tooltips */
-
-        var tooltipSVG = d3.select("#crime-piechart")
-                .append("div")
-                .attr('class', 'tooltip');
-
-
+        /* Legend */
         $('#legend').empty();
 
-        var legendWidth = 175;
-        var legendHeight = 320;
+        var legendWidth = $('#legend').width();
+        var legendHeight = $('#legend').height();
 
         var legendColor = ["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A", "#5F4842"];
 
@@ -350,7 +348,7 @@ $(document).ready(function() {
                 .enter()
                 .append('g')
                 .attr("transform", function( d, i ) {
-                    return "translate(0," + i * 18 + ")"
+                    return "translate(0," + i * 18 + ")";
                 });
 
         legend.append('circle')
@@ -367,13 +365,8 @@ $(document).ready(function() {
                 .attr("y", 15)
                 .attr("font-size", "12px")
                 .text(function( d ) {
-                    return naturalizeCategoryString(d.key);
+                    return d.key;
                 });
-
-
-
-
-
     }
 
 
@@ -397,13 +390,6 @@ $(document).ready(function() {
 
         return parts.join(' ');
     }
-    ;
 
     init();
-
 });
-
-
-
-
-
