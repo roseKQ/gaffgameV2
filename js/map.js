@@ -263,7 +263,11 @@ $(document).ready(function() {
                 height = $('#crime-piechart').height(),
                 radius = Math.min(width, height) / 2;
         var color = d3.scaleOrdinal()
-                .range(["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A", "#5F4842"]);
+                .range([
+                    "#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", 
+                    "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", 
+                    "#E36588", "#9AC4F8", "#9A275A", "#5F4842"
+                ]);
 
         // Create the pie chart and associated arcs
         var pie = d3.pie()
@@ -291,8 +295,8 @@ $(document).ready(function() {
                     .attr("class", "arc");
         g.append("path")
                 .attr("d", arc)
-                .style("fill", function( d ) {
-                    return color(d.data.value);
+                .style("fill", function( d, i ) {
+                    return color(i);
                 });
         
         /* Tooltips */
@@ -338,8 +342,6 @@ $(document).ready(function() {
         var legendWidth = $('#legend').width();
         var legendHeight = $('#legend').height();
 
-        var legendColor = ["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A", "#5F4842"];
-
         var legendSVG = d3.select("#legend")
                 .append('svg')
                 .attr("width", legendWidth)
@@ -379,7 +381,7 @@ $(document).ready(function() {
                 .attr("cx", 10)
                 .attr("cy", 10)
                 .style("fill", function( d, i ) {
-                    return legendColor[i];
+                    return color(i);
                 });
 
         legend.append("text")
