@@ -312,10 +312,10 @@ $(document).ready(function() {
         }
         // Event handlers for displaying the tooltips
         g.on('mouseover', function( d ) {
+            var pc = ((d.data.value / crimes.length) * 100).toFixed(2);
             // Update the tooltip text
-            // TODO: Display a percentage?
             $('#d3-tooltip .tooltip-inner')
-                    .text(d.data.key);
+                    .text(d.data.key + '(' + pc + '%)');
             
             // Display and position the tooltip
             var tooltip = $('#d3-tooltip');
