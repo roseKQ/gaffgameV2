@@ -251,13 +251,16 @@ $(document).ready(function() {
                 })
                 .entries(crimes);
 
+        crimeSummary.sort(function( a, b ) {
+            return d3.descending(a.value, b.value);
+        });
         console.log(JSON.stringify(crimeSummary));
 
         //#crime-piechart is the id of the div showing the piechart
         //#legend is the id of the div showing the legend
 
-        var width = $('#crime-piechart').width() - 10,
-                height = $('#crime-piechart').height() - 10,
+        var width = $('#crime-piechart').width(),
+                height = $('#crime-piechart').height(),
                 radius = Math.min(width, height) / 2;
         var color = d3.scaleOrdinal()
                 .range(["#2C93E8", "#838690", "#F56C4E", "#CA2E55", "#FFE0B5", "#BDB246", "#25CED1", "#FCEADE", "#EA526F", "#99EDCC", "#E36588", "#9AC4F8", "#9A275A", "#5F4842"]);
@@ -351,6 +354,25 @@ $(document).ready(function() {
                     return "translate(0," + i * 18 + ")";
                 });
 
+        // Add a rect element to handle mouse events - text and g elements
+        //  only "activate" on filled areas (individual letters, the circles, 
+        //  etc.), whereas the rect will react to the entire area.
+        legend.append('rect')
+                .attr('opacity', 0)
+                .attr('x', 0)
+                .attr('y', 0)
+                .attr('width', legendWidth)
+                .attr('height', 18)
+                .on('mouseenter', function( d, i ) {
+                    $($('.legend-text')[i]).addClass('bold enlarge');
+                    $($('g.arc')[i]).addClass('enlarge');
+                })
+                .on('mouseleave', function( d, i ) {
+                    $($('.legend-text')[i]).removeClass('bold enlarge');
+                    $($('g.arc')[i]).removeClass('enlarge');
+                })
+                ;
+
         legend.append('circle')
                 .attr("class", "dot")
                 .attr("r", 6)
@@ -364,9 +386,13 @@ $(document).ready(function() {
                 .attr("x", 35)
                 .attr("y", 15)
                 .attr("font-size", "12px")
+                .attr('pointer-events', 'none')
+                .attr('class', 'legend-text')
                 .text(function( d ) {
                     return d.key;
                 });
+
+        legend.exit().remove();
     }
 
 
