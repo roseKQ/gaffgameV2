@@ -950,7 +950,7 @@ function drillDown() {
 
     // Add the legend text
     bar.append("text")
-            .style({"fill": "#888889", "font-size": 40})
+            .style({"fill": "#888889", "font-size": 25})
             .attr("x", 0)
             .attr("y", barHeight / 2 + paddingY)
             .attr("dy", ".35em")
